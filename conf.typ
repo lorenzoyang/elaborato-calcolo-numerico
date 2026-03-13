@@ -13,6 +13,11 @@
   logo: "unifi_logo.png",
   doc,
 ) = {
+  // Palette sobria centralizzata
+  let color-primary = rgb("#003b66")
+  let color-secondary = rgb("#005b99")
+  let color-muted = luma(120)
+
   // Impostazioni pagina
   set page(
     paper: "a4",
@@ -21,7 +26,7 @@
     number-align: center,
     header: context {
       if counter(page).get().first() > 1 {
-        set text(size: 9pt, fill: luma(120))
+        set text(size: 9.2pt, fill: color-muted)
         grid(
           columns: (1fr, 1fr),
           align(left)[Elaborato Calcolo Numerico #anno_acc], align(right)[#autore],
@@ -40,27 +45,27 @@
 
   set par(
     justify: true,
-    leading: 0.9em,
-    spacing: 1.1em,
+    leading: 1em,
+    spacing: 1.15em,
   )
 
   // Stile titoli
   show heading.where(level: 1): it => {
     v(1.1em)
-    text(size: 13.5pt, weight: "bold", fill: rgb("#003b66"))[#it.body]
+    text(size: 13.5pt, weight: "bold", fill: color-primary)[#it.body]
     v(0.45em)
   }
 
   show heading.where(level: 2): it => {
-    v(0.75em)
-    text(size: 11.8pt, weight: "bold")[#it.body]
-    v(0.35em)
+    v(0.8em)
+    text(size: 11.8pt, weight: "bold", fill: color-secondary)[#it.body]
+    v(0.4em)
   }
 
   show heading.where(level: 3): it => {
-    v(0.55em)
-    text(size: 11pt, weight: "bold")[#it.body]
-    v(0.25em)
+    v(0.6em)
+    text(size: 10.8pt, weight: "bold", fill: luma(55))[#it.body]
+    v(0.3em)
   }
 
   // Stile blocchi di codice
@@ -68,7 +73,7 @@
     set text(font: "DejaVu Sans Mono", size: 9pt)
     block(
       fill: luma(248),
-      stroke: (left: 3pt + rgb("#005b99"), rest: 0.5pt + luma(210)),
+      stroke: (left: 3pt + color-secondary, rest: 0.5pt + luma(210)),
       radius: 3pt,
       inset: (left: 12pt, rest: 8pt),
       width: 100%,
@@ -146,8 +151,8 @@
 //  Componenti riutilizzabili esportati dal template
 // ============================================================
 
-// Blocco esercizio con riquadro consegna
-#let esercizio(numero, consegna, corpo) = {
+// Blocco esercizio con riquadro domanda
+#let esercizio(numero, consegna, corpo, titolo: [Svolgimento]) = {
   v(1.2em)
   heading(level: 1, [Esercizio #numero])
   block(
@@ -157,11 +162,12 @@
     radius: 3pt,
     inset: 10pt,
   )[
-    // #text(weight: "bold", size: 11pt)[Consegna]
-    // #v(4pt)
     #text(size: 10.5pt, fill: luma(45))[#consegna]
   ]
-  v(0.6em)
+  v(0.75em)
+  if titolo != none {
+    heading(level: 2, titolo)
+  }
   corpo
 }
 
