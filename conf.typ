@@ -40,32 +40,32 @@
 
   set par(
     justify: true,
-    leading: 0.75em,
-    spacing: 1.2em,
+    leading: 0.9em,
+    spacing: 1.1em,
   )
 
   // Stile titoli
   show heading.where(level: 1): it => {
-    v(1em)
-    text(size: 13pt, weight: "bold")[#it.body]
-    v(0.4em)
+    v(1.1em)
+    text(size: 13.5pt, weight: "bold", fill: rgb("#003b66"))[#it.body]
+    v(0.45em)
   }
 
   show heading.where(level: 2): it => {
-    v(0.7em)
-    text(size: 11.5pt, weight: "bold", style: "italic")[#it.body]
-    v(0.3em)
+    v(0.75em)
+    text(size: 11.8pt, weight: "bold")[#it.body]
+    v(0.35em)
   }
 
   show heading.where(level: 3): it => {
-    v(0.5em)
+    v(0.55em)
     text(size: 11pt, weight: "bold")[#it.body]
-    v(0.2em)
+    v(0.25em)
   }
 
   // Stile blocchi di codice
   show raw.where(block: true): it => {
-    set text(font: "Latin Modern Mono", size: 9pt)
+    set text(font: "DejaVu Sans Mono", size: 9pt)
     block(
       fill: luma(248),
       stroke: (left: 3pt + rgb("#005b99"), rest: 0.5pt + luma(210)),
@@ -77,7 +77,7 @@
   }
 
   show raw.where(block: false): it => {
-    set text(font: "Latin Modern Mono", size: 9.5pt)
+    set text(font: "DejaVu Sans Mono", size: 9.5pt)
     box(
       fill: luma(245),
       inset: (x: 3pt, y: 1pt),
@@ -102,7 +102,7 @@
   set table.header(repeat: true)
 
   // Copertina
-  page(numbering: none)[
+  page[
     #v(2cm)
 
     #align(center)[
@@ -133,12 +133,11 @@
     #outline(
       title: [Indice],
       indent: 1.5em,
-      depth: 2,
+      depth: 1,
     )
   ]
 
   // Corpo del documento
-  counter(page).update(1)
   doc
 }
 
@@ -150,6 +149,7 @@
 // Blocco esercizio con riquadro consegna
 #let esercizio(numero, consegna, corpo) = {
   v(1.2em)
+  heading(level: 1, [Esercizio #numero])
   block(
     width: 100%,
     fill: luma(247),
@@ -157,9 +157,9 @@
     radius: 3pt,
     inset: 10pt,
   )[
-    #text(weight: "bold", size: 11pt)[-Esercizio #numero]
-    #v(4pt)
-    #text(style: "italic")[#consegna]
+    // #text(weight: "bold", size: 11pt)[Consegna]
+    // #v(4pt)
+    #text(size: 10.5pt, fill: luma(45))[#consegna]
   ]
   v(0.6em)
   corpo
