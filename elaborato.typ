@@ -67,17 +67,15 @@
 )[
   === Argomentazione Teorica
 
-  L'aritmetica di macchina (secondo lo standard IEEE 754) utilizza una rappresentazione in virgola mobile in base binaria. Sfruttando unicamente le proprietà delle operazioni algebriche di base e il comportamento dell'arrotondamento, possiamo ricavare le costanti fondamentali:
-
-  + *Precisione di macchina ($u$)*: È il più piccolo numero positivo tale per cui il calcolatore percepisce $1 + u > 1$. Partendo da $u = 1.0$, lo si divide iterativamente per $2.0$ finché la somma arrotondata non coincide con $1.0$. L'ultimo valore valido riscontrato è la precisione cercata.
-  + *Più grande numero di macchina*: La massima mantissa rappresentabile in base $2$ è pari a $2.0 - u$. Moltiplicando iterativamente per $2.0$ questo valore di base, si arriverà inevitabilmente all'overflow (infinito in macchina). Per testare l'avvenuto overflow senza usare funzioni predefinite come `isinf`, si sfrutta la proprietà algebrica per cui il reciproco dell'infinito informatico è esattamente zero: $1.0 / (x dot 2.0) == 0.0$.
-  + *Più piccolo numero normalizzato*: Si ottiene partendo da $1.0$ e dividendo iterativamente per $2.0$. Entrando nella zona dei numeri denormalizzati (subnormali), i bit significativi cominciano a scivolare fuori dalla mantissa. Un numero $x$ è da considerarsi ancora normalizzato se la moltiplicazione per $1.0 + u$ produce un risultato strettamente maggiore di $x$ (ovvero, non si è ancora perso l'ultimo bit di precisione disponibile).
-  + *Più piccolo numero denormalizzato*: Partendo dal più piccolo numero normalizzato appena trovato, si continua a dividere iterativamente per $2.0$ finché il numero non diventa matematicamente $0.0$ a causa della perdita totale dei bit (Underflow). L'ultimo valore strettamente positivo registrato è il nostro minimo denormalizzato.
+  - *Precisione di macchina ($u$)*: È il più piccolo numero positivo tale per cui il calcolatore percepisce $1 + u > 1$. Partendo da $u = 1.0$, lo si divide iterativamente per $2.0$ finché la somma arrotondata non coincide con $1.0$. L'ultimo valore valido riscontrato è la precisione cercata.
+  - *Più grande numero di macchina*: La massima mantissa rappresentabile in base $2$ è pari a $2.0 - u$. Moltiplicando iterativamente per $2.0$ questo valore di base, si arriverà inevitabilmente all'overflow (infinito in macchina). Per testare l'avvenuto overflow senza usare funzioni predefinite come `isinf`, si sfrutta la proprietà algebrica per cui il reciproco dell'infinito informatico è esattamente zero: $1.0 / (x dot 2.0) == 0.0$.
+  - *Più piccolo numero normalizzato*: Si ottiene partendo da $1.0$ e dividendo iterativamente per $2.0$. Entrando nella zona dei numeri denormalizzati, i bit significativi cominciano a scivolare fuori dalla mantissa. Un numero $x$ è da considerarsi ancora normalizzato se la moltiplicazione per $(1.0 + u)$ produce un risultato strettamente maggiore di $x$ (ovvero, non si è ancora perso l'ultimo bit di precisione disponibile).
+  - *Più piccolo numero denormalizzato*: Partendo dal più piccolo numero normalizzato appena trovato, si continua a dividere iterativamente per $2.0$ finché il numero non diventa matematicamente $0.0$ a causa della perdita totale dei bit (Underflow). L'ultimo valore strettamente positivo registrato è il nostro minimo denormalizzato.
 
   === Codice Matlab: La Function
   ```matlab
-  function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina_es2()
-  % function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina_es2()
+  function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
+  % Function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
   %
   % Calcola le costanti fondamentali della macchina assumendo che l'aritmetica
   % finita implementata utilizzi la base binaria con arrotondamento.

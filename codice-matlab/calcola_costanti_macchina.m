@@ -1,5 +1,5 @@
-function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina_es2()
-% function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina_es2()
+function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
+% function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
 %
 % Calcola le costanti fondamentali della macchina assumendo che l'aritmetica
 % finita implementata utilizzi la base binaria con arrotondamento.
