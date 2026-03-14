@@ -152,9 +152,9 @@
   % Output:
   %   x     - approssimazione della radice.
 
-  % gestione parametri mancanti e valori di default
+  % gestione degli argomenti di input e valori di default
   if nargin < 3
-      error('Parametri insufficienti');
+      error('Numero di argomenti insufficiente.');
   end
   if nargin < 6
       molt = 1;
@@ -223,6 +223,74 @@
   "4",
   [Scrivere una function Matlab che implementi il metodo di bisezione. Prevedere valori di default per la tolleranza di arresto.],
 )[
+  ```matlab
+  function [x, itnum] = metodoBisezione(f, a, b, tol)
+  % Function [x, itnum] = metodoBisezione(f, a, b, tol)
+  %
+  % Trova la radice di f in [a,b] usando il metodo di bisezione.
+  %
+  % Input:
+  %   f   - funzione per cui trovare la radice
+  %   a   - estremo sinistro dell'intervallo
+  %   b   - estremo destro dell'intervallo
+  %   tol - tolleranza per il criterio di arresto (default 1e-3)
+  %
+  % Output:
+  %   x     - stima della radice
+  %   itnum - numero di iterazioni effettuate
+
+  % gestione input e valori di default
+  if nargin < 3
+      error('Numero di argomenti insufficiente.');
+  end
+
+  if nargin < 4
+      tol = 1e-3;
+  end
+
+  if a >= b
+      error('Intervallo [a, b] non valido.');
+  end
+
+  % valutazione iniziale e controllo dei segni
+  fa = f(a);
+  fb = f(b);
+
+  if fa == 0
+      x = a; itnum = 0; return;
+  elseif fb == 0
+      x = b; itnum = 0; return;
+  elseif fa * fb > 0
+      error('Condizione f(a)*f(b) < 0 non soddisfatta.');
+  end
+
+  % calcolo del numero di iterazioni necessarie a priori
+  itmax = ceil(log2(b - a) - log2(tol));
+  itnum = 0;
+
+  % ciclo di bisezione
+  for k = 1:itmax
+      itnum = itnum + 1;
+
+      % calcolo del punto medio
+      x = a + (b - a) / 2;
+      fx = f(x);
+
+      if fx == 0
+          return;
+      end
+
+      % aggiornamento dell'intervallo
+      if fa * fx < 0
+          b = x;
+      else
+          a = x;
+          fa = fx;
+      end
+  end
+
+  end
+  ```
 ]
 
 #esercizio(
@@ -233,55 +301,70 @@
 
 #esercizio(
   "6",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 6).],
+  [
+    Tabulare il costo computazionale dei precedenti metodi, in termini di valutazioni di funzione, per determinare lo zero della funzione
+    $ f(x) = sin(10x) + arctan(10x) $
+    con la massima accuratezza possibile. Utilizzare $x_0 = 10$ per il metodo di Newton, e l'intervallo iniziale $[-10.1, 10]$ per il metodo di bisezione ed il metodo ibrido. Per quest'ultimo, utilizzare $delta = 10^(-1)$ come valore di _switch_ tra i due metodi. Commentare i risultati ottenuti.
+  ],
 )[
 ]
 
 #esercizio(
   "7",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 7).],
+  [Scrivere una function Matlab, con sintassi `x = triup(U,b)`, che risolva un sistema triangolare superiore $n times n$, in cui la matrice dei coefficienti `U` è memorizzata, per colonne, in un vettore di lunghezza $n(n+1)/2$.],
 )[
 ]
 
 #esercizio(
   "8",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 8).],
+  [Scrivere una function che implementi efficientemente la risoluzione di un sistema lineare mediante la fattorizzazione $L U$ con pivoting parziale. Validare la function su alcuni esempi significativi.],
 )[
 ]
 
 #esercizio(
   "9",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 9).],
+  [
+    Al seguente link: https://drive.google.com/file/d/1Fp8xFhUONS2W-l4alRKmomRxoM1SeVny/view?usp=share_link
+
+    è reperibile la function `linsis.m`, che crea la matrice dei coefficienti ed il termine noto di un sistema lineare $n times n$, la cui soluzione è il vettore con tutte le componenti uguali ad 1. Utilizzare la function del precedente esercizio per risolvere i sistemi lineari ottenuti con le seguenti istruzioni:
+    ```matlab
+    n = 10;
+    for k = 1:15
+        [A,b] = linsis(n,k);
+    end
+    ```
+    Rappresentare _convenientemente_ l'andamento dell'errore, rispetto ad `k`, e spiegare _esaurientemente_ i risultati ottenuti.
+  ],
 )[
 ]
 
 #esercizio(
   "10",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 10).],
+  [],
 )[
 ]
 
 #esercizio(
   "11",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 11).],
+  [],
 )[
 ]
 
 #esercizio(
   "12",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 12).],
+  [],
 )[
 ]
 
 #esercizio(
   "13",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 13).],
+  [],
 )[
 ]
 
 #esercizio(
   "14",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 14).],
+  [],
 )[
 ]
 

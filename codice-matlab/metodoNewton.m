@@ -13,9 +13,9 @@ function x = metodoNewton(f, f1, x0, tol, maxit, molt)
 % Output:
 %   x     - approssimazione della radice.
 
-% gestione parametri mancanti e valori di default
+% gestione degli argomenti di input e valori di default
 if nargin < 3
-    error('Parametri insufficienti');
+    error('Numero di argomenti insufficiente.');
 end
 if nargin < 6
     molt = 1;
