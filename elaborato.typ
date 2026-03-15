@@ -23,68 +23,20 @@
 
 #include "esercizi/es06.typ"
 
-#esercizio(
-  "7",
-  [Scrivere una function Matlab, con sintassi `x = triup(U,b)`, che risolva un sistema triangolare superiore $n times n$, in cui la matrice dei coefficienti `U` è memorizzata, per colonne, in un vettore di lunghezza $n(n+1)/2$.],
-)[
-]
+#include "esercizi/es07.typ"
 
-#esercizio(
-  "8",
-  [Scrivere una function che implementi efficientemente la risoluzione di un sistema lineare mediante la fattorizzazione $L U$ con pivoting parziale. Validare la function su alcuni esempi significativi.],
-)[
-]
+#include "esercizi/es08.typ"
 
-#esercizio(
-  "9",
-  [
-    Al seguente link: https://drive.google.com/file/d/1Fp8xFhUONS2W-l4alRKmomRxoM1SeVny/view?usp=share_link
+#include "esercizi/es09.typ"
 
-    è reperibile la function `linsis.m`, che crea la matrice dei coefficienti ed il termine noto di un sistema lineare $n times n$, la cui soluzione è il vettore con tutte le componenti uguali ad 1. Utilizzare la function del precedente esercizio per risolvere i sistemi lineari ottenuti con le seguenti istruzioni:
-    ```matlab
-    n = 10;
-    for k = 1:15
-        [A,b] = linsis(n,k);
-    end
-    ```
-    Rappresentare _convenientemente_ l'andamento dell'errore, rispetto ad `k`, e spiegare _esaurientemente_ i risultati ottenuti.
-  ],
-)[
-]
+#include "esercizi/es10.typ"
 
-#esercizio(
-  "10",
-  [],
-)[
-]
+#include "esercizi/es11.typ"
 
-#esercizio(
-  "11",
-  [],
-)[
-]
+#include "esercizi/es12.typ"
 
-#esercizio(
-  "12",
-  [],
-)[
-]
+#include "esercizi/es13.typ"
 
-#esercizio(
-  "13",
-  [],
-)[
-]
+#include "esercizi/es14.typ"
 
-#esercizio(
-  "14",
-  [],
-)[
-]
-
-#esercizio(
-  "15",
-  [Inserire qui il testo ufficiale della consegna dal PDF (Esercizio 15).],
-)[
-]
-
+#include "esercizi/es15.typ"
