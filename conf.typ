@@ -194,3 +194,14 @@
     #table(..args)
   ]
 }
+
+// Rimando informativo a risorse esterne (codice, file allegati, ecc.)
+#let rimando(testo) = block(
+  fill: rgb("#eef4fa"), // azzurro molto tenue, nella famiglia del primario
+  stroke: (left: 2pt + rgb("#005b99")), // stesso blu di esercizio e codice, ma 2pt invece di 3pt
+  inset: 8pt,
+  radius: 2pt,
+  width: 100%,
+)[
+  #text(size: 9.5pt, fill: rgb("#003b66"))[↳ #testo]
+]
