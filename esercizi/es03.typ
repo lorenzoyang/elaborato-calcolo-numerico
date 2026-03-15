@@ -7,8 +7,8 @@
   La soluzione proposta implementa il metodo di Newton includendo anche la gestione della molteplicità della radice (metodo di Newton modificato). Viene inoltre utilizzato un criterio di arresto robusto basato sull'errore misto assoluto/relativo.
 
   ```matlab
-  function x = metodoNewton(f, f1, x0, tol, maxit, molt)
-  % Function x = metodoNewton(f, f1, x0, tol, maxit, molt)
+  function [x, it] = metodoNewton(f, f1, x0, tol, maxit, molt)
+  % Function [x, it] = metodoNewton(f, f1, x0, tol, maxit, molt)
   %
   % Metodo di Newton (modificato) per gli zeri di funzione.
   %
@@ -20,7 +20,8 @@
   %   molt  - molteplicita' della radice (default 1).
   %
   % Output:
-  %   x     - approssimazione della radice.
+  %   x     - approssimazione della radice;
+  %   it    - numero di iterazioni effettuate.
 
   % gestione degli argomenti di input e valori di default
   if nargin < 3
@@ -50,9 +51,11 @@
   % inizializzazione
   x = x0;
   flag = 1;
+  it = 0;
 
   % ciclo iterativo di Newton
   for i = 1:maxit
+      it = i;
       x0 = x; % salvo il valore precedente
 
       % valutazione funzione e derivata
