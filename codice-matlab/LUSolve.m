@@ -1,21 +1,16 @@
-function [x, L, U, p] = LUSolve(A, b)
-% Function [x, L, U, p] = LUSolve(A, b)
+function x = LUSolve(A, b)
+% Function x = LUSolve(A, b)
 %
-% Risolve un sistema lineare Ax = b mediante fattorizzazione LU con 
-% pivoting parziale. La funzione implementa l'algoritmo di decomposizione 
-% PA = LU, dove P e' la matrice di permutazione derivante dal pivoting parziale, 
-% L e' una matrice triangolare inferiore con diagonale unitaria e 
-% U e' una matrice triangolare superiore.
+% Risolve un sistema lineare Ax = b mediante fattorizzazione LU con pivoting 
+% parziale. La funzione implementa l'algoritmo di decomposizione PA = LU in-place 
+% e risolve i sistemi triangolari risultanti.
 %
 % Input:
 %   A - matrice quadrata dei coefficienti (n x n);
 %   b - vettore dei termini noti (n x 1).
 %
 % Output:
-%   x - vettore soluzione del sistema (n x 1);
-%   L - matrice triangolare inferiore con diagonale unitaria (n x n);
-%   U - matrice triangolare superiore (n x n);
-%   p - vettore di permutazione (1 x n) tale che A(p,:) = L*U.
+%   x - vettore soluzione del sistema (n x 1).
 
 [n, m] = size(A);
 if n ~= m
@@ -45,31 +40,33 @@ for k = 1:n-1
     end
 
     % calcolo dei moltiplicatori (colonna k, righe k+1 a n)
+    % questi elementi costituiscono la parte triangolare inferiore L (esclusa diag)
     A(k+1:n, k) = A(k+1:n, k) / A(k, k);
 
     % aggiornamento della sottomatrice (operazione di rango 1)
     A(k+1:n, k+1:n) = A(k+1:n, k+1:n) - A(k+1:n, k) * A(k, k+1:n);
 end
 
-% estrazione matrici L e U
-L = tril(A, -1) + eye(n);
-U = triu(A);
+% controllo singolarità ultimo elemento (non catturato dal ciclo)
+if A(n, n) == 0
+    error('LUSolve: Matrice singolare (elemento diagonale nullo in posizione %d,%d).', n, n);
+end
 
-% risoluzione dei sistemi triangolari (Pb = Ly, Ux = y)
-% sostituzione in avanti (Ly = b(p))
-pb = b(p);
-y = zeros(n, 1);
-for i = 1:n
-    y(i) = pb(i) - L(i, 1:i-1) * y(1:i-1);
+% risoluzione dei sistemi triangolari
+% inizializzazione x con il termine noto permutato (Pb)
+x = b(p);
+
+% sostituzione in avanti (Ly = Pb)
+% L ha diagonale unitaria. Gli elementi L(i,j) sono in A(i,j) con i > j.
+for k = 1:n-1
+    x(k+1:n) = x(k+1:n) - A(k+1:n, k) * x(k);
 end
 
 % sostituzione all'indietro (Ux = y)
-x = zeros(n, 1);
-for i = n:-1:1
-    if U(i, i) == 0
-        error('LUSolve: Elemento diagonale nullo in U(%d,%d).', i, i);
-    end
-    x(i) = (y(i) - U(i, i+1:n) * x(i+1:n)) / U(i, i);
+% U ha diagonale generale. Gli elementi U(i,j) sono in A(i,j) con i <= j.
+for k = n:-1:1
+    x(k) = x(k) / A(k, k);
+    x(1:k-1) = x(1:k-1) - A(1:k-1, k) * x(k);
 end
 
 end
