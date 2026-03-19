@@ -1,72 +1,68 @@
 function x = LUSolve(A, b)
 % Function x = LUSolve(A, b)
 %
-% Risolve un sistema lineare Ax = b mediante fattorizzazione LU con pivoting 
-% parziale. La funzione implementa l'algoritmo di decomposizione PA = LU in-place 
-% e risolve i sistemi triangolari risultanti.
+% Risolve un sistema lineare A*x = b di ordine n usando la
+% fattorizzazione LU con pivoting parziale.
 %
 % Input:
-%   A - matrice quadrata dei coefficienti (n x n);
-%   b - vettore dei termini noti (n x 1).
+%   A - matrice dei coefficienti nxn;
+%   b - vettore dei termini noti nx1.
 %
 % Output:
-%   x - vettore soluzione del sistema (n x 1).
+%   x - vettore soluzione del sistema nx1.
 
-[n, m] = size(A);
-if n ~= m
-    error('LUSolve: Matrice non quadrata.');
+[m, n] = size(A);
+
+% controlli di consistenza
+if m ~= n
+    error('La matrice A deve essere quadrata.');
 end
+
 if length(b) ~= n
-    error('LUSolve: Dimensioni incompatibili tra A e b.');
+    error('Dimensioni incompatibili tra A e b.');
 end
 
-b = b(:);   % forza b come vettore colonna
-p = (1:n)'; % inizializzazione vettore di permutazione
+% normalizzazione di b a vettore colonna
+b = b(:);
 
-% fattorizzazione LU con pivoting parziale (in place su A)
-for k = 1:n-1
-    % ricerca del pivot massimo nella colonna k (da riga k a n)
-    [pivot_val, relative_idx] = max(abs(A(k:n, k)));
-    pivot_idx = relative_idx + k - 1;
+% fattorizzazione LU con pivoting parziale (in-place)
+p = 1:n;
+tol = n * eps * norm(A, inf);
 
-    if pivot_val == 0
-        error('LUSolve: Matrice singolare incontrata alla colonna %d.', k);
+for i = 1:n
+    % ricerca del pivot sulla colonna i
+    [mi, ki] = max(abs(A(i:n, i)));
+    ki = ki + i - 1;
+
+    if mi <= tol
+        error('Matrice singolare o quasi singolare.');
     end
 
-    % scambio delle righe in A e nel vettore di permutazione p
-    if pivot_idx ~= k
-        A([k, pivot_idx], :) = A([pivot_idx, k], :);
-        p([k, pivot_idx]) = p([pivot_idx, k]);
+    % scambio righe se necessario
+    if ki > i
+        A([i, ki], :) = A([ki, i], :);
+        p([i, ki]) = p([ki, i]);
     end
 
-    % calcolo dei moltiplicatori (colonna k, righe k+1 a n)
-    % questi elementi costituiscono la parte triangolare inferiore L (esclusa diag)
-    A(k+1:n, k) = A(k+1:n, k) / A(k, k);
-
-    % aggiornamento della sottomatrice (operazione di rango 1)
-    A(k+1:n, k+1:n) = A(k+1:n, k+1:n) - A(k+1:n, k) * A(k, k+1:n);
+    % eliminazione gaussiana
+    if i < n
+        A(i+1:n, i) = A(i+1:n, i) / A(i, i);
+        A(i+1:n, i+1:n) = A(i+1:n, i+1:n) - A(i+1:n, i) * A(i, i+1:n);
+    end
 end
 
-% controllo singolarità ultimo elemento (non catturato dal ciclo)
-if A(n, n) == 0
-    error('LUSolve: Matrice singolare (elemento diagonale nullo in posizione %d,%d).', n, n);
+% risoluzione sistema PAx = Pb -> LUx = Pb
+% risoluzione Ly = Pb (forward substitution)
+y = b(p);
+for i = 1:n-1
+    y(i+1:n) = y(i+1:n) - A(i+1:n, i) * y(i);
 end
 
-% risoluzione dei sistemi triangolari
-% inizializzazione x con il termine noto permutato (Pb)
-x = b(p);
-
-% sostituzione in avanti (Ly = Pb)
-% L ha diagonale unitaria. Gli elementi L(i,j) sono in A(i,j) con i > j.
-for k = 1:n-1
-    x(k+1:n) = x(k+1:n) - A(k+1:n, k) * x(k);
-end
-
-% sostituzione all'indietro (Ux = y)
-% U ha diagonale generale. Gli elementi U(i,j) sono in A(i,j) con i <= j.
-for k = n:-1:1
-    x(k) = x(k) / A(k, k);
-    x(1:k-1) = x(1:k-1) - A(1:k-1, k) * x(k);
+% risoluzione Ux = y (backward substitution)
+x = y;
+for i = n:-1:1
+    x(i) = x(i) / A(i, i);
+    x(1:i-1) = x(1:i-1) - A(1:i-1, i) * x(i);
 end
 
 end

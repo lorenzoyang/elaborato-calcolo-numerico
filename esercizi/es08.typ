@@ -1,95 +1,89 @@
-#import "../conf.typ": esercizio
+#import "../conf.typ": esercizio, rimando, tabella_risultati
 
 #esercizio(
   "8",
   [Scrivere una function che implementi efficientemente la risoluzione di un sistema lineare mediante la fattorizzazione $L U$ con pivoting parziale. Validare la function su alcuni esempi significativi.],
 )[
+  Di seguito viene riportata l'implementazione della function `LUSolve`, che esegue la fattorizzazione in-place per ottimizzare l'uso della memoria.
 
   ```matlab
   function x = LUSolve(A, b)
   % Function x = LUSolve(A, b)
   %
-  % Risolve un sistema lineare Ax = b mediante fattorizzazione LU con pivoting
-  % parziale. La funzione implementa l'algoritmo di decomposizione PA = LU in-place
-  % e risolve i sistemi triangolari risultanti.
+  % Risolve un sistema lineare A*x = b di ordine n usando la
+  % fattorizzazione LU con pivoting parziale.
   %
   % Input:
-  %   A - matrice quadrata dei coefficienti (n x n);
-  %   b - vettore dei termini noti (n x 1).
+  %   A - matrice dei coefficienti nxn;
+  %   b - vettore dei termini noti nx1.
   %
   % Output:
-  %   x - vettore soluzione del sistema (n x 1).
+  %   x - vettore soluzione del sistema nx1.
 
-  [n, m] = size(A);
-  if n ~= m
-      error('LUSolve: Matrice non quadrata.');
+  [m, n] = size(A);
+
+  % controlli di consistenza
+  if m ~= n
+      error('La matrice A deve essere quadrata.');
   end
+
   if length(b) ~= n
-      error('LUSolve: Dimensioni incompatibili tra A e b.');
+      error('Dimensioni incompatibili tra A e b.');
   end
 
-  b = b(:);   % forza b come vettore colonna
-  p = (1:n)'; % inizializzazione vettore di permutazione
+  % normalizzazione di b a vettore colonna
+  b = b(:);
 
-  % fattorizzazione LU con pivoting parziale (in place su A)
-  for k = 1:n-1
-      % ricerca del pivot massimo nella colonna k (da riga k a n)
-      [pivot_val, relative_idx] = max(abs(A(k:n, k)));
-      pivot_idx = relative_idx + k - 1;
+  % fattorizzazione LU con pivoting parziale (in-place)
+  p = 1:n;
+  tol = n * eps * norm(A, inf);
 
-      if pivot_val == 0
-          error('LUSolve: Matrice singolare incontrata alla colonna %d.', k);
+  for i = 1:n
+      % ricerca del pivot sulla colonna i
+      [mi, ki] = max(abs(A(i:n, i)));
+      ki = ki + i - 1;
+
+      if mi <= tol
+          error('Matrice singolare o quasi singolare.');
       end
 
-      % scambio delle righe in A e nel vettore di permutazione p
-      if pivot_idx ~= k
-          A([k, pivot_idx], :) = A([pivot_idx, k], :);
-          p([k, pivot_idx]) = p([pivot_idx, k]);
+      % scambio righe se necessario
+      if ki > i
+          A([i, ki], :) = A([ki, i], :);
+          p([i, ki]) = p([ki, i]);
       end
 
-      % calcolo dei moltiplicatori (colonna k, righe k+1 a n)
-      % questi elementi costituiscono la parte triangolare inferiore L (esclusa diag)
-      A(k+1:n, k) = A(k+1:n, k) / A(k, k);
-
-      % aggiornamento della sottomatrice (operazione di rango 1)
-      A(k+1:n, k+1:n) = A(k+1:n, k+1:n) - A(k+1:n, k) * A(k, k+1:n);
+      % eliminazione gaussiana
+      if i < n
+          A(i+1:n, i) = A(i+1:n, i) / A(i, i);
+          A(i+1:n, i+1:n) = A(i+1:n, i+1:n) - A(i+1:n, i) * A(i, i+1:n);
+      end
   end
 
-  % controllo singolarità ultimo elemento (non catturato dal ciclo)
-  if A(n, n) == 0
-      error('LUSolve: Matrice singolare (elemento diagonale nullo in posizione %d,%d).', n, n);
+  % risoluzione sistema PAx = Pb -> LUx = Pb
+  % risoluzione Ly = Pb (forward substitution)
+  y = b(p);
+  for i = 1:n-1
+      y(i+1:n) = y(i+1:n) - A(i+1:n, i) * y(i);
   end
 
-  % risoluzione dei sistemi triangolari
-  % inizializzazione x con il termine noto permutato (Pb)
-  x = b(p);
-
-  % sostituzione in avanti (Ly = Pb)
-  % L ha diagonale unitaria. Gli elementi L(i,j) sono in A(i,j) con i > j.
-  for k = 1:n-1
-      x(k+1:n) = x(k+1:n) - A(k+1:n, k) * x(k);
-  end
-
-  % sostituzione all'indietro (Ux = y)
-  % U ha diagonale generale. Gli elementi U(i,j) sono in A(i,j) con i <= j.
-  for k = n:-1:1
-      x(k) = x(k) / A(k, k);
-      x(1:k-1) = x(1:k-1) - A(1:k-1, k) * x(k);
+  % risoluzione Ux = y (backward substitution)
+  x = y;
+  for i = n:-1:1
+      x(i) = x(i) / A(i, i);
+      x(1:i-1) = x(1:i-1) - A(1:i-1, i) * x(i);
   end
 
   end
   ```
+  Successivamente si riportano i risultati di alcuni esempi significativi di applicazione della funzione:
 
-  L'implementazione proposta è efficiente in quanto:
-  1. Esegue la fattorizzazione "in place", sovrascrivendo la matrice $A$ originale con i moltiplicatori di $L$ e i coefficienti di $U$.
-  2. Utilizza operazioni vettorializzate di Matlab per l'aggiornamento della sottomatrice.
-  3. Risolve il sistema lineare $A x = b$ mediante la successione di due sistemi triangolari diretti (sostituzione in avanti e all'indietro) sfruttando la matrice fattorizzata senza allocare memoria aggiuntiva per $L$ e $U$.
+  + *Sistema ben condizionato*: Risolvendo un sistema quadrato non singolare di base, il vettore $x$ calcolato risulta essere la soluzione corretta. L'errore rispetto alla soluzione esatta (calcolata in MATLAB con l'operatore `\`) risulta essere trascurabile e dell'ordine della precisione di macchina.
 
-  === Validazione e Risultati
+  + *Sistema che richiede pivoting*: Si è testato un sistema in cui l'elemento in posizione $(1,1)$ è nullo. Senza il pivoting l'algoritmo fallirebbe per divisione per zero, ma la funzione esegue correttamente le permutazioni necessarie e calcola la soluzione esatta.
 
-  La function è stata validata confrontando la soluzione ottenuta con quella fornita dall'operatore `\` di Matlab (`mldivide`) su diverse tipologie di matrici.
+  + *Matrice singolare (Gestione Errori)*: Testata con una matrice avente righe linearmente dipendenti (es. la seconda riga è un multiplo della prima). Il controllo dinamico sul pivot individua il problema e la funzione si interrompe restituendo correttamente l'errore `"Matrice singolare o quasi singolare."`.
 
-  - *Matrice 3x3*: Utilizzando $A = [1, 2, 3; 2, 1, 1; 1, 3, 2]$ e $b = [1; 2; 3]$, l'errore normato della soluzione rispetto a quella di riferimento è nullo (nell'ordine di $10^{-16}$).
-  - *Matrice casuale (n=100)*: Su una matrice con elementi estratti da una distribuzione uniforme, la norma del residuo della soluzione $||x - x_{"ref"}||$ si attesta su $10^{-14}$.
-  - *Matrice di Hilbert (n=8)*: Nonostante l'elevato numero di condizionamento ($K(H_8) approx 1.5 dot 10^{10}$), la function produce una soluzione accurata con un errore di circa $10^{-13}$ rispetto alla soluzione di riferimento, confermando la bontà dell'approccio con pivoting.
+  #rimando[Per eseguire i test empirici e riprodurre i risultati riportati, si faccia riferimento allo script MATLAB allegato denominato `test_lusolve.m`.]
+
 ]
