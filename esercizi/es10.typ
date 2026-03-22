@@ -82,31 +82,13 @@
   end
   ```
 
-  === Validazione e risultati
+  Successivamente si riportano i risultati di alcuni esempi significativi di applicazione della funzione, volti a verificarne l'accuratezza e la robustezza nella gestione degli errori:
 
-  La funzione è stata validata utilizzando matrici sdp generate tramite `linsis(n, k, 1)` per $n=10$ e $k=1 dots 15$. I risultati mostrano un comportamento analogo a quello della fattorizzazione $L U$, con l'errore che cresce proporzionalmente al numero di condizionamento.
+  + *Matrice simmetrica e definita positiva (caso ideale)*: generando una matrice s.d.p. casuale (ad esempio ponendo $A = X^T X$ con $X$ matrice quadrata non singolare generata con `rand`) e un vettore termine noto $b$, il vettore soluzione calcolato risulta del tutto accurato. L'errore relativo rispetto alla soluzione esatta (ottenuta tramite l'operatore `\` di MATLAB) risulta trascurabile e dell'ordine della precisione di macchina (circa $10^{-16}$).
 
-  #tabella_risultati(
-    caption: [Risultati numerici per LDLSolve con matrici sdp.],
-    columns: (auto, auto, auto),
-    [*$k$*],
-    [*$op("cond")(A, infinity)$*],
-    [*Errore $||x - x_e||_infinity$*],
-    [1],
-    [1.71e+01],
-    [5.55e-16],
-    [5],
-    [1.71e+05],
-    [6.64e-12],
-    [10],
-    [1.60e+10],
-    [5.73e-07],
-    [15],
-    [1.48e+15],
-    [9.70e-03],
-  )
+  + *Matrice non definita positiva (gestione errori)*: e' stato testato un sistema con una matrice simmetrica ma non definita positiva (ad esempio con elementi negativi sulla diagonale). L'algoritmo identifica prontamente l'anomalia durante il calcolo dell'elemento diagonale del fattore $D$, interrompendo l'esecuzione e restituendo correttamente il messaggio di errore previsto: `La matrice A non è definita positiva`.
 
-  Come atteso, la fattorizzazione $L D L^T$ risulta stabile per matrici ben condizionate e decade man mano che il numero di condizionamento si avvicina a $1/epsilon_"mach"$. Rispetto alla fattorizzazione $L U$ con pivoting, il vantaggio principale risiede nel minor costo computazionale ($n^3/3$ operazioni anziché $2n^3/3$).
+  + *Matrice non simmetrica (Gestione Errori)*: fornendo in input una matrice $A$ tale per cui $A eq.not A^T$, il controllo preventivo all'inizio della funzione basato sulla norma infinito rileva immediatamente la discrepanza strutturale. L'algoritmo si blocca segnalando tempestivamente `La matrice A deve essere simmetrica`, prevenendo così operazioni aritmetiche prive di senso per questo specifico metodo.
 
-  #rimando[Lo script MATLAB per la validazione è `test_ldlsolve.m`.]
+  #rimando[Lo script MATLAB utilizzato per la validazione della funzione `LDLSolve` è `test_ldlsolve.m`]
 ]
