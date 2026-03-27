@@ -1,65 +1,43 @@
-% script per testare l'esercizio 9
+% script per l'esercizio 9
+% risoluzione dei sistemi generati da linsis.m con LUSolve.m
+
+clear;
+clc;
+close all;
+
 n = 10;
-fprintf('k \t cond(A, inf) \t errore (inf)\n');
-fprintf('-------------------------------------------\n');
+k_vals = (1:15).';
+x_esatta = ones(n, 1);
 
-ks = 1:15;
-conds = zeros(size(ks));
-errors = zeros(size(ks));
+sigma = zeros(size(k_vals));
+err_inf = nan(size(k_vals));
+cond2 = nan(size(k_vals));
+stato = cell(size(k_vals));
 
-for i = 1:length(ks)
-    k = ks(i);
+for idx = 1:length(k_vals)
+    k = k_vals(idx);
     [A, b] = linsis(n, k);
-    x_esatta = ones(n, 1);
-    
+
+    sigma(idx) = pi^(-2 * k);
+    cond2(idx) = cond(A);
+
     try
-        x_calc = LUSolve(A, b);
-        err = norm(x_calc - x_esatta, inf);
+        x = LUSolve(A, b);
+        err_inf(idx) = norm(x - x_esatta, inf);
+        stato{idx} = 'ok';
     catch ME
-        fprintf('Errore per k=%d: %s\n', k, ME.message);
-        err = NaN;
+        stato{idx} = ME.message;
     end
-    
-    c = cond(A, inf);
-    conds(i) = c;
-    errors(i) = err;
-    
-    fprintf('%d \t %.2e \t %.2e\n', k, c, err);
 end
 
-% --- aggiunta per il grafico ---
+T = table(k_vals, sigma, cond2, err_inf, stato, ...
+    'VariableNames', {'k', 'sigma', 'cond2', 'err_inf', 'stato'});
 
-% indici validi (errore calcolato con successo)
-valid = ~isnan(errors) & errors > 0;
+disp(T);
 
 figure;
-semilogy(ks(valid), errors(valid), '-o', ...
-    'LineWidth', 1.5, 'Color', [0.2 0.2 0.8], ...
-    'MarkerFaceColor', [0.2 0.2 0.8], ...
-    'DisplayName', 'Errore $\|x - x_e\|_\infty$');
-hold on;
-
-% limite teorico solo sui punti validi
-semilogy(ks(valid), conds(valid) * eps, '--r', ...
-    'LineWidth', 1.2, ...
-    'DisplayName', 'Limite teorico $\mathrm{cond}(A)\cdot\varepsilon_{\mathrm{mach}}$');
-
-% linea verticale che marca il collasso numerico
-k_singular = find(~valid, 1);
-if ~isempty(k_singular)
-    xline(ks(k_singular), '--k', ...
-        'LineWidth', 1, ...
-        'Label', sprintf('k=%d: matrice singolare', ks(k_singular)), ...
-        'LabelVerticalAlignment', 'bottom', ...
-        'DisplayName', 'Soglia singolarità numerica');
-end
-
-hold off;
-
-xlim([1 15]);
+semilogy(k_vals, err_inf, 'o-', 'LineWidth', 1.5, 'MarkerSize', 6);
 grid on;
-set(gca, 'XTick', ks, 'TickLabelInterpreter', 'latex');
-xlabel('Parametro $k$', 'Interpreter', 'latex');
-ylabel('Valore (scala logaritmica)', 'Interpreter', 'latex');
-title('Errore e limite teorico al variare di $k$ ($n=10$)', 'Interpreter', 'latex');
-legend('Location', 'northwest', 'Interpreter', 'latex');
+xlabel('k');
+ylabel('Errore in norma infinito');
+title('Esercizio 9: errore di LUSolve al variare di k');

@@ -40,77 +40,113 @@
     Rappresentare _convenientemente_ l'andamento dell'errore, rispetto ad `k`, e spiegare _esaurientemente_ i risultati ottenuti.
   ],
 )[
-  L'esperimento è stato condotto risolvendo i sistemi lineari generati dalla funzione `linsis.m` per $n=10$ e valori di $k$ da 1 a 15, utilizzando la funzione `LUSolve` implementata nell'esercizio 8. Di seguito si riportano i risultati ottenuti in termini di numero di condizionamento della matrice $A$ (in norma infinito) e di errore relativo della soluzione calcolata rispetto alla soluzione esatta $x_{e} = [1, 1, ..., 1]^T$.
+  Per misurare l'accuratezza della soluzione è naturale considerare l'errore in norma infinito
+  $
+    e_k = ||x_k - x^*||_infinity,
+  $
+  e rappresentarlo in scala semilogaritmica rispetto a $k$, così da evidenziarne la crescita su più ordini di grandezza.
+
+  === Risultati numerici
+  I test empirici forniscono i seguenti risultati:
 
   #tabella_risultati(
-    caption: [Risultati numerici per $k=1 dots 15$ con $n=10$.],
-    columns: (auto, auto, auto),
-    [*$k$*],
-    [*$op("cond")(A, infinity)$*],
-    [*Errore $||x - x_e||_infinity$*],
+    caption: [Andamento dell'errore di `LUSolve` al variare di $k$ per $n = 10$.],
+    columns: (auto, auto, auto, auto),
+    align: center + horizon,
+    [*k*],
+    [*$sigma_k = pi^(-2k)$*],
+    [*$kappa_2(A_k)$*],
+    [*$||x_k - 1||_infinity$*],
     [1],
-    [$3.72 times 10^4$],
-    [$2.53 times 10^(-13)$],
+    [$1.0132 dot 10^(-1)$],
+    [$9.2774 dot 10^3$],
+    [$2.5313 dot 10^(-13)$],
     [2],
-    [$3.64 times 10^5$],
-    [$5.04 times 10^(-12)$],
+    [$1.0266 dot 10^(-2)$],
+    [$9.1082 dot 10^4$],
+    [$5.0440 dot 10^(-12)$],
     [3],
-    [$3.59 times 10^6$],
-    [$2.24 times 10^(-10)$],
+    [$1.0402 dot 10^(-3)$],
+    [$8.9890 dot 10^5$],
+    [$2.2374 dot 10^(-10)$],
     [4],
-    [$3.55 times 10^7$],
-    [$1.47 times 10^(-9)$],
+    [$1.0539 dot 10^(-4)$],
+    [$8.8717 dot 10^6$],
+    [$1.4721 dot 10^(-9)$],
     [5],
-    [$3.50 times 10^8$],
-    [$4.84 times 10^(-9)$],
+    [$1.0678 dot 10^(-5)$],
+    [$8.7561 dot 10^7$],
+    [$4.8428 dot 10^(-9)$],
     [6],
-    [$3.45 times 10^9$],
-    [$1.43 times 10^(-7)$],
+    [$1.0819 dot 10^(-6)$],
+    [$8.6419 dot 10^8$],
+    [$1.4339 dot 10^(-7)$],
     [7],
-    [$3.41 times 10^10$],
-    [$2.36 times 10^(-7)$],
+    [$1.0962 dot 10^(-7)$],
+    [$8.5292 dot 10^9$],
+    [$2.3587 dot 10^(-7)$],
     [8],
-    [$3.36 times 10^11$],
-    [$1.05 times 10^(-5)$],
+    [$1.1107 dot 10^(-8)$],
+    [$8.4180 dot 10^10$],
+    [$1.0476 dot 10^(-5)$],
     [9],
-    [$3.32 times 10^12$],
-    [$3.45 times 10^(-5)$],
+    [$1.1254 dot 10^(-9)$],
+    [$8.3084 dot 10^11$],
+    [$3.4464 dot 10^(-5)$],
     [10],
-    [$3.28 times 10^13$],
-    [$2.27 times 10^(-4)$],
+    [$1.1403 dot 10^(-10)$],
+    [$8.2068 dot 10^12$],
+    [$2.2674 dot 10^(-4)$],
     [11],
-    [$3.24 times 10^14$],
-    [$2.24 times 10^(-3)$],
+    [$1.1553 dot 10^(-11)$],
+    [$8.1185 dot 10^13$],
+    [$2.2438 dot 10^(-3)$],
     [12],
-    [$3.11 times 10^15$],
-    [$5.38 times 10^(-2)$],
+    [$1.1706 dot 10^(-12)$],
+    [$8.3345 dot 10^14$],
+    [$5.3792 dot 10^(-2)$],
     [13],
-    [$4.82 times 10^16$],
-    [---],
+    [$1.1861 dot 10^(-13)$],
+    [$1.4299 dot 10^16$],
+    [arresto della routine],
     [14],
-    [$1.33 times 10^17$],
-    [---],
+    [$1.2017 dot 10^(-14)$],
+    [$4.2866 dot 10^16$],
+    [arresto della routine],
     [15],
-    [$1.06 times 10^17$],
-    [---],
+    [$1.2176 dot 10^(-15)$],
+    [$2.3192 dot 10^16$],
+    [arresto della routine],
   )
 
   #figure(
-    image("../img/es09.png", width: 80%),
-    caption: [Andamento dell'errore e del limite teorico al variare del parametro $k$.],
+    image("../img/es09.png", width: 78%),
+    caption: [Grafico semilogaritmico dell'errore in norma infinito rispetto a $k$.],
   )
 
-  === Analisi dei risultati
-
-  Dalla tabella si evince chiaramente che:
-  - Il numero di condizionamento $op("cond")(A, infinity)$ cresce esponenzialmente con $k$, aumentando di circa un fattore 10 per ogni incremento di $k$.
-  - L'errore relativo segue lo stesso trend, crescendo proporzionalmente al numero di condizionamento. Questo è coerente con la teoria della stabilità numerica dei sistemi lineari, secondo cui l'errore sulla soluzione è limitato superiormente dal prodotto tra il numero di condizionamento e la precisione di macchina $epsilon_"mach" approx 2.22 times 10^(-16)$.
-  - Per $k=12$, il numero di condizionamento raggiunge l'ordine di $10^15$. L'errore risultante è circa $10^(-2)$, indicando che la soluzione ha perso quasi tutte le cifre significative di precisione.
-  - Per $k >= 13$, il numero di condizionamento supera l'inverso della precisione di macchina ($1/epsilon_"mach" approx 4.5 times 10^15$). In queste condizioni, la matrice risulta numericamente singolare. La funzione `LUSolve` identifica correttamente la situazione tramite il controllo sul valore assoluto dei pivot e interrompe l'esecuzione segnalando l'errore di singolarità.
-
   #nota[
-    Il comportamento osservato dimostra come l'accuratezza della soluzione calcolata dipenda drasticamente dal condizionamento del problema, indipendentemente dalla stabilità dell'algoritmo di risoluzione usato (in questo caso la fattorizzazione $L U$ con pivoting parziale).
+    Per $k = 13, 14, 15$ la function `LUSolve` si interrompe con il messaggio `"Matrice singolare o quasi singolare."`. Questo comportamento non contraddice la costruzione teorica del sistema: segnala che, in aritmetica finita, i pivot diventano confrontabili con la soglia di sicurezza usata nel codice.
   ]
 
-  #rimando[Lo script MATLAB utilizzato per la generazione di questi dati è `test_es09.m`.]
+  === Commento dei risultati
+  I dati mostrano con chiarezza tre fenomeni distinti.
+
+  - *Per valori piccoli di $k$* la matrice è ancora moderatamente ben condizionata e l'errore resta vicino alla precisione di macchina. Ad esempio per $k = 1$ si ha un errore di circa $2.5 dot 10^(-13)$.
+
+  - *All'aumentare di $k$* il parametro $sigma_k = pi^(-2k)$ si riduce di circa un fattore $pi^2$ a ogni passo, mentre il numero di condizionamento cresce approssimativamente come $1 / sigma_k$. Infatti, nei primi dodici casi risulta numericamente quasi costante il prodotto $kappa_2(A_k) sigma_k$, segno che il peggioramento del condizionamento è proprio governato dal primo elemento diagonale.
+
+  - *L'errore cresce molto rapidamente*. Poiché $kappa_2(A_k)$ arriva fino a circa $10^15$, anche inevitabili errori di arrotondamento possono amplificarsi moltissimo sulla soluzione. Questo è esattamente il comportamento previsto dalla teoria: quando il problema è mal condizionato, anche un metodo corretto puo' restituire una soluzione con errore sensibile.
+
+  Per $k = 12$ si osserva infatti un salto netto dell'errore a circa $5 dot 10^(-2)$. Da $k = 13$ in poi la matrice entra in una zona numericamente quasi singolare: la soglia
+  $
+    "tol" = n dot "eps" dot ||A||_infinity
+  $
+  inserita in `LUSolve` intercetta pivot troppo piccoli e interrompe opportunamente l'algoritmo.
+
+  In conclusione, il risultato evidenzia bene la differenza tra:
+
+  - *condizionamento del problema*, che peggiora rapidamente al crescere di $k$;
+  - *accuratezza della soluzione*, che di conseguenza decade fino al fallimento pratico della risoluzione numerica.
+
+  #rimando[Per riprodurre tabella e grafico riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es09.m`.]
 ]
