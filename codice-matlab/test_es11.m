@@ -1,51 +1,39 @@
-% script test_es11.m
-% risoluzione di sistemi lineari con matrice sdp generati da linsis.m
-% n = 10, k = 1:15
+% script per l'esercizio 11
+% risoluzione dei sistemi s.d.p. generati da linsis.m con LDLSolve.m
+
+clear;
+clc;
+close all;
 
 n = 10;
-ks = 1:15;
-errs = zeros(size(ks));
-conds = zeros(size(ks));
-x_e = ones(n, 1);
+k_vals = (1:15).';
+x_esatta = ones(n, 1);
 
-fprintf('k \t cond(A, 2) \t errore (rel)\n');
-fprintf('-------------------------------------------\n');
+sigma = zeros(size(k_vals));
+err_inf = zeros(size(k_vals));
+cond2 = zeros(size(k_vals));
 
-for i = 1:length(ks)
-    k = ks(i);
-    [A, b] = linsis(n, k, 1); % matrice SPD
+for idx = 1:length(k_vals)
+    k = k_vals(idx);
+    [A, b] = linsis(n, k, 1);
 
-    try
-        x = LDLSolve(A, b);
-        errs(i) = norm(x - x_e) / norm(x_e);
-    catch ME
-        fprintf('Errore per k=%d: %s\n', k, ME.message);
-        errs(i) = NaN;
-    end
+    x = LDLSolve(A, b);
 
-    conds(i) = cond(A);
-    fprintf('%d \t %.2e \t %.2e\n', k, conds(i), errs(i));
+    sigma(idx) = pi^(-2 * k);
+    err_inf(idx) = norm(x - x_esatta, inf);
+    cond2(idx) = cond(A);
 end
 
-% Plotting results
-figure;
-semilogy(ks, errs, '-o', ...
-    'LineWidth', 1.5, 'Color', [0.2 0.2 0.8], ...
-    'MarkerFaceColor', [0.2 0.2 0.8], ...
-    'DisplayName', 'Errore relativo $\|x - x_e\|_2 / \|x_e\|_2$');
-hold on;
+T = table(k_vals, sigma, cond2, err_inf, ...
+    'VariableNames', {'k', 'sigma', 'cond2', 'err_inf'});
 
-% Limite teorico: cond(A) * eps
-semilogy(ks, conds * eps, '--r', ...
-    'LineWidth', 1.2, ...
-    'DisplayName', 'Limite teorico $\mathrm{cond}_2(A)\cdot\varepsilon_{\mathrm{mach}}$');
+disp(T);
 
-hold off;
-
-xlim([1 15]);
+f = figure;
+semilogy(k_vals, err_inf, 'o-', 'LineWidth', 1.5, 'MarkerSize', 6);
 grid on;
-set(gca, 'XTick', ks, 'TickLabelInterpreter', 'latex');
-xlabel('Parametro $k$', 'Interpreter', 'latex');
-ylabel('Valore (scala logaritmica)', 'Interpreter', 'latex');
-title('Errore e limite teorico (SPD) al variare di $k$ ($n=10$)', 'Interpreter', 'latex');
-legend('Location', 'northwest', 'Interpreter', 'latex');
+xlim([1 15]);
+xticks(1:15);
+xlabel('k');
+ylabel('Errore in norma infinito');
+title('Esercizio 11: errore di LDLSolve al variare di k');

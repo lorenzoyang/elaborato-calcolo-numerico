@@ -15,89 +15,100 @@
     Rappresentare _convenientemente_ l'andamento dell'errore, rispetto ad `k`, e spiegare _esaurientemente_ i risultati ottenuti.
   ],
 )[
-  Nella tabella seguente sono riportati il numero di condizionamento in norma 2 della matrice $A$ e l'errore relativo calcolato come $E_"rel" = frac(||x - x_e||_2, ||x_e||_2)$, dove $x_e$ è la soluzione esatta $[1, dots, 1]^T$.
+  Anche in questo caso la soluzione esatta del sistema e'
+  $
+    x^* = (1, dots, 1)^T,
+  $
+  per cui si misura l'accuratezza mediante l'errore in norma infinito
+  $
+    e_k = ||x_k - x^*||_infinity.
+  $
+  Poiche' l'errore varia su piu' ordini di grandezza, la rappresentazione piu' leggibile e' un grafico semilogaritmico di $e_k$ rispetto a $k$.
+
+  === Risultati numerici
+  I risultati ottenuti applicando `LDLSolve` ai quindici sistemi richiesti sono riportati nella tabella seguente.
 
   #tabella_risultati(
-    caption: [Analisi dell'errore per sistemi s.d.p. ($n=10$).],
-    columns: (auto, auto, auto),
-    [*$k$*],
-    [*$op("cond")_2(A)$*],
-    [*Errore Relativo*],
+    caption: [Andamento dell'errore di `LDLSolve` al variare di $k$ per $n = 10$.],
+    columns: (auto, auto, auto, auto),
+    align: center + horizon,
+    [*k*],
+    [*$sigma_k = pi^(-2k)$*],
+    [*$kappa_2(A_k)$*],
+    [*$||x_k - 1||_infinity$*],
     [1],
-    [$9.87 times 10^0$],
-    [$2.46 times 10^(-16)$],
+    [$1.0132 dot 10^(-1)$],
+    [$9.8696$],
+    [$5.5511 dot 10^(-16)$],
     [2],
-    [$9.74 times 10^1$],
-    [$2.67 times 10^(-15)$],
+    [$1.0266 dot 10^(-2)$],
+    [$9.7409 dot 10^(1)$],
+    [$3.7748 dot 10^(-15)$],
     [3],
-    [$9.61 times 10^2$],
-    [$3.30 times 10^(-14)$],
+    [$1.0402 dot 10^(-3)$],
+    [$9.6139 dot 10^(2)$],
+    [$4.5297 dot 10^(-14)$],
     [4],
-    [$9.49 times 10^3$],
-    [$3.39 times 10^(-14)$],
+    [$1.0539 dot 10^(-4)$],
+    [$9.4885 dot 10^(3)$],
+    [$4.6407 dot 10^(-14)$],
     [5],
-    [$9.36 times 10^4$],
-    [$4.85 times 10^(-12)$],
+    [$1.0678 dot 10^(-5)$],
+    [$9.3648 dot 10^(4)$],
+    [$6.6367 dot 10^(-12)$],
     [6],
-    [$9.24 times 10^5$],
-    [$4.01 times 10^(-12)$],
+    [$1.0819 dot 10^(-6)$],
+    [$9.2427 dot 10^(5)$],
+    [$5.4831 dot 10^(-12)$],
     [7],
-    [$9.12 times 10^6$],
-    [$3.41 times 10^(-11)$],
+    [$1.0962 dot 10^(-7)$],
+    [$9.1222 dot 10^(6)$],
+    [$4.6703 dot 10^(-11)$],
     [8],
-    [$9.00 times 10^7$],
-    [$1.98 times 10^(-09)$],
+    [$1.1107 dot 10^(-8)$],
+    [$9.0032 dot 10^(7)$],
+    [$2.7144 dot 10^(-9)$],
     [9],
-    [$8.89 times 10^8$],
-    [$3.55 times 10^(-08)$],
+    [$1.1254 dot 10^(-9)$],
+    [$8.8858 dot 10^(8)$],
+    [$4.8598 dot 10^(-8)$],
     [10],
-    [$8.77 times 10^9$],
-    [$4.19 times 10^(-07)$],
+    [$1.1403 dot 10^(-10)$],
+    [$8.7700 dot 10^(9)$],
+    [$5.7300 dot 10^(-7)$],
     [11],
-    [$8.66 times 10^10$],
-    [$2.11 times 10^(-07)$],
+    [$1.1553 dot 10^(-11)$],
+    [$8.6556 dot 10^(10)$],
+    [$2.8839 dot 10^(-7)$],
     [12],
-    [$8.54 times 10^11$],
-    [$2.68 times 10^(-05)$],
+    [$1.1706 dot 10^(-12)$],
+    [$8.5429 dot 10^(11)$],
+    [$3.6724 dot 10^(-5)$],
     [13],
-    [$8.43 times 10^12$],
-    [$1.99 times 10^(-04)$],
+    [$1.1861 dot 10^(-13)$],
+    [$8.4349 dot 10^(12)$],
+    [$2.7192 dot 10^(-4)$],
     [14],
-    [$8.30 times 10^13$],
-    [$1.88 times 10^(-03)$],
+    [$1.2017 dot 10^(-14)$],
+    [$8.3045 dot 10^(13)$],
+    [$2.5704 dot 10^(-3)$],
     [15],
-    [$7.76 times 10^14$],
-    [$7.09 times 10^(-03)$],
+    [$1.2176 dot 10^(-15)$],
+    [$7.7556 dot 10^(14)$],
+    [$9.7005 dot 10^(-3)$],
   )
 
   #figure(
-    image("../img/es11.png", width: 80%),
-    caption: [Andamento dell'errore relativo e del limite teorico per il caso s.d.p.],
+    image("../img/es11.png", width: 78%),
+    caption: [Grafico semilogaritmico dell'errore in norma infinito rispetto a $k$ nel caso s.d.p..],
   )
 
-  === Analisi dei risultati
+  === Commento dei risultati
+  Dal grafico e dalla tabella si osserva che l'errore cresce al crescere di $k$. Per i primi valori di $k$ esso resta molto piccolo, vicino alla precisione di macchina, mentre per valori piu' grandi aumenta progressivamente fino ad arrivare a circa $10^(-2)$ nel caso $k = 15$.
 
-  Dall'analisi dei dati e del grafico si possono trarre le seguenti conclusioni:
+  Questo comportamento dipende dal fatto che, aumentando $k$, il parametro $sigma_k = pi^(-2k)$ diventa sempre piu' piccolo e la matrice risulta quindi sempre peggio condizionata. Di conseguenza gli errori di arrotondamento si riflettono in modo piu' evidente sulla soluzione numerica.
 
-  - *Legame tra errore e condizionamento*: L'errore relativo cresce (in scala
-    semi-logaritmica) approssimativamente in modo lineare rispetto a $k$,
-    seguendo l'andamento del numero di condizionamento. Come stabilito
-    dall'analisi perturbativa, vale la maggiorazione
-    $
-      frac(||Delta x||, ||x||)
-      <= kappa(A) lr((frac(||Delta b||, ||b||) + frac(||Delta A||, ||A||)))
-    $
-    dove i termini $||Delta b|| \/ ||b||$ e $||Delta A|| \/ ||A||$ sono
-    dell'ordine della precisione di macchina $epsilon_"mach" approx 2.22 times
-    10^(-16)$. Il grafico mostra che la curva dell'errore si mantiene al di
-    sotto del limite teorico $kappa_2(A) dot.op epsilon_"mach"$ per tutti i
-    valori di $k$, confermando la stabilità numerica dell'algoritmo $L D L^T$.
+  Si nota comunque che la routine `LDLSolve` riesce a risolvere tutti i sistemi senza arrestarsi. Questo conferma che, nel caso di matrici simmetriche definite positive, la fattorizzazione $L D L^T$ e' adatta al problema e fornisce risultati numericamente affidabili.
 
-  - *Stabilità numerica della fattorizzazione $L D L^T$*: La proprietà di
-    essere simmetrica definita positiva non implica di per sé un migliore
-    condizionamento rispetto al caso generale, ma garantisce l'esistenza e
-    l'unicità della fattorizzazione $L D L^T$ senza necessità di pivoting,
-    e la stabilità numerica del metodo.
-
-  #rimando[Lo script MATLAB utilizzato per la generazione di questi dati è `test_es11.m`.]
+  #rimando[Per riprodurre tabella e grafico riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es11.m`.]
 ]

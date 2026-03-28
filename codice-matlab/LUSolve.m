@@ -27,7 +27,7 @@ b = b(:);
 
 % fattorizzazione LU con pivoting parziale (in-place)
 p = 1:n;
-tol = n * eps * norm(A, inf);
+tol = n * eps * norm(A, 1);
 
 for i = 1:n
     % ricerca del pivot sulla colonna i
