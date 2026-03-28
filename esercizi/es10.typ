@@ -88,7 +88,7 @@
 
   + *Matrice non definita positiva (gestione errori)*: e' stato testato un sistema con una matrice simmetrica ma non definita positiva (ad esempio con elementi negativi sulla diagonale). L'algoritmo identifica prontamente l'anomalia durante il calcolo dell'elemento diagonale del fattore $D$, interrompendo l'esecuzione e restituendo correttamente il messaggio di errore previsto: `La matrice A non è definita positiva`.
 
-  + *Matrice non simmetrica (Gestione Errori)*: fornendo in input una matrice $A$ tale per cui $A eq.not A^T$, il controllo preventivo all'inizio della funzione basato sulla norma infinito rileva immediatamente la discrepanza strutturale. L'algoritmo si blocca segnalando tempestivamente `La matrice A deve essere simmetrica`, prevenendo così operazioni aritmetiche prive di senso per questo specifico metodo.
+  + *Matrice non simmetrica (Gestione Errori)*: fornendo in input una matrice $A$ tale per cui $A != A^T$, il controllo preventivo all'inizio della funzione basato sulla norma infinito rileva immediatamente la discrepanza strutturale. L'algoritmo si blocca segnalando tempestivamente `La matrice A deve essere simmetrica`, prevenendo così operazioni aritmetiche prive di senso per questo specifico metodo.
 
   #rimando[Lo script MATLAB utilizzato per la validazione della funzione `LDLSolve` è `test_ldlsolve.m`]
 ]
