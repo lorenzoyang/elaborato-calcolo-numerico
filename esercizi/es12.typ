@@ -10,4 +10,108 @@
     dove $omega_1, ..., omega_m$ sono pesi positivi assegnati.
   ],
 )[
+  Introduciamo la matrice diagonale dei pesi
+  $
+    W = "diag"(omega_1, dots, omega_m),
+  $
+  che e' simmetrica definita positiva perche' tutti i pesi sono strettamente positivi. La sua radice quadrata e'
+  $
+    W^(1/2) = "diag"(sqrt(omega_1), dots, sqrt(omega_m)),
+  $
+  e si usa per ricondurre il problema pesato a uno standard. Infatti il metodo dei minimi quadrati classici minimizza una somma di quadrati: se il residuo $r_i$ viene prima moltiplicato per $sqrt(omega_i)$, allora al quadrato si ottiene proprio il peso desiderato,
+  $
+    (sqrt(omega_i) r_i)^2 = omega_i r_i^2.
+  $
+  Quindi la radice quadrata non cambia il peso finale: lo prepara semplicemente nella forma giusta per poter usare la norma euclidea e la fattorizzazione `QR`. In tal modo la quantita' da minimizzare si puo' riscrivere come
+  $
+    ||r||_omega^2 = r^T W r = ||W^(1/2) r||_2^2 = ||W^(1/2)(A x - b)||_2^2.
+  $
+
+  Ponendo quindi
+  $
+    A_w = W^(1/2) A
+    quad "e" quad
+    b_w = W^(1/2) b,
+  $
+  il problema dei minimi quadrati pesati diventa un ordinario problema ai minimi quadrati:
+  $
+    min_(x in RR^n) ||A_w x - b_w||_2.
+  $
+
+  Poiche' $W^(1/2)$ e' invertibile e $A$ ha rango colonna massimo, anche $A_w$ ha rango $n$. Si puo' quindi applicare la fattorizzazione `QR` ridotta
+  $
+    A_w = Q R,
+    quad Q in RR^(m times n),
+    quad Q^T Q = I_n,
+    quad R in RR^(n times n),
+  $
+  con $R$ triangolare superiore e non singolare. Il minimizzatore cercato e' allora l'unica soluzione del sistema triangolare
+  $
+    R x = Q^T b_w.
+  $
+
+
+  ```matlab
+  function x = WeightedLSSolve(A, b, omega)
+  % Function x = WeightedLSSolve(A, b, omega)
+  %
+  % Risolve un problema di minimi quadrati pesati
+  % con A matrice m x n a rango colonna massimo e m >= n,
+  % mediante la fattorizzazione QR del sistema scalato.
+  %
+  % Input:
+  %   A     - matrice dei coefficienti m x n;
+  %   b     - vettore dei dati m x 1;
+  %   omega - vettore dei pesi positivi m x 1.
+  %
+  % Output:
+  %   x     - soluzione di minimi quadrati pesati n x 1.
+
+  [m, n] = size(A);
+
+  % controlli di consistenza
+  if m < n
+      error('Il sistema deve essere sovradeterminato o quadrato.');
+  end
+
+  if length(b) ~= m || length(omega) ~= m
+      error('Dimensioni incompatibili tra A, b e omega.');
+  end
+
+  % normalizzazione a vettori colonna
+  b = b(:);
+  omega = omega(:);
+
+  % controllo positivita' dei pesi
+  if any(omega <= 0)
+      error('I pesi devono essere strettamente positivi.');
+  end
+
+  % costruzione implicita del sistema scalato:
+  % Aw = W^(1/2) A, bw = W^(1/2) b
+  d = sqrt(omega);
+  Aw = A .* d;
+  bw = d .* b;
+
+  % fattorizzazione QR ridotta del sistema scalato
+  [Q, R] = qr(Aw, 0);
+
+  % controllo numerico di rango
+  tol = max(m, n) * eps * norm(R, 'inf');
+  if any(abs(diag(R)) <= tol)
+      error('La matrice A non ha rango colonna massimo.');
+  end
+
+  % termine noto del sistema triangolare
+  y = Q' * bw;
+
+  % risoluzione Rx = y (backward substitution)
+  x = y;
+  for i = n:-1:1
+      x(i) = x(i) / R(i, i);
+      x(1:i-1) = x(1:i-1) - R(1:i-1, i) * x(i);
+  end
+
+  end
+  ```
 ]
