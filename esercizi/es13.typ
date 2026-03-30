@@ -122,19 +122,19 @@
     [1],
     [$omega_i = 1$],
     [$(-1/3, 2/3, 0)^T$],
-    [$7.7407 dot 10^(-30)$],
+    [$2.4652 dot 10^(-31)$],
     [2],
     [$omega_i = (5 - i)^2 / 9$],
     [$(-1/3, 2/3, 0)^T$],
-    [$1.9502 dot 10^(-30)$],
+    [$5.0947 dot 10^(-31)$],
     [3],
     [$omega_i = i^2 / 9$],
     [$(-1/3, 2/3, 0)^T$],
-    [$7.4640 dot 10^(-31)$],
+    [$2.4981 dot 10^(-30)$],
     [4],
     [$omega_i = sqrt(2)$],
     [$(-1/3, 2/3, 0)^T$],
-    [$1.3945 dot 10^(-30)$],
+    [$5.5781 dot 10^(-31)$],
   )
 
   I valori riportati in tabella sono tutti dell'ordine di $10^(-30)$, quindi compatibili con un residuo nullo a meno degli inevitabili errori di arrotondamento. In aritmetica esatta si avrebbe infatti

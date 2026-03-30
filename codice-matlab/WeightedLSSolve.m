@@ -3,7 +3,8 @@ function x = WeightedLSSolve(A, b, omega)
 %
 % Risolve un problema di minimi quadrati pesati
 % con A matrice m x n a rango colonna massimo e m >= n,
-% mediante la fattorizzazione QR del sistema scalato.
+% mediante una fattorizzazione QR del sistema scalato
+% calcolata con riflessioni di Householder.
 %
 % Input:
 %   A     - matrice dei coefficienti m x n;
@@ -36,20 +37,39 @@ end
 % costruzione implicita del sistema scalato:
 % Aw = W^(1/2) A, bw = W^(1/2) b
 d = sqrt(omega);
-Aw = A .* d;
-bw = d .* b;
+A = A .* d;
+b = d .* b;
 
-% fattorizzazione QR ridotta del sistema scalato
-[Q, R] = qr(Aw, 0);
+% fattorizzazione QR ridotta tramite riflessioni di Householder
+tol = max(m, n) * eps * norm(A, 'inf');
 
-% controllo numerico di rango
-tol = max(m, n) * eps * norm(R, 'inf');
-if any(abs(diag(R)) <= tol)
-    error('La matrice A non ha rango colonna massimo.');
+for k = 1:n
+    xk = A(k:m, k);
+    sigma = norm(xk);
+
+    if sigma <= tol
+        error('La matrice A non ha rango colonna massimo.');
+    end
+
+    if xk(1) >= 0
+        alpha = -sigma;
+    else
+        alpha = sigma;
+    end
+
+    v = xk;
+    v(1) = v(1) - alpha;
+    beta = v' * v;
+
+    A(k:m, k:n) = A(k:m, k:n) - (2 / beta) * v * (v' * A(k:m, k:n));
+    b(k:m) = b(k:m) - (2 / beta) * v * (v' * b(k:m));
+
+    A(k, k) = alpha;
+    A(k+1:m, k) = 0;
 end
 
-% termine noto del sistema triangolare
-y = Q' * bw;
+R = triu(A(1:n, 1:n));
+y = b(1:n);
 
 % risoluzione Rx = y (backward substitution)
 x = y;
