@@ -7,7 +7,7 @@
   ```matlab
   function [x, itnum] = metodoBisezione(f, a, b, tol)
   % Function [x, itnum] = metodoBisezione(f, a, b, tol)
-  %
+  % 
   % Trova la radice di f in [a,b] usando il metodo di bisezione.
   %
   % Input:
@@ -19,6 +19,8 @@
   % Output:
   %   x     - stima della radice
   %   itnum - numero di iterazioni effettuate
+  %
+  % Rel. 07-03-2026.
 
   % gestione input e valori di default
   if nargin < 3

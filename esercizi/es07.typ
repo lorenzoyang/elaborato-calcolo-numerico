@@ -15,12 +15,14 @@
   % lunghezza n*(n+1)/2.
   %
   % Input:
-  %   U - vettore contenente gli elementi della matrice triangolare superiore
+  %   U - vettore contenente gli elementi della matrice triangolare superiore 
   %       (memorizzati per colonne);
   %   b - vettore dei termini noti.
   %
   % Output:
   %   x - vettore soluzione del sistema.
+  %
+  % Rel. 08-03-2026.
 
   % ricavo la dimensione n dal vettore dei termini noti
   n = length(b);

@@ -9,7 +9,7 @@
   ```matlab
   function [x, it] = metodoNewton(f, f1, x0, tol, maxit, molt)
   % Function [x, it] = metodoNewton(f, f1, x0, tol, maxit, molt)
-  %
+  % 
   % Metodo di Newton (modificato) per gli zeri di funzione.
   %
   % Input:
@@ -22,6 +22,8 @@
   % Output:
   %   x     - approssimazione della radice;
   %   it    - numero di iterazioni effettuate.
+  %
+  % Rel. 05-03-2026.
 
   % gestione degli argomenti di input e valori di default
   if nargin < 3

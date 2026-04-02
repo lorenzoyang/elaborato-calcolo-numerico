@@ -12,6 +12,8 @@ function [x, itnum] = metodoBisezione(f, a, b, tol)
 % Output:
 %   x     - stima della radice
 %   itnum - numero di iterazioni effettuate
+%
+% Rel. 07-03-2026.
 
 % gestione input e valori di default
 if nargin < 3

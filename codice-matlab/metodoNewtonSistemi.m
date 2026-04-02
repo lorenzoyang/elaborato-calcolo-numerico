@@ -16,6 +16,8 @@ function [x, it] = metodoNewtonSistemi(fun, x0, tol, maxit, solverLineare)
 % Output:
 %   x             - approssimazione della soluzione;
 %   it            - numero di iterazioni effettuate.
+%
+% Rel. 21-03-2026.
 
 % gestione degli argomenti di input e valori di default
 if nargin < 2

@@ -13,6 +13,7 @@ function x = WeightedLSSolve(A, b, omega)
 %
 % Output:
 %   x     - soluzione di minimi quadrati pesati n x 1.
+% Rel. 14-03-2026.
 
 [m, n] = size(A);
 

@@ -1,4 +1,4 @@
-% codice fornito dal docente per l'esercizio 9
+% codice fornito dal professore per l'esercizio 9
 
 function [A,b] = linsis(n,k,simme)
 %

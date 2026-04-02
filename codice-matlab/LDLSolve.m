@@ -14,6 +14,8 @@ function x = LDLSolve(A, b)
 %
 % Output:
 %   x - vettore soluzione nx1.
+%
+% Rel. 14-03-2026.
 
 [m, n] = size(A);
 

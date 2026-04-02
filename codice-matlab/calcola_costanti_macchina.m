@@ -1,5 +1,5 @@
 function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
-% function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
+% Function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
 %
 % Calcola le costanti fondamentali della macchina assumendo che l'aritmetica
 % finita implementata utilizzi la base binaria con arrotondamento.
@@ -16,6 +16,7 @@ function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
 %   min_norm   - piu' piccolo numero di macchina normalizzato
 %   min_denorm - piu' piccolo numero di macchina denormalizzato
 %
+% Rel. 05-03-2026.
 
 % 1. calcolo della precisione di macchina
 u_mac = 1.0;

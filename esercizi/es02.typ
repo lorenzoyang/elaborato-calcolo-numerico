@@ -31,6 +31,7 @@
   %   min_norm   - piu' piccolo numero di macchina normalizzato
   %   min_denorm - piu' piccolo numero di macchina denormalizzato
   %
+  % Rel. 05-03-2026.
 
   % 1. calcolo della precisione di macchina
   u_mac = 1.0;

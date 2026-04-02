@@ -19,6 +19,8 @@
   %
   % Output:
   %   x - vettore soluzione del sistema nx1.
+  %
+  % Rel. 08-03-2026.
 
   [m, n] = size(A);
 

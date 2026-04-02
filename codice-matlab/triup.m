@@ -12,6 +12,8 @@ function x = triup(U, b)
 %
 % Output:
 %   x - vettore soluzione del sistema.
+%
+% Rel. 08-03-2026.
 
 % ricavo la dimensione n dal vettore dei termini noti
 n = length(b);
