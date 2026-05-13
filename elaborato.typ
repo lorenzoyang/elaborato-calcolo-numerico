@@ -40,3 +40,33 @@
 #include "esercizi/es14.typ"
 
 #include "esercizi/es15.typ"
+
+#include "esercizi/es16.typ"
+
+#include "esercizi/es17.typ"
+
+#include "esercizi/es18.typ"
+
+#include "esercizi/es19.typ"
+
+#include "esercizi/es20.typ"
+
+#include "esercizi/es21.typ"
+
+#include "esercizi/es22.typ"
+
+#include "esercizi/es23.typ"
+
+#include "esercizi/es24.typ"
+
+#include "esercizi/es25.typ"
+
+#include "esercizi/es26.typ"
+
+#include "esercizi/es27.typ"
+
+#include "esercizi/es28.typ"
+
+#include "esercizi/es29.typ"
+
+#include "esercizi/es30.typ"
