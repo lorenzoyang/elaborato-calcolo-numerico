@@ -19,10 +19,6 @@ if nargin < 3
     error('Numero di argomenti insufficiente.');
 end
 
-if ~isvector(xi) || ~isvector(fi) || ~isvector(x)
-    error('Gli argomenti xi, fi e x devono essere vettori.');
-end
-
 n = length(xi);
 
 if length(fi) ~= n
