@@ -145,14 +145,12 @@ if isempty(x)
     return;
 end
 
-intervallo = discretize(x, xi);
+xx = x(:);
+intervallo = discretize(xx, xi);
 
 if any(isnan(intervallo(:)))
     error('I punti di valutazione devono appartenere all''intervallo dei nodi.');
 end
-
-intervallo = intervallo(:);
-xx = x(:);
 
 hi = h(intervallo);
 xa = xi(intervallo);
@@ -167,6 +165,7 @@ yy = ma .* (xb - xx) .^ 3 ./ (6 * hi) ...
     + (fa ./ hi - ma .* hi / 6) .* (xb - xx) ...
     + (fb ./ hi - mb .* hi / 6) .* (xx - xa);
 
-y = reshape(yy, size(x));
+y = zeros(size(x));
+y(:) = yy;
 
 end

@@ -36,11 +36,24 @@
     6(d_i - d_(i - 1)),
     quad i = 1, ..., n - 1.
   $
-  Alle due estremita' si aggiungono le condizioni richieste: $m_0 = m_n = 0$
-  per la naturale, le due condizioni su $s'$ per la completa e la continuita'
-  di $s'''$ nei nodi $x_1$ e $x_(n - 1)$ per la not-a-knot. In quest'ultimo
-  caso il codice elimina $m_0$ e $m_n$, cosi' il sistema risolto resta
-  tridiagonale e puo' essere trattato con `tridia`.
+  Alle due estremita' si aggiungono le condizioni richieste. Per la spline
+  naturale si pone $m_0 = m_n = 0$. Per la spline completa, dalle formule per
+  la derivata prima sugli intervalli estremi si ottengono le due righe
+  $
+    2 h_0 m_0 + h_0 m_1 = 6(d_0 - f'_a),
+    quad
+    h_(n - 1) m_(n - 1) + 2 h_(n - 1) m_n = 6(f'_b - d_(n - 1)).
+  $
+  Per la spline not-a-knot si impone la continuita' di $s'''$ nei nodi
+  $x_1$ e $x_(n - 1)$:
+  $
+    (m_1 - m_0) / h_0 = (m_2 - m_1) / h_1,
+    quad
+    (m_n - m_(n - 1)) / h_(n - 1)
+      = (m_(n - 1) - m_(n - 2)) / h_(n - 2).
+  $
+  Eliminando $m_0$ e $m_n$ dalle prime e ultime equazioni interne, il sistema
+  risolto resta tridiagonale e puo' essere trattato con `tridia`.
 
   ```matlab
   function y = spline3(xi, fi, x, type, f1a, f1b)
@@ -190,14 +203,12 @@
       return;
   end
 
-  intervallo = discretize(x, xi);
+  xx = x(:);
+  intervallo = discretize(xx, xi);
 
   if any(isnan(intervallo(:)))
       error('I punti di valutazione devono appartenere all''intervallo dei nodi.');
   end
-
-  intervallo = intervallo(:);
-  xx = x(:);
 
   hi = h(intervallo);
   xa = xi(intervallo);
@@ -212,7 +223,8 @@
       + (fa ./ hi - ma .* hi / 6) .* (xb - xx) ...
       + (fb ./ hi - mb .* hi / 6) .* (xx - xa);
 
-  y = reshape(yy, size(x));
+  y = zeros(size(x));
+  y(:) = yy;
 
   end
   ```
