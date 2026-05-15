@@ -56,14 +56,7 @@ T_hermite = table(n_hermite, err_hermite, err_hermite1, ...
 disp(T_poly);
 disp(T_hermite);
 
-script_dir = fileparts(mfilename('fullpath'));
-fig_dir = fullfile(script_dir, '..', 'img');
-
-if ~exist(fig_dir, 'dir')
-    mkdir(fig_dir);
-end
-
-f_fig = figure('Visible', 'off');
+figure;
 tiledlayout(2, 1);
 
 nexttile;
@@ -83,5 +76,3 @@ grid on;
 xlabel('n');
 ylabel('Errore massimo');
 title('Hermite: errore sulla derivata prima');
-
-exportgraphics(f_fig, fullfile(fig_dir, 'es20.png'), 'Resolution', 200);

@@ -29,7 +29,7 @@ T = table(k_vals, sigma, cond2, err_inf, ...
 
 disp(T);
 
-f = figure;
+figure;
 semilogy(k_vals, err_inf, 'o-', 'LineWidth', 1.5, 'MarkerSize', 6);
 grid on;
 xlim([1 15]);
