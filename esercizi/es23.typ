@@ -60,8 +60,10 @@
   ],
 )[
   Poniamo $f_i = f(x_i)$ e indichiamo con $s_i$ la restrizione della spline
-  all'intervallo $[x_(i - 1), x_i]$. Poiche' $s_3''$ e' lineare su ciascun
-  intervallo e vale $m_(i - 1)$ e $m_i$ agli estremi, si ha
+  all'intervallo $[x_(i - 1), x_i]$. Usiamo la convenzione delle differenze
+  divise con nodi ripetuti, quindi $f[x_0, x_0] = f'(x_0)$ e
+  $f[x_n, x_n] = f'(x_n)$. Poiche' $s_i''$ e' lineare su ciascun intervallo e
+  vale $m_(i - 1)$ e $m_i$ agli estremi, si ha
   $
     s_i''(x) =
       m_(i - 1) (x_i - x) / h_i
@@ -153,6 +155,9 @@
   $phi_i > 0$, $xi_i > 0$ e $phi_i + xi_i = 1$. Dunque nelle righe interne il
   coefficiente diagonale vale $2$ e la somma dei coefficienti fuori diagonale
   vale $1$; nelle righe estreme vale ancora $2 > 1$. La matrice e' quindi a
-  diagonale dominante stretta per righe.
+  diagonale dominante stretta per righe, e in particolare e' non singolare.
+  Il sistema ammette quindi una sola soluzione, che coincide con il vettore
+  delle derivate seconde nodali della spline completa.
 
 ]
+
