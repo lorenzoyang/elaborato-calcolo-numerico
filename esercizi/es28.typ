@@ -69,7 +69,7 @@
   %   Ikn - approssimazione dell'integrale;
   %   err - stima dell'errore di quadratura.
   %
-  % Rel. 16-05-2026.
+  % Rel. 20-05-2026.
 
   % controlli di consistenza
   if nargin < 5

@@ -42,7 +42,7 @@
   %   err  - stima totale dell'errore;
   %   nfev - numero di valutazioni funzionali effettuate.
   %
-  % Rel. 16-05-2026.
+  % Rel. 22-05-2026.
 
   % controlli di consistenza
   if nargin < 4

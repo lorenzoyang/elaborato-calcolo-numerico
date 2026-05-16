@@ -42,7 +42,7 @@
   % Output:
   %   x - vettore soluzione del sistema.
   %
-  % Rel. 16-05-2026.
+  % Rel. 17-05-2026.
 
   % controlli di consistenza
   if nargin < 4

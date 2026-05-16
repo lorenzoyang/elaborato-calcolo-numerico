@@ -16,7 +16,7 @@ function y = spline3(xi, fi, x, type, f1a, f1b)
 % Output:
 %   y    - valori della spline nei punti x, con le stesse dimensioni di x.
 %
-% Rel. 16-05-2026.
+% Rel. 18-05-2026.
 
 % controlli di consistenza
 if nargin < 3

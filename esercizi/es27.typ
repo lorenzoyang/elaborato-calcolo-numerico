@@ -46,7 +46,7 @@
   % Output:
   %   ci - vettore colonna dei coefficienti della formula.
   %
-  % Rel. 16-05-2026.
+  % Rel. 20-05-2026.
 
   % controlli di consistenza
   if nargin < 1
