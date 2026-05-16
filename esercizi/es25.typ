@@ -30,10 +30,10 @@
     caption: [Errore massimo delle tre spline cubiche interpolanti per la funzione di Runge.],
   )
 
-  Per stimare la potenza di $h$ si e' fatto un fit lineare nel piano
-  $log(E_n)$-$log(h)$ sugli ultimi dieci valori di $h$. Se
-  $E_n approx C h^p$, allora la pendenza della retta interpolante fornisce
-  proprio una stima di $p$.
+  Per stimare la potenza di $h$ si e' approssimata con una retta la parte
+  finale del grafico nel piano $log(E_n)$-$log(h)$, usando gli ultimi dieci
+  valori di $h$. Se $E_n approx C h^p$, allora la pendenza della retta
+  fornisce proprio una stima di $p$.
 
   #tabella_risultati(
     caption: [Ordini asintotici stimati dal grafico loglog, usando gli ultimi dieci valori di $h$.],
