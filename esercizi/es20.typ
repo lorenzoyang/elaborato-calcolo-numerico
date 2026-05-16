@@ -40,29 +40,18 @@
   )
 
   === Commento dei risultati
-  Il grafico mostra il classico fenomeno di Runge: aumentando il grado con
-  ascisse equidistanti, l'interpolazione polinomiale peggiora invece di
-  migliorare. Per Lagrange e Newton il polinomio interpolante e' lo stesso in
-  aritmetica esatta, quindi le due curve coincidono finche' gli effetti di
-  arrotondamento restano secondari. Per gradi alti le due implementazioni
-  iniziano invece a separarsi, perche' la valutazione in aritmetica finita
-  amplifica diversamente gli errori.
+  Il grafico mostra il fenomeno di Runge: con ascisse equidistanti l'errore
+  aumenta al crescere del grado, soprattutto vicino agli estremi. Lagrange e
+  Newton rappresentano lo stesso polinomio in aritmetica esatta; le curve si
+  separano solo per gradi alti, quando gli arrotondamenti vengono amplificati
+  in modo diverso dalle due valutazioni.
 
-  Numericamente l'errore passa gia' da circa $4.34$ per $n = 10$ a valori
-  compresi tra l'ordine di $10^30$ e quello di $10^37$ per $n = 140$. Questo
-  comportamento e' dovuto alle forti oscillazioni vicino agli estremi
-  dell'intervallo, tipiche dell'interpolazione della funzione di Runge con
-  nodi equidistanti.
-
-  Anche l'interpolazione di Hermite non risolve il problema. Anzi, imponendo
-  anche i valori della derivata si ottiene un polinomio di grado piu' alto, e
-  con queste ascisse l'errore cresce ancora piu' rapidamente: per $n = 70$
-  l'errore sul polinomio e' circa $8.24 dot 10^37$, mentre quello sulla
-  derivata prima e' circa $8.31 dot 10^38$.
-
-  In conclusione, su questo intervallo le ascisse equidistanti sono una scelta
-  numericamente inadatta per interpolare la funzione di Runge con polinomi di
-  grado elevato.
+  L'errore passa da circa $4.34$ per $n = 10$ a valori tra $10^30$ e
+  $10^37$ per $n = 140$. Anche Hermite peggiora: imponendo pure le derivate
+  si ottiene un polinomio di grado piu' alto, e per $n = 70$ gli errori su
+  funzione e derivata sono rispettivamente circa $8.24 dot 10^37$ e
+  $8.31 dot 10^38$. Le ascisse equidistanti sono quindi inadatte a questo
+  esempio per gradi elevati.
 
   #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es20.m`.]
 ]

@@ -56,12 +56,10 @@
   )
 
   === Commento
-  Gli ordini asintotici sono gli stessi dell'esercizio 25: la spline naturale
-  decresce come $h^2$, mentre la not-a-knot e la completa decrescono come
-  $h^4$.
-
-  Cambia pero' la costante dell'errore della spline naturale. Sul nuovo
-  intervallo il vincolo naturale impone $s''(-5) = s''(15) = 0$, ma
+  Gli ordini asintotici restano quelli dell'esercizio 25: $h^2$ per la spline
+  naturale e $h^4$ per not-a-knot e completa. Cambia invece la costante
+  dell'errore della spline naturale. Sul nuovo intervallo il vincolo naturale
+  impone $s''(-5) = s''(15) = 0$, ma
   $
     f''(x) = (6 x^2 - 2) / (1 + x^2)^3
   $
@@ -71,10 +69,9 @@
   grande: ad esempio $E_2000$ passa da $2.8437 dot 10^(-9)$ a
   $4.1256 dot 10^(-8)$.
 
-  Le curve not-a-knot e completa risultano invece praticamente coincidenti
-  con quelle dell'esercizio 25, almeno alle cifre riportate. Il massimo
-  dell'errore e' concentrato vicino a $x = 0$, dove la funzione di Runge varia
-  di piu', e il passo $h$ e' lo stesso nei due intervalli.
+  Le curve not-a-knot e completa restano invece praticamente coincidenti con
+  quelle dell'esercizio 25: il massimo dell'errore e' vicino a $x = 0$ e il
+  passo $h$ e' lo stesso nei due intervalli.
 
   #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es26.m`.]
 ]

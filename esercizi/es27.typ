@@ -105,5 +105,5 @@
   )
 
   Il grado $8$ non compare nella tabella perche' produce coefficienti
-  negativi, ad esempio quindi una formula peggio condizionata rispetto all'integrale continuo.
+  negativi e quindi una formula peggio condizionata rispetto all'integrale continuo.
 ]

@@ -34,32 +34,17 @@
   )
 
   === Commento dei risultati
-  Rispetto all'esercizio 20 il miglioramento e' netto per l'interpolazione in
-  forma di Lagrange: l'errore passa da circa $3.59 dot 10^(-1)$ per $n = 10$
-  a circa $7.70 dot 10^(-7)$ per $n = 140$. Quindi, usando questi nodi, non si
-  osserva il fenomeno di Runge visto con le ascisse equidistanti.
+  Il miglioramento rispetto ai nodi equidistanti e' netto: per Lagrange
+  l'errore scende da circa $3.59 dot 10^(-1)$ per $n = 10$ a
+  $7.70 dot 10^(-7)$ per $n = 140$, senza il fenomeno di Runge osservato
+  nell'esercizio 20.
 
-  In aritmetica esatta Lagrange e Newton rappresentano lo stesso polinomio
-  interpolante. Nel grafico pero' la curva di Newton coincide con quella di
-  Lagrange solo per gradi bassi; da circa $n = 50$ gli errori di arrotondamento
-  della costruzione e della valutazione in forma di Newton diventano
-  dominanti, fino a produrre valori molto grandi. Questo non contraddice il
-  vantaggio delle ascisse di Chebyshev: mostra piuttosto che, per gradi alti,
-  conta anche la stabilita' della forma numerica usata per valutare il
-  polinomio.
-
-  Per Hermite il comportamento e' analogo ma ancora piu' marcato. L'errore
-  migliora inizialmente, passando da circa $2.25 dot 10^(-1)$ per $n = 10$ a
-  circa $4.20 dot 10^(-2)$ per $n = 20$, ma poi cresce rapidamente. Il
-  polinomio di Hermite ha grado piu' elevato e richiede differenze divise con
-  nodi ripetuti; in doppia precisione questa scelta amplifica fortemente gli
-  errori di arrotondamento. Anche l'errore sulla derivata prima segue lo
-  stesso andamento.
-
-  In conclusione, le ascisse di Chebyshev risolvono il problema principale dei
-  nodi equidistanti per l'interpolazione della funzione di Runge, ma i risultati
-  numerici dipendono ancora dalla forma con cui il polinomio viene costruito e
-  valutato.
+  La curva di Newton coincide con quella di Lagrange solo per gradi bassi;
+  da circa $n = 50$ dominano gli errori di arrotondamento della forma di
+  Newton. Per Hermite l'effetto e' ancora piu' evidente, perche' il grado e'
+  maggiore e le differenze divise usano nodi ripetuti. Le ascisse di
+  Chebyshev migliorano quindi il problema di interpolazione, ma la stabilita'
+  della forma numerica resta decisiva.
 
   #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es21.m`.]
 ]

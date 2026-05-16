@@ -104,11 +104,9 @@
   )
 
   === Commento dei risultati
-  Dal grafico e dalla tabella si osserva che l'errore cresce al crescere di $k$. Per i primi valori di $k$ esso resta molto piccolo, vicino alla precisione di macchina, mentre per valori piu' grandi aumenta progressivamente fino ad arrivare a circa $10^(-2)$ nel caso $k = 15$.
+  L'errore cresce con $k$: il parametro $sigma_k = pi^(-2k)$ diminuisce e il numero di condizione aumenta, amplificando gli errori di arrotondamento. Per i primi valori di $k$ l'errore resta vicino alla precisione di macchina, mentre per $k = 15$ arriva a circa $10^(-2)$.
 
-  Questo comportamento dipende dal fatto che, aumentando $k$, il parametro $sigma_k = pi^(-2k)$ diventa sempre piu' piccolo e la matrice risulta quindi sempre peggio condizionata. Di conseguenza gli errori di arrotondamento si riflettono in modo piu' evidente sulla soluzione numerica.
-
-  Si nota comunque che la routine `LDLSolve` riesce a risolvere tutti i sistemi senza arrestarsi. Questo conferma che, nel caso di matrici simmetriche definite positive, la fattorizzazione $L D L^T$ e' adatta al problema e fornisce risultati numericamente affidabili.
+  A differenza del caso generale dell'esercizio 9, qui `LDLSolve` risolve tutti i sistemi: la struttura simmetrica definita positiva rende appropriata la fattorizzazione $L D L^T$.
 
   #rimando[Per riprodurre tabella e grafico riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es11.m`.]
 ]

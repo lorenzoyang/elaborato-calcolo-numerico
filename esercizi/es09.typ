@@ -140,7 +140,7 @@
 
   Per $k = 12$ si osserva infatti un salto netto dell'errore a circa $5 dot 10^(-2)$. Da $k = 13$ in poi la matrice entra in una zona numericamente quasi singolare: la soglia
   $
-    "tol" = n dot "eps" dot ||A||_infinity
+    "tol" = n dot "eps" dot ||A||_1
   $
   inserita in `LUSolve` intercetta pivot troppo piccoli e interrompe opportunamente l'algoritmo.
 

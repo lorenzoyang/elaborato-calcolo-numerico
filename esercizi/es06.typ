@@ -9,7 +9,7 @@
   ],
 )[
   === Analisi Teorica
-  La funzione $f(x) = sin(10x) + arctan(10x)$ si annulla esattamente nell'origine ($x^* = 0$). Tuttavia, il termine trigonometrico la rende fortemente oscillante. La derivata $f'(x) = 10 cos(10x) + 10 / (1 + (10x)^2)$ cambia segno molto di frequente: questo significa che partire da un punto lontano come $x_0 = 10$ ci mette in una zona decisamente "pericolosa" e instabile per i metodi basati sulle tangenti.
+  La funzione $f(x) = sin(10x) + arctan(10x)$ si annulla esattamente nell'origine ($x^* = 0$). Il termine trigonometrico la rende però oscillante e la derivata $f'(x) = 10 cos(10x) + 10 / (1 + (10x)^2)$ cambia segno spesso; l'innesco $x_0 = 10$ è quindi sfavorevole per Newton.
 
   === Tabella dei Costi Computazionali
   Considerando come "massima accuratezza" una tolleranza vicina alla precisione di macchina (ordine di $10^(-15)$), i test empirici restituiscono i seguenti risultati:
@@ -39,7 +39,7 @@
   #rimando[per eseguire i test empirici e riprodurre i dati riportati in questa tabella, si faccia riferimento allo script MATLAB allegato denominato `test_metodi_zeri.m`.]
 
   === Commento ai Risultati
-  - *Metodo di Bisezione*: Fa il suo dovere ed è una garanzia per arrivare a convergenza, ma è decisamente lento. Avanzando in modo lineare, per dimezzare un intervallo largo 20 fino alla precisione di macchina servono ben 54 iterazioni. È un approccio sicuro, ma con un costo di 56 valutazioni totali.
-  - *Metodo di Newton*: Partendo da $x_0 = 10$, è un vero e proprio disastro. Le continue oscillazioni della funzione fanno sballare il calcolo locale delle derivate. Invece di puntare verso lo zero, le tangenti proiettano le stime lontanissime dalla radice vera, portando l'algoritmo a vagare a vuoto fino a colpire il limite massimo di 1000 iterazioni senza mai convergere.
-  - *Metodo Ibrido*: È senza dubbio la strategia vincente perché prende il meglio dei due mondi. Usa la bisezione per le prime 8 iterazioni, facendoci superare in sicurezza tutta la zona instabile fino a far scendere l'intervallo sotto la soglia $delta = 0.1$. A quel punto ci troviamo vicinissimi allo zero e possiamo attivare Newton senza rischi: bastano solo 3 iterazioni per far scattare la sua rapidissima convergenza quadratica. Il risultato è la massima precisione ottenuta con appena 16 valutazioni complessive.
+  - *Metodo di Bisezione*: Converge in modo garantito, ma linearmente: per ridurre l'intervallo iniziale fino alla precisione di macchina richiede 54 iterazioni e 56 valutazioni di funzione.
+  - *Metodo di Newton*: Con l'innesco $x_0 = 10$ non converge. Le tangenti vengono calcolate in una zona oscillante e portano gli iterati lontano dalla radice, fino al limite massimo di 1000 iterazioni.
+  - *Metodo Ibrido*: La bisezione porta prima l'intervallo sotto $delta = 0.1$; da lì Newton parte vicino alla radice e converge in 3 iterazioni. Il costo totale scende a 16 valutazioni.
 ]

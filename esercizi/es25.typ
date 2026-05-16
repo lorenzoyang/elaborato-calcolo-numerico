@@ -58,23 +58,19 @@
   )
 
   === Commento
-  Asintoticamente la spline naturale decresce come $h^2$, mentre la
-  not-a-knot e la completa decrescono come $h^4$.
-
-  La differenza viene dalle condizioni al bordo. Per la spline completa si
-  impongono le derivate prime corrette, mentre la not-a-knot mantiene il
-  quarto ordine per questa funzione regolare e per nodi equidistanti. La
-  spline naturale invece impone $s''(-10) = s''(10) = 0$, ma per la funzione
-  di Runge
+  Asintoticamente la spline naturale decresce come $h^2$, mentre not-a-knot
+  e completa decrescono come $h^4$. La differenza dipende dalle condizioni al
+  bordo: la completa usa le derivate prime corrette e la not-a-knot mantiene
+  il quarto ordine; la naturale impone invece $s''(-10) = s''(10) = 0$, ma per
+  la funzione di Runge
   $
     f''(x) = (6 x^2 - 2) / (1 + x^2)^3
   $
   e quindi $f''(plus.minus 10) != 0$. Il vincolo naturale non e' compatibile
   con la funzione interpolata e l'errore globale resta di ordine $h^2$.
 
-  Per valori non ancora molto piccoli di $h$ le tre curve sono quasi
-  sovrapposte; il comportamento asintotico della spline naturale diventa
-  visibile solo sulle griglie piu' fini.
+  Per griglie non ancora fini le curve sono quasi sovrapposte; il diverso
+  ordine della spline naturale emerge solo asintoticamente.
 
   #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es25.m`.]
 ]

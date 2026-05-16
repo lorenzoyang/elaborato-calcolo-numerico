@@ -70,12 +70,12 @@
 
   // Stile blocchi di codice
   show raw.where(block: true): it => {
-    set text(font: "DejaVu Sans Mono", size: 9pt)
+    set text(font: "DejaVu Sans Mono", size: 8.4pt)
     block(
       fill: luma(248),
       stroke: (left: 3pt + color-secondary, rest: 0.5pt + luma(210)),
       radius: 3pt,
-      inset: (left: 12pt, rest: 8pt),
+      inset: (left: 10pt, rest: 6pt),
       width: 100%,
       it,
     )

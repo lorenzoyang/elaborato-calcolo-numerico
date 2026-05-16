@@ -18,21 +18,23 @@ function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
 %
 % Rel. 05-03-2026.
 
-% 1. calcolo della precisione di macchina
-u_mac = 1.0;
-while (1.0 + u_mac / 2.0) > 1.0
-    u_mac = u_mac / 2.0;
+% 1. calcolo della distanza tra 1 e il numero di macchina successivo
+eps1 = 1.0;
+while (1.0 + eps1 / 2.0) > 1.0
+    eps1 = eps1 / 2.0;
 end
+% con arrotondamento la precisione di macchina (unit roundoff) e' eps1/2
+u_mac = eps1 / 2.0;
 
 % 2. calcolo del piu' grande numero di macchina
-max_mac = 2.0 - u_mac;
+max_mac = 2.0 - eps1;
 while (1.0 / (max_mac * 2.0)) > 0.0
     max_mac = max_mac * 2.0;
 end
 
 % 3. calcolo del piu' piccolo numero di macchina normalizzato
 min_norm = 1.0;
-while ((min_norm / 2.0) * (1.0 + u_mac)) > (min_norm / 2.0)
+while ((min_norm / 2.0) * (1.0 + eps1)) > (min_norm / 2.0)
     min_norm = min_norm / 2.0;
 end
 
@@ -44,7 +46,7 @@ end
 
 % stampa e validazione dei risultati
 fprintf('VALIDAZIONE COSTANTI DI MACCHINA\n');
-fprintf('Precisione(u): calcolato=%e | Matlab(eps)=%e\n', u_mac, eps);
+fprintf('Precisione(u): calcolato=%e | Atteso(eps/2)=%e\n', u_mac, eps / 2);
 fprintf('Realmax: calcolato=%e | Matlab(realmax)=%e\n', max_mac, realmax);
 fprintf('Realmin Norm: calcolato=%e | Matlab(realmin)=%e\n', min_norm, realmin);
 % il valore esatto corrisponde a realmin * eps
