@@ -4,7 +4,7 @@
   "10",
   [Scrivere una function che implementi efficientemente la risoluzione di un sistema lineare, con matrice sdp, mediante la fattorizzazione $L D L^T$. Validare la function su alcuni esempi significativi.],
 )[
-  Di seguito si riporta l'implementazione della funzione `LDLSolve`, che esegue la fattorizzazione in-place per massimizzare l'efficienza.
+  La funzione `LDLSolve` esegue la fattorizzazione in-place per ridurre l'uso di memoria.
 
   ```matlab
   function x = LDLSolve(A, b)
@@ -84,13 +84,13 @@
   end
   ```
 
-  Successivamente si riportano i risultati di alcuni esempi significativi di applicazione della funzione, volti a verificarne l'accuratezza e la robustezza nella gestione degli errori:
+  Seguono alcuni test per verificare accuratezza e gestione degli errori:
 
-  + *Matrice simmetrica e definita positiva (caso ideale)*: generando una matrice s.d.p. casuale (ad esempio ponendo $A = X^T X$ con $X$ matrice quadrata non singolare generata con `rand`) e un vettore termine noto $b$, il vettore soluzione calcolato risulta del tutto accurato. L'errore relativo rispetto alla soluzione esatta (ottenuta tramite l'operatore `\` di MATLAB) risulta trascurabile e dell'ordine della precisione di macchina (circa $10^{-16}$).
+  + *Matrice simmetrica e definita positiva*: con una matrice s.d.p. casuale, ad esempio $A = X^T X$ con `X` non singolare, la soluzione coincide con quella ottenuta tramite `\`, con errore relativo dell'ordine di $10^{-16}$.
 
-  + *Matrice non definita positiva (gestione errori)*: e' stato testato un sistema con una matrice simmetrica ma non definita positiva (ad esempio con elementi negativi sulla diagonale). L'algoritmo identifica prontamente l'anomalia durante il calcolo dell'elemento diagonale del fattore $D$, interrompendo l'esecuzione e restituendo correttamente il messaggio di errore previsto: `La matrice A non è definita positiva`.
+  + *Matrice non definita positiva*: con una matrice simmetrica ma non definita positiva, l'algoritmo rileva un elemento non positivo nel fattore $D$ e restituisce il messaggio `La matrice A non è definita positiva`.
 
-  + *Matrice non simmetrica (Gestione Errori)*: fornendo in input una matrice $A$ tale per cui $A != A^T$, il controllo preventivo all'inizio della funzione basato sulla norma infinito rileva immediatamente la discrepanza strutturale. L'algoritmo si blocca segnalando tempestivamente `La matrice A deve essere simmetrica`, prevenendo così operazioni aritmetiche prive di senso per questo specifico metodo.
+  + *Matrice non simmetrica*: se $A != A^T$, il controllo iniziale in norma infinito rileva la discrepanza e segnala `La matrice A deve essere simmetrica`.
 
   #rimando[Lo script MATLAB utilizzato per la validazione della funzione `LDLSolve` è `test_ldlsolve.m`]
 ]

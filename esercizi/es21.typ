@@ -13,9 +13,9 @@
       cos((2 i + 1) pi / (2 (n + 1))),
     quad i = 0, ..., n,
   $
-  con $a = -10$ e $b = 10$. L'errore massimo e' ancora stimato sui 10001
+  con $a = -10$ e $b = 10$. L'errore massimo è ancora stimato sui 10001
   punti equispaziati dell'intervallo $[-10, 10]$, quindi si usano le stesse
-  quantita'
+  quantità
   $
     E_n = max_(0 <= j <= 10000) |f(t_j) - p_n(t_j)|,
     quad
@@ -23,10 +23,9 @@
   $
   dell'esercizio precedente.
 
-  La ragione della scelta di Chebyshev e' che questi nodi
-  minimizzano il massimo del prodotto nodale e portano a una crescita
-  logaritmica, quindi ottimale, della costante di Lebesgue. Per questo sono
-  molto piu' adatti dei nodi equidistanti quando il grado cresce.
+  I nodi di Chebyshev minimizzano il massimo del prodotto nodale e portano a
+  una crescita logaritmica, ottimale, della costante di Lebesgue; per questo sono più
+  adatti dei nodi equidistanti quando il grado cresce.
 
   #figure(
     image("../img/es21.png", width: 90%),
@@ -34,16 +33,16 @@
   )
 
   === Commento dei risultati
-  Il miglioramento rispetto ai nodi equidistanti e' netto: per Lagrange
+  Il miglioramento rispetto ai nodi equidistanti è netto: per Lagrange
   l'errore scende da circa $3.59 dot 10^(-1)$ per $n = 10$ a
   $7.70 dot 10^(-7)$ per $n = 140$, senza il fenomeno di Runge osservato
   nell'esercizio 20.
 
   La curva di Newton coincide con quella di Lagrange solo per gradi bassi;
   da circa $n = 50$ dominano gli errori di arrotondamento della forma di
-  Newton. Per Hermite l'effetto e' ancora piu' evidente, perche' il grado e'
+  Newton. Per Hermite l'effetto è ancora più evidente, perché il grado è
   maggiore e le differenze divise usano nodi ripetuti. Le ascisse di
-  Chebyshev migliorano quindi il problema di interpolazione, ma la stabilita'
+  Chebyshev migliorano quindi il problema di interpolazione, ma la stabilità
   della forma numerica resta decisiva.
 
   #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es21.m`.]

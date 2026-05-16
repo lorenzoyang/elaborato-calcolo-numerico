@@ -7,11 +7,11 @@
   ],
 )[
   Sia $m = (a + b) / 2$. La formula di Simpson sull'intervallo
-  $[a,b]$ e'
+  $[a,b]$ è
   $
     S_1 = (b - a) / 6 (f(a) + 4 f(m) + f(b)).
   $
-  Per decidere se l'approssimazione e' sufficiente, si confronta $S_1$
+  Per decidere se l'approssimazione è sufficiente, si confronta $S_1$
   con la formula ottenuta applicando Simpson sui due sottointervalli:
   $
     S_2 = S(a, m) + S(m, b),
@@ -20,7 +20,7 @@
   $
   Se $"err" <= "tol"$ si accetta $S_2$; altrimenti si ripete lo stesso
   procedimento su $[a,m]$ e $[m,b]$, assegnando tolleranza `"tol" / 2`
-  a ciascun sottointervallo. I valori di funzione gia'
+  a ciascun sottointervallo. I valori di funzione già
   calcolati vengono passati alla ricorsione per evitare valutazioni
   ridondanti.
 

@@ -41,11 +41,11 @@
     Rappresentare _convenientemente_ l'andamento dell'errore, rispetto ad `k`, e spiegare _esaurientemente_ i risultati ottenuti.
   ],
 )[
-  Per misurare l'accuratezza della soluzione è naturale considerare l'errore in norma infinito
+  Misuriamo l'accuratezza con l'errore in norma infinito
   $
     e_k = ||x_k - x^*||_infinity,
   $
-  e rappresentarlo in scala semilogaritmica rispetto a $k$, così da evidenziarne la crescita su più ordini di grandezza.
+  e lo rappresentiamo in scala semilogaritmica rispetto a $k$, così da evidenziarne la crescita su più ordini di grandezza.
 
   === Risultati numerici
   I test empirici forniscono i seguenti risultati:
@@ -130,13 +130,13 @@
   ]
 
   === Commento dei risultati
-  I dati mostrano con chiarezza tre fenomeni distinti.
+  I dati evidenziano tre fenomeni.
 
-  - *Per valori piccoli di $k$* la matrice è ancora moderatamente ben condizionata e l'errore resta vicino alla precisione di macchina. Ad esempio per $k = 1$ si ha un errore di circa $2.5 dot 10^(-13)$.
+  - *Per valori piccoli di $k$* la matrice è ancora moderatamente ben condizionata e l'errore resta vicino alla precisione di macchina; per $k = 1$ è circa $2.5 dot 10^(-13)$.
 
-  - *All'aumentare di $k$* il parametro $sigma_k = pi^(-2k)$ si riduce di circa un fattore $pi^2$ a ogni passo, mentre il numero di condizionamento cresce approssimativamente come $1 / sigma_k$. Infatti, nei primi dodici casi risulta numericamente quasi costante il prodotto $kappa_2(A_k) sigma_k$, segno che il peggioramento del condizionamento è proprio governato dal primo elemento diagonale.
+  - *All'aumentare di $k$* il parametro $sigma_k = pi^(-2k)$ si riduce di circa un fattore $pi^2$ a ogni passo, mentre il numero di condizionamento cresce approssimativamente come $1 / sigma_k$. Nei primi dodici casi il prodotto $kappa_2(A_k) sigma_k$ resta quasi costante, quindi il peggioramento è governato dal primo elemento diagonale.
 
-  - *L'errore cresce molto rapidamente*. Poiché $kappa_2(A_k)$ arriva fino a circa $10^15$, anche inevitabili errori di arrotondamento possono amplificarsi moltissimo sulla soluzione. Questo è esattamente il comportamento previsto dalla teoria: quando il problema è mal condizionato, anche un metodo corretto puo' restituire una soluzione con errore sensibile.
+  - *L'errore cresce rapidamente*: quando $kappa_2(A_k)$ arriva a circa $10^15$, gli errori di arrotondamento vengono fortemente amplificati. È il comportamento previsto per un problema mal condizionato.
 
   Per $k = 12$ si osserva infatti un salto netto dell'errore a circa $5 dot 10^(-2)$. Da $k = 13$ in poi la matrice entra in una zona numericamente quasi singolare: la soglia
   $
@@ -144,10 +144,7 @@
   $
   inserita in `LUSolve` intercetta pivot troppo piccoli e interrompe opportunamente l'algoritmo.
 
-  In conclusione, il risultato evidenzia bene la differenza tra:
-
-  - *condizionamento del problema*, che peggiora rapidamente al crescere di $k$;
-  - *accuratezza della soluzione*, che di conseguenza decade fino al fallimento pratico della risoluzione numerica.
+  Il risultato distingue quindi il condizionamento del problema, che peggiora rapidamente con $k$, dall'accuratezza della soluzione, che decade fino al fallimento pratico della risoluzione numerica.
 
   #rimando[Per riprodurre tabella e grafico riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es09.m`.]
 ]

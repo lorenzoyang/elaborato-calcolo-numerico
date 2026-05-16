@@ -8,11 +8,11 @@
     con la massima accuratezza possibile. Utilizzare $x_0 = 10$ per il metodo di Newton, e l'intervallo iniziale $[-10.1, 10]$ per il metodo di bisezione ed il metodo ibrido. Per quest'ultimo, utilizzare $delta = 10^(-1)$ come valore di _switch_ tra i due metodi. Commentare i risultati ottenuti.
   ],
 )[
-  === Analisi Teorica
+  === Analisi teorica
   La funzione $f(x) = sin(10x) + arctan(10x)$ si annulla esattamente nell'origine ($x^* = 0$). Il termine trigonometrico la rende però oscillante e la derivata $f'(x) = 10 cos(10x) + 10 / (1 + (10x)^2)$ cambia segno spesso; l'innesco $x_0 = 10$ è quindi sfavorevole per Newton.
 
-  === Tabella dei Costi Computazionali
-  Considerando come "massima accuratezza" una tolleranza vicina alla precisione di macchina (ordine di $10^(-15)$), i test empirici restituiscono i seguenti risultati:
+  === Costi computazionali
+  Con tolleranza dell'ordine di $10^(-15)$ si ottengono i risultati seguenti:
 
   #tabella_risultati(
     caption: [Confronto del costo computazionale dei metodi.],
@@ -38,8 +38,8 @@
 
   #rimando[per eseguire i test empirici e riprodurre i dati riportati in questa tabella, si faccia riferimento allo script MATLAB allegato denominato `test_metodi_zeri.m`.]
 
-  === Commento ai Risultati
-  - *Metodo di Bisezione*: Converge in modo garantito, ma linearmente: per ridurre l'intervallo iniziale fino alla precisione di macchina richiede 54 iterazioni e 56 valutazioni di funzione.
-  - *Metodo di Newton*: Con l'innesco $x_0 = 10$ non converge. Le tangenti vengono calcolate in una zona oscillante e portano gli iterati lontano dalla radice, fino al limite massimo di 1000 iterazioni.
-  - *Metodo Ibrido*: La bisezione porta prima l'intervallo sotto $delta = 0.1$; da lì Newton parte vicino alla radice e converge in 3 iterazioni. Il costo totale scende a 16 valutazioni.
+  === Commento
+  - *Bisezione*: converge sempre, ma solo linearmente; servono 54 iterazioni e 56 valutazioni di funzione.
+  - *Newton*: con $x_0 = 10$ non converge, perché le tangenti sono calcolate in una zona oscillante e allontanano gli iterati dalla radice, fino al limite di 1000 iterazioni.
+  - *Ibrido*: la bisezione porta l'intervallo sotto $delta = 0.1$; da lì Newton converge in 3 iterazioni, con 16 valutazioni totali.
 ]

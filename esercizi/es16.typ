@@ -12,7 +12,7 @@
     in cui `(xi,fi)` contengono i dati del problema e `x` è un vettore di punti a cui corrispondono le valutazioni del polinomio interpolante in forma di Lagrange restituite nel vettore `y`.
   ],
 )[
-  Dal punto di vista implementativo non conviene costruire il polinomio nella base delle potenze: e' sufficiente valutare, per ogni $i$, il corrispondente polinomio fondamentale $L_(i,n)$ nei punti richiesti e accumulare il contributo $f_i L_(i,n)$.
+  Non conviene costruire il polinomio nella base delle potenze: è sufficiente valutare, per ogni $i$, il polinomio fondamentale $L_(i,n)$ nei punti richiesti e accumulare il contributo $f_i L_(i,n)$.
 
   ```matlab
   function y = lagrange(xi, fi, x)
@@ -68,5 +68,5 @@
   end
   ```
 
-  Il costo della valutazione e' dell'ordine di $O(m n^2)$, dove $m$ e' il numero di punti contenuti in `x` e $n + 1$ e' il numero di dati di interpolazione.
+  Il costo è $O(m n^2)$, dove $m$ è il numero di punti contenuti in `x` e $n + 1$ il numero di dati di interpolazione.
 ]

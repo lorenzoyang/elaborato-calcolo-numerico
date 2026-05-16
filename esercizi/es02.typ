@@ -4,14 +4,14 @@
   "2",
   [Scrivere una function Matlab che, sapendo solamente che l'aritmetica finita implementata utilizza la base binaria con arrotondamento, calcoli: la precisione di macchina; il più grande numero di macchina; il più piccolo numero di macchina normalizzato; il più piccolo numero di macchina denormalizzato. Argomentare la sua stesura, che deve prevedere solo l'utilizzo di operazioni algebriche elementari (validare i risultati con le function `realmax` e `realmin` di Matlab).],
 )[
-  === Argomentazione Teorica
+  === Argomentazione teorica
 
-  - *Precisione di macchina ($u$)*: Con arrotondamento in base binaria, come nelle dispense, la precisione di macchina è lo _unit roundoff_. Si trova prima la distanza `eps1` tra $1$ e il successivo numero di macchina, poi si pone $u = "eps1" / 2$.
-  - *Più grande numero di macchina*: La massima mantissa rappresentabile in base $2$ è $2 - "eps1"$. Moltiplicando iterativamente per $2$ si arriva all'overflow; per intercettarlo senza `isinf` si usa il fatto che il reciproco dell'infinito macchina è zero.
-  - *Più piccolo numero normalizzato*: Si parte da $1$ e si dimezza finché il candidato conserva la precisione relativa dei numeri normalizzati. Il test usa `eps1`, perché `eps1 / 2` è già sotto la distanza tra $1$ e il numero macchina successivo.
-  - *Più piccolo numero denormalizzato*: Partendo dal più piccolo numero normalizzato appena trovato, si continua a dividere iterativamente per $2.0$ finché il numero non diventa matematicamente $0.0$ a causa della perdita totale dei bit (Underflow). L'ultimo valore strettamente positivo registrato è il nostro minimo denormalizzato.
+  - *Precisione di macchina ($u$)*: in base binaria con arrotondamento, la precisione è lo _unit roundoff_. Si calcola prima la distanza `eps1` tra $1$ e il successivo numero di macchina, poi si pone $u = "eps1" / 2$.
+  - *Più grande numero di macchina*: la massima mantissa rappresentabile in base $2$ è $2 - "eps1"$. Moltiplicandola per $2$ fino all'overflow si ottiene il massimo numero finito; il controllo usa il fatto che il reciproco dell'infinito macchina è zero.
+  - *Più piccolo numero normalizzato*: si parte da $1$ e si dimezza finché il candidato conserva la precisione relativa dei normalizzati. Il test usa `eps1`, perché `eps1 / 2` è già sotto la distanza tra $1$ e il numero macchina successivo.
+  - *Più piccolo numero denormalizzato*: dal minimo normalizzato si continua a dividere per $2.0$ fino a ottenere zero. L'ultimo valore strettamente positivo è il minimo denormalizzato.
 
-  === Codice Matlab: La Function
+  === Codice Matlab
   ```matlab
   function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
   % Function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()

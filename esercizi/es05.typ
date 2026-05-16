@@ -4,11 +4,11 @@
   "5",
   [Scrivere una function Matlab che implementi un metodo ibrido: inizialmente il metodo di bisezione e, non appena l'ampiezza dell'intervallo di confidenza diventi minore dell'ampiezza prefissata $delta$ (e se non si sia usciti in precedenza) passi ad utilizzare il metodo di Newton, a partire dall'ultima approssimazione trovata dal metodo di bisezione, fino ad ottenere la massima accuratezza possibile.],
 )[
-  L'approccio ibrido unisce i punti di forza di due metodi classici:
-  - Bisezione: garantisce sempre la convergenza (globale), ma è lenta (lineare).
-  - Newton: è velocissimo (quadratica), ma converge solo se innescato da un punto sufficientemente vicino alla radice.
+  Il metodo ibrido combina:
+  - bisezione, che garantisce convergenza globale ma solo lineare;
+  - Newton, che converge quadraticamente se il punto iniziale è abbastanza vicino alla radice.
 
-  La strategia consiste nell'usare la bisezione per restringere in modo sicuro l'intervallo fino a un'ampiezza prefissata $delta$. L'approssimazione ottenuta funge da innesco ideale per il metodo di Newton, che può così convergere rapidamente alla soluzione con la massima precisione di macchina (ordine di eps).
+  Si usa quindi la bisezione finché l'ampiezza dell'intervallo non scende sotto $delta$; poi si avvia Newton dall'ultima approssimazione ottenuta, cercando la precisione di macchina.
 
   ```matlab
   function [x, it_bis, it_new] = metodoIbrido(f, f1, a, b, delta)

@@ -29,7 +29,7 @@
     caption: [Errore massimo delle tre spline cubiche interpolanti sull'intervallo $[-5, 15]$.],
   )
 
-  Come nell'esercizio precedente, la potenza di $h$ e' stata stimata
+  Come nell'esercizio precedente, la potenza di $h$ è stata stimata
   approssimando con una retta la parte finale del grafico nel piano
   $log(E_n)$-$log(h)$, usando gli ultimi dieci valori di $h$.
 
@@ -63,15 +63,15 @@
   $
     f''(x) = (6 x^2 - 2) / (1 + x^2)^3
   $
-  e in particolare $f''(-5) approx 8.42 dot 10^(-3)$, molto piu' grande di
+  e in particolare $f''(-5) approx 8.42 dot 10^(-3)$, molto più grande di
   $f''(plus.minus 10) approx 5.80 dot 10^(-4)$ dell'esercizio precedente.
-  Per questo l'errore della spline naturale e' circa quindici volte piu'
+  Per questo l'errore della spline naturale è circa quindici volte più
   grande: ad esempio $E_2000$ passa da $2.8437 dot 10^(-9)$ a
   $4.1256 dot 10^(-8)$.
 
-  Le curve not-a-knot e completa restano invece praticamente coincidenti con
-  quelle dell'esercizio 25: il massimo dell'errore e' vicino a $x = 0$ e il
-  passo $h$ e' lo stesso nei due intervalli.
+  Le curve not-a-knot e completa restano praticamente coincidenti con quelle
+  dell'esercizio 25: il massimo dell'errore è vicino a $x = 0$ e il passo $h$
+  è lo stesso nei due intervalli.
 
   #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es26.m`.]
 ]

@@ -14,15 +14,15 @@
   $
     W = "diag"(omega_1, dots, omega_m),
   $
-  che e' simmetrica definita positiva perche' tutti i pesi sono strettamente positivi. La sua radice quadrata e'
+  simmetrica definita positiva perché tutti i pesi sono strettamente positivi. La sua radice quadrata è
   $
     W^(1/2) = "diag"(sqrt(omega_1), dots, sqrt(omega_m)),
   $
-  e si usa per ricondurre il problema pesato a uno standard. Infatti il metodo dei minimi quadrati classici minimizza una somma di quadrati: se il residuo $r_i$ viene prima moltiplicato per $sqrt(omega_i)$, allora al quadrato si ottiene proprio il peso desiderato,
+  e consente di ricondurre il problema pesato a uno standard. Infatti
   $
     (sqrt(omega_i) r_i)^2 = omega_i r_i^2.
   $
-  Quindi la radice quadrata non cambia il peso finale: lo prepara semplicemente nella forma giusta per poter usare la norma euclidea e la fattorizzazione `QR`. In tal modo la quantita' da minimizzare si puo' riscrivere come
+  Perciò la quantità da minimizzare si può riscrivere come
   $
     ||r||_omega^2 = r^T W r = ||W^(1/2) r||_2^2 = ||W^(1/2)(A x - b)||_2^2.
   $
@@ -38,14 +38,14 @@
     min_(x in RR^n) ||A_w x - b_w||_2.
   $
 
-  Poiche' $W^(1/2)$ e' invertibile e $A$ ha rango colonna massimo, anche $A_w$ ha rango $n$. Si puo' quindi calcolare una fattorizzazione `QR` ridotta mediante riflessioni di Householder, senza assemblare esplicitamente $Q$,
+  Poiché $W^(1/2)$ è invertibile e $A$ ha rango colonna massimo, anche $A_w$ ha rango $n$. Si calcola quindi una fattorizzazione `QR` ridotta mediante riflessioni di Householder, senza assemblare esplicitamente $Q$,
   $
     A_w = Q R,
     quad Q in RR^(m times n),
     quad Q^T Q = I_n,
     quad R in RR^(n times n),
   $
-  con $R$ triangolare superiore e non singolare. Il minimizzatore cercato e' allora l'unica soluzione del sistema triangolare
+  con $R$ triangolare superiore e non singolare. Il minimizzatore è l'unica soluzione del sistema triangolare
   $
     R x = Q^T b_w.
   $

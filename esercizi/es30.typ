@@ -19,19 +19,19 @@
     =
     (1 - e^(-100)(sin(100) + cos(100))) / 2.
   $
-  In doppia precisione questo valore coincide con $1 / 2$, perche' il
-  termine con $e^(-100)$ e' dell'ordine di $10^(-44)$.
+  In doppia precisione questo valore coincide con $1 / 2$, perché il termine
+  con $e^(-100)$ è dell'ordine di $10^(-44)$.
 
   Per la formula composita di Simpson si usa `ncotescomp` con $k = 2$.
-  Indico con $S_n$ il valore ottenuto usando $n + 1$ nodi equidistanti. La stima dell'errore e' ottenuta confrontando la
+  Indico con $S_n$ il valore ottenuto usando $n + 1$ nodi equidistanti. La stima dell'errore è ottenuta confrontando la
   formula su tutti i nodi con quella sui soli nodi di indice pari; in questo
-  caso l'ordine e' $p = 4$, quindi
+  caso l'ordine è $p = 4$, quindi
   $
     "err" =
     abs(S_n - S_(n / 2)) / (2^4 - 1).
   $
-  Le valutazioni funzionali sono $n + 1$, perche' la formula con passo
-  doppio riusa valori gia' calcolati.
+  Le valutazioni funzionali sono $n + 1$, perché la formula con passo doppio
+  riusa valori già calcolati.
 
   #tabella_risultati(
     caption: [Formula composita di Simpson per $f(x) = 100 sin(100 x) e^(-100 x)$.],
@@ -93,19 +93,18 @@
     [$5$],
   )
 
-  Il risultato adattivo non migliora al diminuire di `"tol"`. Nel primo
-  passo la routine confronta Simpson su $[0, 1]$ con la somma delle formule
-  di Simpson su $[0, 1 / 2]$ e $[1 / 2, 1]$. La stima locale usata dal test
-  adattivo e'
+  Il risultato adattivo non migliora al diminuire di `"tol"`. Al primo passo
+  la routine confronta Simpson su $[0, 1]$ con la somma delle formule su
+  $[0, 1 / 2]$ e $[1 / 2, 1]$. La stima locale usata dal test adattivo è
   $
     abs(S_2 - S_1) / 15 approx 4.08 dot 10^(-12).
   $
-  Questo valore e' gia' minore di tutte le tolleranze richieste, quindi il
-  test di arresto e' soddisfatto subito: l'intervallo $[0, 1]$ non viene
+  Questo valore è già minore di tutte le tolleranze richieste, quindi il
+  test di arresto è soddisfatto subito: l'intervallo $[0, 1]$ non viene
   suddiviso ulteriormente e la function usa solo i nodi
   $0, 1 / 4, 1 / 2, 3 / 4, 1$.
 
-  L'errore reale resta pero' grande, perche' questi nodi non descrivono la
+  L'errore reale resta però grande, perché questi nodi non descrivono la
   parte significativa dell'integranda, concentrata molto vicino a $0$.
   L'esempio mostra quindi un limite pratico dello stimatore computazionale
   usato dalla formula adattiva.

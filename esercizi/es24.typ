@@ -40,10 +40,10 @@
     quad
     eta_i = h_i / (h_(i - 1) + h_i).
   $
-  Le condizioni di bordo cambiano in base al valore di `type`: per la spline
-  naturale si impone $m_0 = m_n = 0$, per quella completa si usano le derivate
-  assegnate agli estremi, mentre per la not-a-knot si impone la continuita'
-  della derivata terza nel primo e nell'ultimo nodo interno.
+  Le condizioni di bordo dipendono da `type`: per la spline naturale si
+  impone $m_0 = m_n = 0$, per quella completa si usano le derivate assegnate
+  agli estremi, mentre per la not-a-knot si impone la continuità della
+  derivata terza nel primo e nell'ultimo nodo interno.
 
   ```matlab
   function y = spline3(xi, fi, x, type, f1a, f1b)
@@ -238,10 +238,9 @@
   end
   ```
 
-  La function costruisce solo il sistema tridiagonale necessario per le
-  derivate seconde nodali e lo risolve con `tridia`, come richiesto
-  dall'esercizio. La valutazione finale usa poi direttamente la formula locale
-  della spline, preservando la forma del vettore `x` anche quando e' un
-  vettore riga.
+  La function costruisce solo il sistema tridiagonale delle derivate seconde
+  nodali e lo risolve con `tridia`. La valutazione usa poi la formula locale
+  della spline e preserva la forma del vettore `x`, anche quando è un vettore
+  riga.
 
 ]

@@ -34,7 +34,7 @@
 
   La richiesta che $n$ sia un multiplo pari di $k$ serve per costruire,
   senza nuove valutazioni di funzione, anche la formula composita sui soli
-  nodi di indice pari, cioe' con passo $2 h$. Indicando con $p$ l'ordine
+  nodi di indice pari, cioè con passo $2 h$. Indicando con $p$ l'ordine
   dell'errore della formula composita,
   $
     p = cases(

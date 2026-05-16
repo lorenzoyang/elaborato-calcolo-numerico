@@ -30,7 +30,7 @@
     caption: [Errore massimo delle tre spline cubiche interpolanti per la funzione di Runge.],
   )
 
-  Per stimare la potenza di $h$ si e' approssimata con una retta la parte
+  Per stimare la potenza di $h$ si è approssimata con una retta la parte
   finale del grafico nel piano $log(E_n)$-$log(h)$, usando gli ultimi dieci
   valori di $h$. Se $E_n approx C h^p$, allora la pendenza della retta
   fornisce proprio una stima di $p$.
@@ -59,18 +59,18 @@
 
   === Commento
   Asintoticamente la spline naturale decresce come $h^2$, mentre not-a-knot
-  e completa decrescono come $h^4$. La differenza dipende dalle condizioni al
+  e completa come $h^4$. La differenza dipende dalle condizioni al
   bordo: la completa usa le derivate prime corrette e la not-a-knot mantiene
   il quarto ordine; la naturale impone invece $s''(-10) = s''(10) = 0$, ma per
   la funzione di Runge
   $
     f''(x) = (6 x^2 - 2) / (1 + x^2)^3
   $
-  e quindi $f''(plus.minus 10) != 0$. Il vincolo naturale non e' compatibile
+  e quindi $f''(plus.minus 10) != 0$. Il vincolo naturale non è compatibile
   con la funzione interpolata e l'errore globale resta di ordine $h^2$.
 
   Per griglie non ancora fini le curve sono quasi sovrapposte; il diverso
-  ordine della spline naturale emerge solo asintoticamente.
+  ordine della spline naturale emerge solo nel regime asintotico.
 
   #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es25.m`.]
 ]

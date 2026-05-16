@@ -15,18 +15,18 @@
     Rappresentare _convenientemente_ l'andamento dell'errore, rispetto ad `k`, e spiegare _esaurientemente_ i risultati ottenuti.
   ],
 )[
-  Anche in questo caso la soluzione esatta del sistema e'
+  Anche qui la soluzione esatta è
   $
     x^* = (1, dots, 1)^T,
   $
-  per cui si misura l'accuratezza mediante l'errore in norma infinito
+  e l'accuratezza si misura con l'errore in norma infinito
   $
     e_k = ||x_k - x^*||_infinity.
   $
-  Poiche' l'errore varia su piu' ordini di grandezza, la rappresentazione piu' leggibile e' un grafico semilogaritmico di $e_k$ rispetto a $k$.
+  Poiché l'errore varia su più ordini di grandezza, conviene rappresentare $e_k$ in scala semilogaritmica rispetto a $k$.
 
   === Risultati numerici
-  I risultati ottenuti applicando `LDLSolve` ai quindici sistemi richiesti sono riportati nella tabella seguente.
+  Applicando `LDLSolve` ai quindici sistemi richiesti si ottengono i valori seguenti.
 
   #tabella_risultati(
     caption: [Andamento dell'errore di `LDLSolve` al variare di $k$ per $n = 10$.],
@@ -104,9 +104,9 @@
   )
 
   === Commento dei risultati
-  L'errore cresce con $k$: il parametro $sigma_k = pi^(-2k)$ diminuisce e il numero di condizione aumenta, amplificando gli errori di arrotondamento. Per i primi valori di $k$ l'errore resta vicino alla precisione di macchina, mentre per $k = 15$ arriva a circa $10^(-2)$.
+  L'errore cresce con $k$: $sigma_k = pi^(-2k)$ diminuisce, il numero di condizione aumenta e gli arrotondamenti vengono amplificati. Per i primi valori l'errore resta vicino alla precisione di macchina, mentre per $k = 15$ arriva a circa $10^(-2)$.
 
-  A differenza del caso generale dell'esercizio 9, qui `LDLSolve` risolve tutti i sistemi: la struttura simmetrica definita positiva rende appropriata la fattorizzazione $L D L^T$.
+  A differenza del caso generale dell'esercizio 9, `LDLSolve` risolve tutti i sistemi: la struttura s.d.p. rende appropriata la fattorizzazione $L D L^T$.
 
   #rimando[Per riprodurre tabella e grafico riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es11.m`.]
 ]

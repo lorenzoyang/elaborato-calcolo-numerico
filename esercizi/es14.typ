@@ -16,7 +16,7 @@
     approx
     bold(F)(bold(x)^(k)) + J_(bold(F))(bold(x)^(k)) Delta bold(x)^(k),
   $
-  dove $J_(bold(F))(bold(x)^(k))$ e' la matrice Jacobiana. Imporre che il termine lineare approssimi uno zero porta quindi al sistema lineare di Newton
+  dove $J_(bold(F))(bold(x)^(k))$ è la matrice Jacobiana. Imporre l'annullamento dell'approssimazione lineare porta al sistema di Newton
   $
     J_(bold(F))(bold(x)^(k)) Delta bold(x)^(k) = -bold(F)(bold(x)^(k)),
   $
@@ -25,16 +25,16 @@
     bold(x)^(k+1) = bold(x)^(k) + Delta bold(x)^(k).
   $
 
-  Per ottenere un'implementazione efficiente conviene:
+  Per un'implementazione efficiente conviene:
   - non calcolare mai esplicitamente l'inversa della Jacobiana;
-  - far restituire alla function `fun` sia $bold(F)(bold(x))$ sia $J_(bold(F))(bold(x))$, cosi' eventuali quantita' intermedie possono essere riutilizzate;
-  - risolvere il sistema lineare del passo di Newton con una delle routine gia' sviluppate, usando `LUSolve` come scelta di default nel caso generale e lasciando la possibilita' di passare un altro risolutore, ad esempio `LDLSolve`, quando la Jacobiana abbia struttura favorevole.
+  - far restituire a `fun` sia $bold(F)(bold(x))$ sia $J_(bold(F))(bold(x))$, così eventuali quantità intermedie possono essere riutilizzate;
+  - risolvere il sistema lineare con una routine già sviluppata, usando `LUSolve` come default e lasciando la possibilità di passare un altro risolutore, ad esempio `LDLSolve`, quando la Jacobiana abbia struttura favorevole.
 
-  Per il criterio di arresto si usa la naturale estensione vettoriale del criterio misto assoluto/relativo gia' adottato per Newton scalare:
+  Il criterio di arresto è l'estensione vettoriale del criterio misto assoluto/relativo già usato per Newton scalare:
   $
     ||Delta bold(x)^(k) ./ (1 + abs(bold(x)^(k+1)))||_infinity <= "tol".
   $
-  Qui il denominatore contiene l'approssimazione corrente $bold(x)^(k+1) = bold(x)^(k) + Delta bold(x)^(k)$. Questo controllo arresta l'iterazione quando il passo diventa piccolo rispetto alla scala delle componenti della soluzione.
+  Il denominatore contiene l'approssimazione corrente $bold(x)^(k+1) = bold(x)^(k) + Delta bold(x)^(k)$, così il passo è valutato rispetto alla scala delle componenti della soluzione.
 
   ```matlab
   function [x, it] = metodoNewtonSistemi(fun, x0, tol, maxit, solverLineare)

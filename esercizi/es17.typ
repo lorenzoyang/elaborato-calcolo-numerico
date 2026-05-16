@@ -17,7 +17,7 @@
     a_i = f[x_0, ..., x_i],
     quad i = 0, ..., n,
   $
-  cioe' le differenze divise sui primi $i + 1$ nodi. Il polinomio interpolante si scrive quindi come
+  cioè le differenze divise sui primi $i + 1$ nodi. Il polinomio interpolante si scrive quindi come
   $
     p_n(x) = sum_(i=0)^n a_i omega_i(x),
     quad
@@ -25,7 +25,7 @@
     quad
     omega_i(x) = product_(j=0)^(i-1) (x - x_j).
   $
-  Una volta calcolate le differenze divise, la valutazione si effettua con l'algoritmo di Horner modificato, evitando sia la base delle potenze sia la costruzione esplicita dei polinomi $omega_i$.
+  Calcolate le differenze divise, la valutazione si effettua con Horner modificato, evitando sia la base delle potenze sia la costruzione esplicita dei polinomi $omega_i$.
 
   ```matlab
   function y = newton(xi, fi, x)
@@ -83,5 +83,5 @@
   end
   ```
 
-  Il calcolo delle differenze divise richiede $O(n^2)$ operazioni, mentre la valutazione in $m$ punti richiede $O(m n)$ operazioni. Rispetto alla forma di Lagrange dell'esercizio precedente, la forma di Newton e' piu' comoda quando si aggiungono nuovi nodi, perche' basta calcolare le nuove differenze divise senza ricostruire tutto il polinomio.
+  Il calcolo delle differenze divise richiede $O(n^2)$ operazioni, mentre la valutazione in $m$ punti richiede $O(m n)$. Rispetto alla forma di Lagrange, quella di Newton è più comoda quando si aggiungono nodi, perché basta calcolare le nuove differenze divise.
 ]

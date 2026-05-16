@@ -111,7 +111,7 @@
     6 f[x_(i - 1), x_i, x_(i + 1)],
     quad i = 1, ..., n - 1,
   $
-  perche'
+  perché
   $
     f[x_(i - 1), x_i, x_(i + 1)] =
       (f[x_i, x_(i + 1)] - f[x_(i - 1), x_i])
@@ -124,11 +124,11 @@
     quad
     s_n'(x_n) = f'(x_n) = f[x_n, x_n].
   $
-  La prima, applicata alla formula di $s_1'(x_0)$, da'
+  La prima, applicata alla formula di $s_1'(x_0)$, dà
   $
     f[x_0, x_1] - h_1 / 6 (2 m_0 + m_1) = f[x_0, x_0],
   $
-  cioe'
+  cioè
   $
     2 m_0 + m_1
     =
@@ -150,14 +150,13 @@
     6 f[x_(n - 1), x_n, x_n].
   $
 
-  Le due equazioni di bordo e le $n - 1$ equazioni interne sono esattamente
-  le righe del sistema indicato nel testo. Infine, poiche' $h_i > 0$, valgono
+  Le due equazioni di bordo e le $n - 1$ equazioni interne danno esattamente
+  il sistema indicato nel testo. Infine, poiché $h_i > 0$, valgono
   $phi_i > 0$, $xi_i > 0$ e $phi_i + xi_i = 1$. Dunque nelle righe interne il
   coefficiente diagonale vale $2$ e la somma dei coefficienti fuori diagonale
-  vale $1$; nelle righe estreme vale ancora $2 > 1$. La matrice e' quindi a
-  diagonale dominante stretta per righe, e in particolare e' non singolare.
+  vale $1$; nelle righe estreme vale ancora $2 > 1$. La matrice è quindi a
+  diagonale dominante stretta per righe, e in particolare è non singolare.
   Il sistema ammette quindi una sola soluzione, che coincide con il vettore
   delle derivate seconde nodali della spline completa.
 
 ]
-

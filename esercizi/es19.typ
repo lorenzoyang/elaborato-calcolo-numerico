@@ -20,7 +20,7 @@
       cos((2 i + 1) pi / (2 (n + 1))),
     quad i = 0, ..., n.
   $
-  Nel codice si prende `i = n:-1:0`, cosi' le ascisse sono restituite in ordine
+  Nel codice si prende `i = n:-1:0`, così le ascisse sono restituite in ordine
   crescente.
 
   ```matlab

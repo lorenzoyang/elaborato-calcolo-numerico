@@ -12,16 +12,16 @@
     in cui `(xi,fi,fi1)` contengono i dati del problema e `x` è un vettore di punti a cui corrispondono le valutazioni del polinomio interpolante di Hermite, e della sua derivata prima, rispettivamente restituite nei vettori `y` e `y1`.
   ],
 )[
-  Per costruire il polinomio di Hermite conviene usare ancora la forma di
+  Per costruire il polinomio di Hermite usiamo ancora la forma di
   Newton, ripetendo ogni nodo due volte. Se
   $z_(2 i - 1) = z_(2 i) = x_i$, allora la differenza divisa relativa alla
   coppia di nodi coincidenti non si calcola con un quoziente, ma si pone
-  direttamente uguale al dato sulla derivata:
+  uguale al dato sulla derivata:
   $
     f[z_(2 i - 1), z_(2 i)] = f'_i.
   $
-  Ottenuti i coefficienti di Newton, la valutazione del polinomio e della sua
-  derivata prima si effettua con un Horner modificato.
+  Ottenuti i coefficienti di Newton, polinomio e derivata prima si valutano
+  con Horner modificato.
 
   ```matlab
   function [y, y1] = hermite(xi, fi, fi1, x)
@@ -98,6 +98,6 @@
   ```
 
   La costruzione delle differenze divise richiede $O(n^2)$ operazioni, dove
-  `n` e' il numero di nodi passati alla function. La valutazione in $m$ punti
-  richiede invece $O(m n)$ operazioni e produce direttamente sia `y` sia `y1`.
+  `n` è il numero di nodi passati alla function. La valutazione in $m$ punti
+  richiede $O(m n)$ operazioni e produce direttamente sia `y` sia `y1`.
 ]

@@ -4,7 +4,7 @@
   "8",
   [Scrivere una function che implementi efficientemente la risoluzione di un sistema lineare mediante la fattorizzazione $L U$ con pivoting parziale. Validare la function su alcuni esempi significativi.],
 )[
-  Di seguito viene riportata l'implementazione della function `LUSolve`, che realizza la fattorizzazione con pivoting parziale nella forma $P A = L U$ e memorizza i coefficienti in-place, così da ottimizzare l'uso della memoria. In particolare, nella parte strettamente inferiore di `A` vengono conservati i moltiplicatori di `L`, mentre nella parte triangolare superiore restano i coefficienti di `U`.
+  La function `LUSolve` realizza la fattorizzazione con pivoting parziale nella forma $P A = L U$ e memorizza i coefficienti in-place: la parte strettamente inferiore di `A` contiene i moltiplicatori di `L`, quella triangolare superiore i coefficienti di `U`.
 
   ```matlab
   function x = LUSolve(A, b)
@@ -78,13 +78,13 @@
 
   end
   ```
-  Una volta costruita la fattorizzazione, la soluzione del sistema si ottiene risolvendo in successione i due sistemi triangolari associati a `L` e `U`. Successivamente si riportano i risultati di alcuni esempi significativi di applicazione della funzione:
+  Dopo la fattorizzazione, la soluzione si ottiene risolvendo i due sistemi triangolari associati a `L` e `U`. Seguono alcuni test significativi:
 
-  + *Sistema ben condizionato*: Risolvendo un sistema quadrato non singolare di base, il vettore $x$ calcolato coincide con la soluzione restituita da MATLAB tramite l'operatore `\`. L'errore osservato risulta quindi trascurabile e dell'ordine della precisione di macchina.
+  + *Sistema ben condizionato*: su un sistema quadrato non singolare, il vettore $x$ coincide con la soluzione restituita da MATLAB tramite `\`, con errore dell'ordine della precisione di macchina.
 
-  + *Sistema che richiede pivoting*: Si è testato un sistema in cui l'elemento in posizione $(1,1)$ è nullo. Senza il pivoting l'algoritmo fallirebbe per divisione per zero, mentre la funzione seleziona correttamente il pivot di modulo massimo nella colonna corrente, esegue le permutazioni necessarie e calcola una soluzione coincidente con quella di MATLAB.
+  + *Sistema che richiede pivoting*: con un elemento $(1,1)$ nullo, la funzione seleziona il pivot di modulo massimo, scambia le righe necessarie e calcola una soluzione che coincide, a meno degli errori di arrotondamento, con quella restituita dall'operatore `\` di MATLAB.
 
-  + *Matrice singolare (Gestione Errori)*: Testata con una matrice avente righe linearmente dipendenti (es. la seconda riga è un multiplo della prima). Il controllo sul pivot, confrontato con la soglia di tolleranza introdotta nel codice, individua il problema e la funzione si interrompe restituendo correttamente l'errore `"Matrice singolare o quasi singolare."`.
+  + *Matrice singolare (gestione errori)*: con righe linearmente dipendenti, il controllo sul pivot rileva la singolarità numerica e restituisce l'errore `"Matrice singolare o quasi singolare."`.
 
   #rimando[Per eseguire i test empirici e riprodurre i risultati riportati, si faccia riferimento allo script MATLAB allegato denominato `test_lusolve.m`.]
 

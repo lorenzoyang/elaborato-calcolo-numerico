@@ -24,7 +24,7 @@
   $
     I_n(f) = h sum_(i = 0)^n c_i f(x_i).
   $
-  Quindi e' sufficiente costruire il polinomio fondamentale di Lagrange
+  Quindi è sufficiente costruire il polinomio fondamentale di Lagrange
   relativo al nodo $i$ e integrarlo esattamente.
 
   ```matlab
@@ -74,8 +74,8 @@
   end
   ```
 
-  Il condizionamento della formula discreta e' governato da
-  $h sum_i |c_i|$. Poiche' $sum_i c_i = n$, se tutti i coefficienti sono
+  Il condizionamento della formula discreta è governato da
+  $h sum_i |c_i|$. Poiché $sum_i c_i = n$, se tutti i coefficienti sono
   non negativi il numero di condizionamento discreto coincide con quello
   del problema continuo; altrimenti peggiora. Come indicato nelle dispense,
   i gradi ammissibili sono dunque $n = 1, ..., 7$ e $n = 9$.
@@ -104,6 +104,6 @@
     [$1 / 89600 (25713, 141669, 9720, 174096, 52002, 52002, 174096, 9720, 141669, 25713)$],
   )
 
-  Il grado $8$ non compare nella tabella perche' produce coefficienti
+  Il grado $8$ non compare nella tabella perché produce coefficienti
   negativi e quindi una formula peggio condizionata rispetto all'integrale continuo.
 ]

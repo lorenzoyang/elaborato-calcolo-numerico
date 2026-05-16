@@ -4,7 +4,7 @@
   "3",
   [Scrivere una function Matlab che implementi il metodo di Newton per gli zeri di una funzione. Prevedere valori di default per la tolleranza di arresto e per il numero massimo di iterazioni.],
 )[
-  La soluzione proposta implementa il metodo di Newton includendo anche la gestione della molteplicità della radice (metodo di Newton modificato). Viene inoltre utilizzato un criterio di arresto robusto basato sull'errore misto assoluto/relativo.
+  La funzione implementa il metodo di Newton, con parametro opzionale per la molteplicità della radice e criterio di arresto misto assoluto/relativo.
 
   ```matlab
   function [x, it] = metodoNewton(f, f1, x0, tol, maxit, molt)

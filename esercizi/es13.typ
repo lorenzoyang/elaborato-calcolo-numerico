@@ -35,17 +35,17 @@
   $
     bold(r)(bold(x)) = bold(b) - A bold(x)
   $
-  il residuo associato a $bold(x)$. Allora la quantita' da minimizzare e'
+  il residuo associato a $bold(x)$. La quantità da minimizzare è
   $
     Phi(bold(x)) = sum_(i=1)^4 omega_i r_i(bold(x))^2,
   $
-  cioe' il quadrato della norma pesata del residuo. Poiche' tutti i pesi sono strettamente positivi, vale sempre $Phi(bold(x)) >= 0$, e il valore minimo possibile e' quindi $0$.
+  cioè il quadrato della norma pesata del residuo. Poiché i pesi sono positivi, $Phi(bold(x)) >= 0$ e il valore minimo possibile è $0$.
 
-  In questo esercizio, pero', il problema si semplifica ulteriormente perche' il sistema e' in realta' compatibile. Infatti la sottomatrice $3 times 3$ ottenuta scegliendo le righe $1, 2, 4$ di $A$ ha determinante
+  In questo caso il sistema è compatibile. Infatti la sottomatrice $3 times 3$ ottenuta scegliendo le righe $1, 2, 4$ di $A$ ha determinante
   $
     36 != 0,
   $
-  quindi $A$ ha rango colonna massimo, cioe' $"rank"(A) = 3$. Ricaviamo ora esplicitamente la soluzione del sistema.
+  quindi $A$ ha rango colonna massimo, cioè $"rank"(A) = 3$. Ricaviamo esplicitamente la soluzione.
 
   Le quattro equazioni sono
   $
@@ -86,7 +86,7 @@
     quad
     x_1 = -1/3.
   $
-  Dunque la soluzione esatta del sistema e'
+  Dunque la soluzione esatta è
   $
     bold(x)^* = mat(
       -1/3;
@@ -98,7 +98,7 @@
   $
     A bold(x)^* = bold(b),
   $
-  percio' il residuo corrispondente e'
+  perciò il residuo corrispondente è
   $
     bold(r)(bold(x)^*) = bold(b) - A bold(x)^* = bold(0).
   $
@@ -106,10 +106,10 @@
   $
     Phi(bold(x)^*) = sum_(i=1)^4 omega_i (r_i^*)^2 = 0.
   $
-  Ne segue che tutti e quattro i casi richiesti hanno la stessa soluzione di minimi quadrati, coincidente con la soluzione esatta del sistema.
+  Quindi tutti e quattro i casi hanno la stessa soluzione di minimi quadrati, coincidente con la soluzione esatta del sistema.
 
   === Risultati numerici
-  Applicando la function `WeightedLSSolve` sviluppata nell'esercizio 12 si ottengono i seguenti risultati numerici.
+  Applicando `WeightedLSSolve` si ottengono i seguenti risultati numerici.
 
   #tabella_risultati(
     caption: [Soluzioni di minimi quadrati pesati per i quattro insiemi di pesi assegnati.],
@@ -137,7 +137,7 @@
     [$5.5781 dot 10^(-31)$],
   )
 
-  I valori riportati in tabella sono tutti dell'ordine di $10^(-30)$, quindi compatibili con un residuo nullo a meno degli inevitabili errori di arrotondamento. In aritmetica esatta si avrebbe infatti
+  I valori in tabella sono dell'ordine di $10^(-30)$, quindi compatibili con un residuo nullo a meno degli arrotondamenti. In aritmetica esatta si avrebbe
   $
     bold(r)(bold(x)^*) = bold(0)
     quad

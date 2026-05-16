@@ -76,7 +76,7 @@
   $
     bold(x)^(k+1) = bold(x)^(k) + Delta bold(x)^(k).
   $
-  In questo esercizio la Jacobiana non e' simmetrica in generale, quindi il risolutore naturale e' `LUSolve`, gia' usato come default nella function `metodoNewtonSistemi` dell'esercizio 14. Per richiedere la massima accuratezza possibile si pone `tol = 10 * eps`.
+  La Jacobiana non è in generale simmetrica, quindi si usa `LUSolve`, già default in `metodoNewtonSistemi`. Per la massima accuratezza si pone `tol = 10 * eps`.
 
   Prima di riportare i risultati numerici conviene descrivere la struttura delle soluzioni esatte. Dalla quarta equazione segue
   $
@@ -88,7 +88,7 @@
     quad "cioe'" quad
     x_3 = plus.minus x_1.
   $
-  Poiche' il coseno e' una funzione pari, risulta allora
+  Poiché il coseno è pari, risulta
   $
     cos(pi x_3) = cos(plus.minus pi x_1) = cos(pi x_1),
   $
@@ -151,12 +151,12 @@
     [$3.6739 dot 10^(-16)$],
   )
 
-  In tutti e quattro i casi il metodo di Newton raggiunge quindi la precisione di macchina in $5$ iterazioni. I residui finali sono dell'ordine di $10^(-16)$, cioe' perfettamente compatibili con la richiesta di massima accuratezza possibile in doppia precisione.
+  In tutti e quattro i casi Newton raggiunge la precisione di macchina in $5$ iterazioni. I residui finali sono dell'ordine di $10^(-16)$, quindi compatibili con la massima accuratezza in doppia precisione.
 
-  I primi due inneschi convergono verso soluzioni con $|x_1| = |x_3| = 1/2$, mentre gli ultimi due convergono verso soluzioni con $|x_1| = |x_3| = 3/2$. In altre parole, il metodo seleziona la radice appartenente al bacino di attrazione del punto iniziale scelto. Il numero di iterazioni coincide nei quattro casi perche' tutti gli inneschi sono gia' abbastanza vicini a una radice semplice, e quindi il metodo entra rapidamente nel regime di convergenza quadratica.
+  I primi due inneschi convergono verso soluzioni con $|x_1| = |x_3| = 1/2$, gli ultimi due verso soluzioni con $|x_1| = |x_3| = 3/2$: il metodo seleziona la radice nel bacino di attrazione del punto iniziale. Il numero di iterazioni coincide perché tutti gli inneschi sono già abbastanza vicini a una radice semplice.
 
   === Punto iniziale nullo
-  Non e' possibile usare il vettore nullo come punto iniziale. Infatti
+  Non è possibile usare il vettore nullo come punto iniziale. Infatti
   $
     bold(F)(bold(0)) = mat(
       -5;
@@ -180,7 +180,7 @@
   $
     J_(bold(F))(bold(0)) Delta bold(x) = -bold(F)(bold(0)),
   $
-  ossia un sistema con matrice nulla e termine noto non nullo, impossibile da risolvere. Questo e' esattamente il motivo per cui, il metodo di Newton per sistemi richiede che la Jacobiana sia invertibile almeno nei punti in cui viene eseguito il passo.
+  cioè un sistema con matrice nulla e termine noto non nullo, impossibile da risolvere. Per questo Newton per sistemi richiede che la Jacobiana sia invertibile nei punti in cui viene eseguito il passo.
 
   #rimando[Per riprodurre i valori numerici riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es15.m`.]
 ]

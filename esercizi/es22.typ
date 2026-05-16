@@ -17,9 +17,9 @@
     b_i x_(i - 1) + a_i x_i + c_i x_(i + 1) = y_i,
     quad i = 1, ..., n,
   $
-  con $b_1 = 0$ e $c_n = 0$. La risoluzione si ottiene applicando
-  l'eliminazione gaussiana solo sulle tre diagonali, cioe' una
-  fattorizzazione $A = L U$ implicita. In questo modo non si costruisce mai
+  con $b_1 = 0$ e $c_n = 0$. La risoluzione applica
+  l'eliminazione gaussiana solo sulle tre diagonali, cioè una
+  fattorizzazione $A = L U$ implicita. Così non si costruisce mai
   la matrice completa e il costo resta lineare in $n$.
 
   ```matlab
@@ -95,8 +95,8 @@
 
   L'algoritmo usa solo vettori di lunghezza $n$ e richiede $O(n)$ operazioni.
   Il controllo sui pivot nulli serve a intercettare i casi in cui la
-  fattorizzazione senza pivoting non e' possibile; in particolare, per matrici
+  fattorizzazione senza pivoting non è possibile; in particolare, per matrici
   tridiagonali a diagonale dominante la fattorizzazione esiste.
 
-  #rimando[Il file MATLAB allegato e' `tridia.m`.]
+  #rimando[Il file MATLAB allegato è `tridia.m`.]
 ]
