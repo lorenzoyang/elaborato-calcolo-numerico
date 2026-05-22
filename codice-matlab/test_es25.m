@@ -56,13 +56,15 @@ ref4 = err_completa(end) * (h / h(end)) .^ 4;
 figure;
 loglog(h, err_naturale, 'o-', 'LineWidth', 1.5, 'MarkerSize', 5);
 hold on;
-loglog(h, err_notaknot, 's-', 'LineWidth', 1.5, 'MarkerSize', 5);
-loglog(h, err_completa, '^-', 'LineWidth', 1.5, 'MarkerSize', 5);
+loglog(h, err_completa, '^-', 'LineWidth', 1.2, 'MarkerSize', 7);
+% Not-a-knot e completa sono quasi coincidenti: disegno la not-a-knot sopra.
+loglog(h, err_notaknot, 's--', 'LineWidth', 1.8, 'MarkerSize', 5);
 loglog(h, ref2, 'k--', 'LineWidth', 1.2);
 loglog(h, ref4, 'k:', 'LineWidth', 1.5);
 grid on;
 xlabel('h');
 ylabel('Errore massimo');
 title('Spline cubiche interpolanti della funzione di Runge');
-legend('Naturale', 'Not-a-knot', 'Completa', 'O(h^2)', 'O(h^4)', ...
+legend('Naturale', 'Completa', 'Not-a-knot', 'O(h^2)', 'O(h^4)', ...
     'Location', 'northwest');
+set(gcf, 'Color', 'w');
