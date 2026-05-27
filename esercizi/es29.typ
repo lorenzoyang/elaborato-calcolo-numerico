@@ -75,6 +75,7 @@
   x1 = (a + m) / 2;
   x2 = (m + b) / 2;
 
+  % una volta noti i valori nei nodi li riuso
   f1 = fx(x1);
   f2 = fx(x2);
   nfev = 2;
