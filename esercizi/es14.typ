@@ -28,7 +28,7 @@
   Per un'implementazione efficiente conviene:
   - non calcolare mai esplicitamente l'inversa della Jacobiana;
   - far restituire a `fun` sia $bold(F)(bold(x))$ sia $J_(bold(F))(bold(x))$, così eventuali quantità intermedie possono essere riutilizzate;
-  - risolvere il sistema lineare con una routine già sviluppata, usando `LUSolve` come default e lasciando la possibilità di passare un altro risolutore, ad esempio `LDLSolve`, quando la Jacobiana abbia struttura favorevole.
+  - risolvere il sistema lineare con una routine già sviluppata. Nel codice uso `LUSolve` come scelta ordinaria e lascio un argomento opzionale solo per riutilizzare altri risolutori già scritti.
 
   Il criterio di arresto è l'estensione vettoriale del criterio misto assoluto/relativo già usato per Newton scalare:
   $
@@ -56,7 +56,7 @@
   %   x             - approssimazione della soluzione;
   %   it            - numero di iterazioni effettuate.
   %
-  % Rel. 21-03-2026.
+  % Release 21-03-2026.
 
   % gestione degli argomenti di input e valori di default
   if nargin < 2
@@ -101,7 +101,7 @@
           error('La function fun deve restituire F(x) e una Jacobiana quadrata compatibili.');
       end
 
-      % controllo se ho gia' trovato uno zero esatto
+      % controllo se ho già trovato uno zero esatto
       if norm(Fx, inf) == 0
           flag = 1;
           break;

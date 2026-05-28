@@ -72,5 +72,5 @@
   Per griglie non ancora fini le curve sono quasi sovrapposte; il diverso
   ordine della spline naturale emerge solo nel regime asintotico.
 
-  #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es25.m`.]
+  #rimando[Script MATLAB: `test_es25.m`.]
 ]

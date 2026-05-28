@@ -17,7 +17,7 @@ function x = tridia(b, a, c, y)
 % Output:
 %   x - vettore soluzione del sistema.
 %
-% Rel. 17-05-2026.
+% Release 17-05-2026.
 
 % controlli di consistenza
 if nargin < 4

@@ -42,8 +42,8 @@
   da circa $n = 50$ dominano gli errori di arrotondamento della forma di
   Newton. Per Hermite l'effetto è ancora più evidente, perché il grado è
   maggiore e le differenze divise usano nodi ripetuti. Le ascisse di
-  Chebyshev migliorano quindi il problema di interpolazione, ma la stabilità
-  della forma numerica resta decisiva.
+  Chebyshev migliorano quindi il problema di interpolazione, ma non eliminano
+  l'effetto della stabilità numerica della forma usata per valutare il polinomio.
 
-  #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es21.m`.]
+  #rimando[Script MATLAB: `test_es21.m`.]
 ]

@@ -3,7 +3,7 @@
 #esercizio(
   "29",
   [
-    Scrivere una function Matlab che calcoli l'approssimazione di un integrale definito mediante la formula adattiva di Simpson con una tolleranza prescritta `tol`.
+    Scrivere una function MATLAB che calcoli l'approssimazione di un integrale definito mediante la formula adattiva di Simpson con una tolleranza prescritta `tol`.
   ],
 )[
   Sia $m = (a + b) / 2$. La formula di Simpson sull'intervallo
@@ -42,7 +42,7 @@
   %   err  - stima totale dell'errore;
   %   nfev - numero di valutazioni funzionali effettuate.
   %
-  % Rel. 22-05-2026.
+  % Release 22-05-2026.
 
   % controlli di consistenza
   if nargin < 4
@@ -69,7 +69,7 @@
   end
 
   function [I, err, nfev] = simpsonad_rec(fx, a, b, tol, fa, fm, fb)
-  % Funzione ricorsiva: riusa fa, fm e fb gia' calcolati.
+  % Funzione ricorsiva: riusa fa, fm e fb già calcolati.
 
   m = (a + b) / 2;
   x1 = (a + m) / 2;

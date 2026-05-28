@@ -14,7 +14,7 @@ function [x, it] = metodoNewton(f, f1, x0, tol, maxit, molt)
 %   x     - approssimazione della radice;
 %   it    - numero di iterazioni effettuate.
 %
-% Rel. 05-03-2026.
+% Release 05-03-2026.
 
 % gestione degli argomenti di input e valori di default
 if nargin < 3
@@ -35,7 +35,7 @@ if molt < 1 || molt ~= fix(molt)
     error('Molteplicita'' non corretta: deve essere un intero positivo.');
 end
 if maxit < 1
-    error('Numero massimo di iteraterazioni non corretto.');
+    error('Numero massimo di iterazioni non corretto.');
 end
 if tol <= 0
     error('Tolleranza non corretta: deve essere > 0.');

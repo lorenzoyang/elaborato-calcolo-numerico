@@ -93,21 +93,19 @@
     [$5$],
   )
 
-  Il risultato adattivo non migliora al diminuire di `"tol"`. Al primo passo
-  la routine confronta Simpson su $[0, 1]$ con la somma delle formule su
-  $[0, 1 / 2]$ e $[1 / 2, 1]$. La stima locale usata dal test adattivo è
+  Il risultato adattivo non migliora al diminuire di `"tol"`. Già al primo
+  confronto tra Simpson su $[0, 1]$ e le due formule su $[0, 1 / 2]$,
+  $[1 / 2, 1]$, la stima locale è
   $
     abs(S_2 - S_1) / 15 approx 4.08 dot 10^(-12).
   $
-  Questo valore è già minore di tutte le tolleranze richieste, quindi il
-  test di arresto è soddisfatto subito: l'intervallo $[0, 1]$ non viene
-  suddiviso ulteriormente e la function usa solo i nodi
+  Questo valore è minore di tutte le tolleranze richieste, quindi la routine
+  si arresta subito e usa solo i nodi
   $0, 1 / 4, 1 / 2, 3 / 4, 1$.
 
-  L'errore reale resta però grande, perché questi nodi non descrivono la
-  parte significativa dell'integranda, concentrata molto vicino a $0$.
-  L'esempio mostra quindi un limite pratico dello stimatore computazionale
-  usato dalla formula adattiva.
+  L'errore reale resta grande perché questi nodi non descrivono la parte
+  significativa dell'integranda, concentrata molto vicino a $0$. In questo
+  esempio lo stimatore locale è quindi troppo ottimistico.
 
-  #rimando[Per riprodurre i valori numerici riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es30.m`.]
+  #rimando[Script MATLAB: `test_es30.m`.]
 ]

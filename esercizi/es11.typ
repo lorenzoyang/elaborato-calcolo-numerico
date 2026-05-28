@@ -26,7 +26,7 @@
   Poiché l'errore varia su più ordini di grandezza, conviene rappresentare $e_k$ in scala semilogaritmica rispetto a $k$.
 
   === Risultati numerici
-  Applicando `LDLSolve` ai quindici sistemi richiesti si ottengono i valori seguenti.
+  Per i quindici sistemi richiesti si ottengono i valori seguenti.
 
   #tabella_risultati(
     caption: [Andamento dell'errore di `LDLSolve` al variare di $k$ per $n = 10$.],
@@ -104,9 +104,9 @@
   )
 
   === Commento dei risultati
-  L'errore cresce con $k$: $sigma_k = pi^(-2k)$ diminuisce, il numero di condizione aumenta e gli arrotondamenti vengono amplificati. Per i primi valori l'errore resta vicino alla precisione di macchina, mentre per $k = 15$ arriva a circa $10^(-2)$.
+  L'errore cresce con $k$: $sigma_k = pi^(-2k)$ diminuisce, il numero di condizione aumenta e gli arrotondamenti vengono amplificati. In questo caso la matrice resta s.d.p., quindi la fattorizzazione $L D L^T$ rimane adatta; l'accuratezza però peggiora fino a circa $10^(-2)$ per $k = 15$.
 
-  A differenza del caso generale dell'esercizio 9, `LDLSolve` risolve tutti i sistemi: la struttura s.d.p. rende appropriata la fattorizzazione $L D L^T$.
+  La differenza rispetto all'esercizio 9 non è che il condizionamento sparisca, ma che la struttura s.d.p. consente di arrivare alla fine della fattorizzazione senza la soglia di arresto incontrata da `LUSolve`.
 
-  #rimando[Per riprodurre tabella e grafico riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es11.m`.]
+  #rimando[Script MATLAB: `test_es11.m`.]
 ]

@@ -3,7 +3,7 @@
 #esercizio(
   "18",
   [
-    Scrivere una function Matlab,
+    Scrivere una function MATLAB,
 
     ```matlab
     [y,y1] = hermite( xi, fi, fi1, x )
@@ -40,7 +40,7 @@
   %   y   - valori del polinomio interpolante nei punti x;
   %   y1  - valori della derivata prima del polinomio nei punti x.
   %
-  % Rel. 15-05-2026.
+  % Release 15-05-2026.
 
   % controlli di consistenza
   if nargin < 4

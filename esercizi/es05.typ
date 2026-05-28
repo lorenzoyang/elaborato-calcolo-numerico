@@ -2,7 +2,7 @@
 
 #esercizio(
   "5",
-  [Scrivere una function Matlab che implementi un metodo ibrido: inizialmente il metodo di bisezione e, non appena l'ampiezza dell'intervallo di confidenza diventi minore dell'ampiezza prefissata $delta$ (e se non si sia usciti in precedenza) passi ad utilizzare il metodo di Newton, a partire dall'ultima approssimazione trovata dal metodo di bisezione, fino ad ottenere la massima accuratezza possibile.],
+  [Scrivere una function MATLAB che implementi un metodo ibrido: inizialmente il metodo di bisezione e, non appena l'ampiezza dell'intervallo di confidenza diventi minore dell'ampiezza prefissata $delta$ (e se non si sia usciti in precedenza) passi ad utilizzare il metodo di Newton, a partire dall'ultima approssimazione trovata dal metodo di bisezione, fino ad ottenere la massima accuratezza possibile.],
 )[
   Il metodo ibrido combina:
   - bisezione, che garantisce convergenza globale ma solo lineare;
@@ -29,7 +29,7 @@
   %   it_bis - numero di iterazioni di bisezione effettuate;
   %   it_new - numero di iterazioni di Newton effettuate.
   %
-  % Rel. 07-03-2026.
+  % Release 07-03-2026.
 
   % gestione input e valori di default
   if nargin < 5

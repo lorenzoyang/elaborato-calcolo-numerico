@@ -3,7 +3,7 @@
 #esercizio(
   "22",
   [
-    Scrivere una function Matlab,
+    Scrivere una function MATLAB,
 
     ```matlab
     x = tridia( b, a, c, y )
@@ -42,7 +42,7 @@
   % Output:
   %   x - vettore soluzione del sistema.
   %
-  % Rel. 17-05-2026.
+  % Release 17-05-2026.
 
   % controlli di consistenza
   if nargin < 4
@@ -98,5 +98,5 @@
   fattorizzazione senza pivoting non è possibile; in particolare, per matrici
   tridiagonali a diagonale dominante la fattorizzazione esiste.
 
-  #rimando[Il file MATLAB allegato è `tridia.m`.]
+  #rimando[File MATLAB: `tridia.m`.]
 ]

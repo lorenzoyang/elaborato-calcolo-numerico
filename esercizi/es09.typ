@@ -126,7 +126,7 @@
   )
 
   #nota[
-    Per $k = 13, 14, 15$ la function `LUSolve` si interrompe con il messaggio `"Matrice singolare o quasi singolare."`. Questo comportamento non contraddice la costruzione teorica del sistema: segnala che, in aritmetica finita, i pivot diventano confrontabili con la soglia di sicurezza usata nel codice.
+    Per $k = 13, 14, 15$ `LUSolve` si interrompe con il messaggio `"Matrice singolare o quasi singolare."`. Non significa che il sistema teorico non abbia soluzione: in doppia precisione i pivot diventano troppo piccoli rispetto alla soglia scelta nel codice.
   ]
 
   === Commento dei risultati
@@ -138,13 +138,13 @@
 
   - *L'errore cresce rapidamente*: quando $kappa_2(A_k)$ arriva a circa $10^15$, gli errori di arrotondamento vengono fortemente amplificati. È il comportamento previsto per un problema mal condizionato.
 
-  Per $k = 12$ si osserva infatti un salto netto dell'errore a circa $5 dot 10^(-2)$. Da $k = 13$ in poi la matrice entra in una zona numericamente quasi singolare: la soglia
+  Per $k = 12$ si osserva infatti un salto netto dell'errore a circa $5 dot 10^(-2)$. Da $k = 13$ in poi, con questa implementazione, la soglia
   $
     "tol" = n dot "eps" dot ||A||_1
   $
-  inserita in `LUSolve` intercetta pivot troppo piccoli e interrompe opportunamente l'algoritmo.
+  intercetta pivot troppo piccoli e interrompe l'algoritmo prima di produrre una soluzione numericamente poco affidabile.
 
   Il risultato distingue quindi il condizionamento del problema, che peggiora rapidamente con $k$, dall'accuratezza della soluzione, che decade fino al fallimento pratico della risoluzione numerica.
 
-  #rimando[Per riprodurre tabella e grafico riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es09.m`.]
+  #rimando[Script MATLAB: `test_es09.m`.]
 ]

@@ -109,7 +109,7 @@
   Quindi tutti e quattro i casi hanno la stessa soluzione di minimi quadrati, coincidente con la soluzione esatta del sistema.
 
   === Risultati numerici
-  Applicando `WeightedLSSolve` si ottengono i seguenti risultati numerici.
+  Il calcolo numerico conferma la soluzione esatta:
 
   #tabella_risultati(
     caption: [Soluzioni di minimi quadrati pesati per i quattro insiemi di pesi assegnati.],
@@ -147,5 +147,5 @@
   $
   in tutti e quattro i casi.
 
-  #rimando[Per riprodurre i valori numerici riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es13.m`.]
+  #rimando[Script MATLAB: `test_es13.m`.]
 ]

@@ -17,7 +17,7 @@ function [x, it] = metodoNewtonSistemi(fun, x0, tol, maxit, solverLineare)
 %   x             - approssimazione della soluzione;
 %   it            - numero di iterazioni effettuate.
 %
-% Rel. 21-03-2026.
+% Release 21-03-2026.
 
 % gestione degli argomenti di input e valori di default
 if nargin < 2
@@ -62,7 +62,7 @@ for k = 1:maxit
         error('La function fun deve restituire F(x) e una Jacobiana quadrata compatibili.');
     end
 
-    % controllo se ho gia' trovato uno zero esatto
+    % controllo se ho già trovato uno zero esatto
     if norm(Fx, inf) == 0
         flag = 1;
         break;

@@ -2,7 +2,7 @@
 
 #esercizio(
   "7",
-  [Scrivere una function Matlab, con sintassi `x = triup(U,b)`, che risolva un sistema triangolare superiore $n times n$, in cui la matrice dei coefficienti `U` è memorizzata, per colonne, in un vettore di lunghezza $n(n+1)/2$.],
+  [Scrivere una function MATLAB, con sintassi `x = triup(U,b)`, che risolva un sistema triangolare superiore $n times n$, in cui la matrice dei coefficienti `U` è memorizzata, per colonne, in un vettore di lunghezza $n(n+1)/2$.],
 )[
   La soluzione implementa la sostituzione all'indietro per colonne, sfruttando la formula di indicizzazione $"idx"(i,j) = j(j-1)/2 + i$ per accedere agli elementi di `U` memorizzati nel vettore compatto.
 
@@ -22,7 +22,7 @@
   % Output:
   %   x - vettore soluzione del sistema.
   %
-  % Rel. 08-03-2026.
+  % Release 08-03-2026.
 
   % ricavo la dimensione n dal vettore dei termini noti
   n = length(b);

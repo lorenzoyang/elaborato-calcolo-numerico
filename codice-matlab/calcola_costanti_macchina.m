@@ -5,7 +5,7 @@ function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
 % finita implementata utilizzi la base binaria con arrotondamento.
 % Il calcolo utilizza esclusivamente operazioni algebriche elementari.
 % La function provvede inoltre a stampare a video la validazione dei
-% risultati confrontandoli con le costanti native di Matlab.
+% risultati confrontandoli con le costanti native di MATLAB.
 %
 % Input:
 %   Nessuno
@@ -16,7 +16,7 @@ function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
 %   min_norm   - piu' piccolo numero di macchina normalizzato
 %   min_denorm - piu' piccolo numero di macchina denormalizzato
 %
-% Rel. 05-03-2026.
+% Release 05-03-2026.
 
 % 1. calcolo della distanza tra 1 e il numero di macchina successivo
 eps1 = 1.0;
@@ -47,8 +47,8 @@ end
 % stampa e validazione dei risultati
 fprintf('VALIDAZIONE COSTANTI DI MACCHINA\n');
 fprintf('Precisione(u): calcolato=%e | Atteso(eps/2)=%e\n', u_mac, eps / 2);
-fprintf('Realmax: calcolato=%e | Matlab(realmax)=%e\n', max_mac, realmax);
-fprintf('Realmin Norm: calcolato=%e | Matlab(realmin)=%e\n', min_norm, realmin);
+fprintf('Realmax: calcolato=%e | MATLAB(realmax)=%e\n', max_mac, realmax);
+fprintf('Realmin Norm: calcolato=%e | MATLAB(realmin)=%e\n', min_norm, realmin);
 % il valore esatto corrisponde a realmin * eps
 fprintf('Min Denorm: calcolato=%e | Atteso=%e\n', min_denorm, realmin * eps);
 

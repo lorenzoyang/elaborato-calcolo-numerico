@@ -3,7 +3,7 @@
 #esercizio(
   "16",
   [
-    Scrivere una function Matlab,
+    Scrivere una function MATLAB,
 
     ```matlab
     y = lagrange( xi, fi, x )
@@ -29,7 +29,7 @@
   % Output:
   %   y  - valori del polinomio interpolante nei punti x.
   %
-  % Rel. 14-05-2026.
+  % Release 14-05-2026.
 
   % controlli di consistenza
   if nargin < 3

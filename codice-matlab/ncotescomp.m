@@ -17,7 +17,7 @@ function [Ikn, err] = ncotescomp(fx, a, b, k, n)
 %   Ikn - approssimazione dell'integrale;
 %   err - stima dell'errore di quadratura.
 %
-% Rel. 20-05-2026.
+% Release 20-05-2026.
 
 % controlli di consistenza
 if nargin < 5

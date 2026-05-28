@@ -2,7 +2,7 @@
 
 #esercizio(
   "2",
-  [Scrivere una function Matlab che, sapendo solamente che l'aritmetica finita implementata utilizza la base binaria con arrotondamento, calcoli: la precisione di macchina; il più grande numero di macchina; il più piccolo numero di macchina normalizzato; il più piccolo numero di macchina denormalizzato. Argomentare la sua stesura, che deve prevedere solo l'utilizzo di operazioni algebriche elementari (validare i risultati con le function `realmax` e `realmin` di Matlab).],
+  [Scrivere una function MATLAB che, sapendo solamente che l'aritmetica finita implementata utilizza la base binaria con arrotondamento, calcoli: la precisione di macchina; il più grande numero di macchina; il più piccolo numero di macchina normalizzato; il più piccolo numero di macchina denormalizzato. Argomentare la sua stesura, che deve prevedere solo l'utilizzo di operazioni algebriche elementari (validare i risultati con le function `realmax` e `realmin` di MATLAB).],
 )[
   === Argomentazione teorica
 
@@ -11,7 +11,7 @@
   - *Più piccolo numero normalizzato*: si parte da $1$ e si dimezza finché il candidato conserva la precisione relativa dei normalizzati. Il test usa `eps1`, perché `eps1 / 2` è già sotto la distanza tra $1$ e il numero macchina successivo.
   - *Più piccolo numero denormalizzato*: dal minimo normalizzato si continua a dividere per $2.0$ fino a ottenere zero. L'ultimo valore strettamente positivo è il minimo denormalizzato.
 
-  === Codice Matlab
+  === Codice MATLAB
   ```matlab
   function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
   % Function [u_mac, max_mac, min_norm, min_denorm] = calcola_costanti_macchina()
@@ -20,7 +20,7 @@
   % finita implementata utilizzi la base binaria con arrotondamento.
   % Il calcolo utilizza esclusivamente operazioni algebriche elementari.
   % La function provvede inoltre a stampare a video la validazione dei
-  % risultati confrontandoli con le costanti native di Matlab.
+  % risultati confrontandoli con le costanti native di MATLAB.
   %
   % Input:
   %   Nessuno
@@ -31,7 +31,7 @@
   %   min_norm   - piu' piccolo numero di macchina normalizzato
   %   min_denorm - piu' piccolo numero di macchina denormalizzato
   %
-  % Rel. 05-03-2026.
+  % Release 05-03-2026.
 
   % 1. calcolo della distanza tra 1 e il numero di macchina successivo
   eps1 = 1.0;
@@ -62,12 +62,11 @@
   % stampa e validazione dei risultati
   fprintf('VALIDAZIONE COSTANTI DI MACCHINA\n');
   fprintf('Precisione(u): calcolato=%e | Atteso(eps/2)=%e\n', u_mac, eps / 2);
-  fprintf('Realmax: calcolato=%e | Matlab(realmax)=%e\n', max_mac, realmax);
-  fprintf('Realmin Norm: calcolato=%e | Matlab(realmin)=%e\n', min_norm, realmin);
+  fprintf('Realmax: calcolato=%e | MATLAB(realmax)=%e\n', max_mac, realmax);
+  fprintf('Realmin Norm: calcolato=%e | MATLAB(realmin)=%e\n', min_norm, realmin);
   % il valore esatto corrisponde a realmin * eps
   fprintf('Min Denorm: calcolato=%e | Atteso=%e\n', min_denorm, realmin * eps);
 
   end
-
   ```
 ]

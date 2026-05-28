@@ -3,7 +3,7 @@
 #esercizio(
   "19",
   [
-    Scrivere una function Matlab,
+    Scrivere una function MATLAB,
 
     ```matlab
     x = chebyshev( a, b, n )
@@ -37,7 +37,7 @@
   % Output:
   %   x    - vettore riga delle ascisse di Chebyshev in [a, b].
   %
-  % Rel. 15-05-2026.
+  % Release 15-05-2026.
 
   % controlli di consistenza
   if nargin < 3

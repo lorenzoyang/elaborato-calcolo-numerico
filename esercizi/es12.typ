@@ -5,7 +5,7 @@
   [
     Dato un generico sistema lineare sovradeterminato a rango massimo,
     $ A x = b, quad A in RR^(m times n), quad m > n = "rank"(A), $
-    ed indicato, al solito, con $r := A x - b in RR^m$ il corrispondente vettore residuo, scrivere una function Matlab che risolva il precedente problema nel senso dei minimi quadrati _pesati_. Ovvero, minimizzando la seguente norma pesata:
+    ed indicato, al solito, con $r := A x - b in RR^m$ il corrispondente vettore residuo, scrivere una function MATLAB che risolva il precedente problema nel senso dei minimi quadrati _pesati_. Ovvero, minimizzando la seguente norma pesata:
     $ ||r||_omega^2 = sum_(i=1)^m omega_i r_i^2, $ <eq1>
     dove $omega_1, ..., omega_m$ sono pesi positivi assegnati.
   ],
@@ -67,7 +67,7 @@
   %
   % Output:
   %   x     - soluzione di minimi quadrati pesati n x 1.
-  % Rel. 14-03-2026.
+  % Release 14-03-2026.
 
   [m, n] = size(A);
 

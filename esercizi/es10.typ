@@ -24,7 +24,7 @@
   % Output:
   %   x - vettore soluzione nx1.
   %
-  % Rel. 14-03-2026.
+  % Release 14-03-2026.
 
   [m, n] = size(A);
 
@@ -92,5 +92,5 @@
 
   + *Matrice non simmetrica*: se $A != A^T$, il controllo iniziale in norma infinito rileva la discrepanza e segnala `La matrice A deve essere simmetrica`.
 
-  #rimando[Lo script MATLAB utilizzato per la validazione della funzione `LDLSolve` è `test_ldlsolve.m`]
+  #rimando[Script MATLAB: `test_ldlsolve.m`.]
 ]

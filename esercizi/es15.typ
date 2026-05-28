@@ -118,7 +118,7 @@
   con inoltre $x_3 = plus.minus x_1$ e $x_4 = plus.minus x_2$.
 
   === Risultati numerici
-  Applicando `metodoNewtonSistemi` ai quattro punti iniziali assegnati si ottengono i risultati seguenti.
+  Con i quattro punti iniziali assegnati si ottengono:
 
   #tabella_risultati(
     caption: [Soluzioni ottenute con `metodoNewtonSistemi` e `tol = 10 * eps` per i quattro inneschi assegnati.],
@@ -182,5 +182,5 @@
   $
   cioè un sistema con matrice nulla e termine noto non nullo, impossibile da risolvere. Per questo Newton per sistemi richiede che la Jacobiana sia invertibile nei punti in cui viene eseguito il passo.
 
-  #rimando[Per riprodurre i valori numerici riportati, si faccia riferimento allo script MATLAB allegato denominato `test_es15.m`.]
+  #rimando[Script MATLAB: `test_es15.m`.]
 ]

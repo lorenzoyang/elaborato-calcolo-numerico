@@ -11,7 +11,7 @@ function x = LUSolve(A, b)
 % Output:
 %   x - vettore soluzione del sistema nx1.
 %
-% Rel. 08-03-2026.
+% Release 08-03-2026.
 
 [m, n] = size(A);
 

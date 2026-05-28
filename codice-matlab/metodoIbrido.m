@@ -16,7 +16,7 @@ function [x, it_bis, it_new] = metodoIbrido(f, f1, a, b, delta)
 %   it_bis - numero di iterazioni di bisezione effettuate;
 %   it_new - numero di iterazioni di Newton effettuate.
 %
-% Rel. 07-03-2026.
+% Release 07-03-2026.
 
 % gestione input e valori di default
 if nargin < 5

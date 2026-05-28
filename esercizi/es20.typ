@@ -41,9 +41,9 @@
   === Commento dei risultati
   Il grafico mostra il fenomeno di Runge: con ascisse equidistanti l'errore
   aumenta al crescere del grado, soprattutto vicino agli estremi. Lagrange e
-  Newton rappresentano lo stesso polinomio in aritmetica esatta; le curve si
-  separano solo per gradi alti, quando gli arrotondamenti sono amplificati in modo
-  diverso dalle due valutazioni.
+  Newton rappresentano lo stesso polinomio in aritmetica esatta; la separazione
+  delle curve, per gradi alti, dipende quindi dalla diversa stabilità numerica
+  delle due valutazioni.
 
   L'errore passa da circa $4.34$ per $n = 10$ a valori tra $10^30$ e
   $10^37$ per $n = 140$. Anche Hermite peggiora: imponendo pure le derivate
@@ -52,5 +52,5 @@
   $8.31 dot 10^38$. Le ascisse equidistanti sono quindi inadatte a questo
   esempio per gradi elevati.
 
-  #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es20.m`.]
+  #rimando[Script MATLAB: `test_es20.m`.]
 ]

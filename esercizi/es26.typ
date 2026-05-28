@@ -73,5 +73,5 @@
   dell'esercizio 25: il massimo dell'errore è vicino a $x = 0$ e il passo $h$
   è lo stesso nei due intervalli.
 
-  #rimando[Per riprodurre i valori numerici e il grafico riportato, si faccia riferimento allo script MATLAB allegato denominato `test_es26.m`.]
+  #rimando[Script MATLAB: `test_es26.m`.]
 ]

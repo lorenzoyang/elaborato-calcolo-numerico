@@ -2,7 +2,7 @@
 
 #esercizio(
   "3",
-  [Scrivere una function Matlab che implementi il metodo di Newton per gli zeri di una funzione. Prevedere valori di default per la tolleranza di arresto e per il numero massimo di iterazioni.],
+  [Scrivere una function MATLAB che implementi il metodo di Newton per gli zeri di una funzione. Prevedere valori di default per la tolleranza di arresto e per il numero massimo di iterazioni.],
 )[
   La funzione implementa il metodo di Newton, con parametro opzionale per la molteplicità della radice e criterio di arresto misto assoluto/relativo.
 
@@ -23,7 +23,7 @@
   %   x     - approssimazione della radice;
   %   it    - numero di iterazioni effettuate.
   %
-  % Rel. 05-03-2026.
+  % Release 05-03-2026.
 
   % gestione degli argomenti di input e valori di default
   if nargin < 3
@@ -44,7 +44,7 @@
       error('Molteplicita'' non corretta: deve essere un intero positivo.');
   end
   if maxit < 1
-      error('Numero massimo di iteraterazioni non corretto.');
+      error('Numero massimo di iterazioni non corretto.');
   end
   if tol <= 0
       error('Tolleranza non corretta: deve essere > 0.');

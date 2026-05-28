@@ -12,7 +12,7 @@
   La funzione $f(x) = sin(10x) + arctan(10x)$ si annulla esattamente nell'origine ($x^* = 0$). Il termine trigonometrico la rende però oscillante e la derivata $f'(x) = 10 cos(10x) + 10 / (1 + (10x)^2)$ cambia segno spesso; l'innesco $x_0 = 10$ è quindi sfavorevole per Newton.
 
   === Costi computazionali
-  Con tolleranza dell'ordine di $10^(-15)$ si ottengono i risultati seguenti:
+  Con tolleranza dell'ordine di $10^(-15)$, contando anche le valutazioni di derivata richieste da Newton, si ottengono:
 
   #tabella_risultati(
     caption: [Confronto del costo computazionale dei metodi.],
@@ -20,7 +20,7 @@
     align: center + horizon,
     [*Metodo*],
     [*Iterazioni*],
-    [*Valutazioni Totali ($f$ o $f'$)*],
+    [*Valutazioni ($f$ e/o $f'$)*],
     [*Esito*],
     [Bisezione],
     [54],
@@ -36,10 +36,10 @@
     [Successo],
   )
 
-  #rimando[per eseguire i test empirici e riprodurre i dati riportati in questa tabella, si faccia riferimento allo script MATLAB allegato denominato `test_metodi_zeri.m`.]
+  #rimando[Script MATLAB: `test_metodi_zeri.m`.]
 
   === Commento
   - *Bisezione*: converge sempre, ma solo linearmente; servono 54 iterazioni e 56 valutazioni di funzione.
-  - *Newton*: con $x_0 = 10$ non converge, perché le tangenti sono calcolate in una zona oscillante e allontanano gli iterati dalla radice, fino al limite di 1000 iterazioni.
+  - *Newton*: con $x_0 = 10$ non converge; le prime tangenti non portano verso la radice in $0$ e gli iterati finiscono lontano dall'intervallo iniziale, fino al limite di 1000 iterazioni.
   - *Ibrido*: la bisezione porta l'intervallo sotto $delta = 0.1$; da lì Newton converge in 3 iterazioni, con 16 valutazioni totali.
 ]

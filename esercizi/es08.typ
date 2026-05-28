@@ -20,7 +20,7 @@
   % Output:
   %   x - vettore soluzione del sistema nx1.
   %
-  % Rel. 08-03-2026.
+  % Release 08-03-2026.
 
   [m, n] = size(A);
 
@@ -86,6 +86,6 @@
 
   + *Matrice singolare (gestione errori)*: con righe linearmente dipendenti, il controllo sul pivot rileva la singolarità numerica e restituisce l'errore `"Matrice singolare o quasi singolare."`.
 
-  #rimando[Per eseguire i test empirici e riprodurre i risultati riportati, si faccia riferimento allo script MATLAB allegato denominato `test_lusolve.m`.]
+  #rimando[Script MATLAB: `test_lusolve.m`.]
 
 ]

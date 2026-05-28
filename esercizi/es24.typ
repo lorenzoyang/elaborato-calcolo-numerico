@@ -3,7 +3,7 @@
 #esercizio(
   "24",
   [
-    Utilizzando la function del precedente esercizio 22, scrivere la function Matlab,
+    Utilizzando la function del precedente esercizio 22, scrivere la function MATLAB,
 
     ```matlab
     y = spline3( xi, fi, x, type, f1a, f1b )
@@ -64,7 +64,7 @@
   % Output:
   %   y    - valori della spline nei punti x, con le stesse dimensioni di x.
   %
-  % Rel. 18-05-2026.
+  % Release 18-05-2026.
 
   % controlli di consistenza
   if nargin < 3
