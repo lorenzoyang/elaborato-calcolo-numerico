@@ -1,44 +1,85 @@
 # Elaborato di Calcolo Numerico
 
-Questo repository contiene un elaborato universitario di **Calcolo Numerico** per l'anno accademico **2025-2026**, composto da:
+Repository dell'elaborato universitario di **Calcolo Numerico** per l'anno
+accademico **2025-2026**.
 
-- il testo dell'elaborato in **Typst**
-- gli esercizi suddivisi in file separati
-- il codice **MATLAB** usato per test numerici e verifiche
-- il PDF finale gia generato
+Il progetto contiene il documento sorgente in **Typst**, le soluzioni dei 30
+esercizi, il codice **MATLAB** sviluppato per gli esercizi e gli script usati
+per produrre test numerici, tabelle e figure. Il codice MATLAB non e' quindi
+solo materiale di verifica: molte funzioni sono parte integrante della
+consegna degli esercizi.
+
+La versione pronta per la consegna e' disponibile nella sezione **Releases**,
+dove si possono scaricare direttamente il PDF finale e lo ZIP del codice
+MATLAB.
 
 ## Struttura del progetto
 
-- `elaborato.typ`: file principale dell'elaborato
-- `conf.typ`: configurazione comune del documento
-- `esercizi/`: contenuto dei singoli esercizi
-- `codice-matlab/`: funzioni e script MATLAB
-- `img/`: immagini usate nel documento
-- `dispense/`: materiale di riferimento
-- `elaborato.pdf`: versione compilata del documento
+| Percorso | Contenuto |
+| --- | --- |
+| `elaborato.typ` | File principale dell'elaborato; include tutti gli esercizi. |
+| `conf.typ` | Template Typst, stile del documento e componenti riutilizzabili. |
+| `esercizi/` | Sorgenti Typst dei singoli esercizi, da `es01.typ` a `es30.typ`. |
+| `codice-matlab/` | Funzioni MATLAB richieste dagli esercizi, funzioni di supporto e script di test. |
+| `img/` | Logo e immagini/figure inserite nel documento. |
+| `dispense/` | Materiale di riferimento del corso. |
+| `elaborato.pdf` | Versione PDF compilata dell'elaborato. |
+| `consegna-progetto-elaborato/` | Copia del PDF finale e archivio ZIP del codice MATLAB per la consegna. |
+
+## Documento Typst
+
+Il file `elaborato.typ` imposta i dati del documento e include in sequenza i 30
+file presenti in `esercizi/`. La configurazione grafica, la copertina,
+l'indice, lo stile dei blocchi di codice, delle tabelle e dei rimandi sono
+definiti in `conf.typ`.
+
+Per rigenerare il PDF, con Typst installato:
+
+```powershell
+typst compile elaborato.typ elaborato.pdf
+```
 
 ## Codice MATLAB
 
-Nella cartella `codice-matlab/` sono presenti implementazioni e script di test relativi ad alcuni argomenti classici del corso:
+La cartella `codice-matlab/` contiene sia le implementazioni richieste dalle
+tracce sia gli script usati per validare i risultati o generare dati e grafici
+riportati nell'elaborato.
 
-- risoluzione di sistemi lineari con fattorizzazione `LU` (`LUSolve.m`)
-- risoluzione di sistemi simmetrici definiti positivi con fattorizzazione `LDL^T` (`LDLSolve.m`)
-- generazione di sistemi di test (`linsis.m`)
-- metodi per la ricerca degli zeri: bisezione, Newton e metodo ibrido
-- Newton per sistemi non lineari (`metodoNewtonSistemi.m`)
-- minimi quadrati pesati (`WeightedLSSolve.m`)
-- calcolo di alcune costanti di macchina
+Le funzioni principali coprono:
 
-Sono inclusi anche script pronti da eseguire, ad esempio:
+- costanti di macchina: `calcola_costanti_macchina.m`;
+- ricerca di zeri: `metodoBisezione.m`, `metodoNewton.m`, `metodoIbrido.m`;
+- sistemi lineari: `triup.m`, `LUSolve.m`, `LDLSolve.m`, `tridia.m`;
+- sistemi di test forniti dal corso: `linsis.m`;
+- minimi quadrati pesati: `WeightedLSSolve.m`;
+- sistemi non lineari: `metodoNewtonSistemi.m`;
+- interpolazione polinomiale e nodi: `lagrange.m`, `newton.m`, `hermite.m`,
+  `chebyshev.m`;
+- spline cubiche: `spline3.m`;
+- formule di quadratura: `ncotes.m`, `ncotescomp.m`, `simpsonad.m`.
 
-- `test_lusolve.m`
-- `test_ldlsolve.m`
-- `test_metodi_zeri.m`
-- `test_es09.m`
-- `test_es11.m`
-- `test_es13.m`
-- `test_es15.m`
+Sono presenti anche script di verifica e produzione risultati, tra cui:
 
-## Note
+- `test_lusolve.m`, `test_ldlsolve.m`, `test_metodi_zeri.m`;
+- `test_es09.m`, `test_es11.m`, `test_es13.m`, `test_es15.m`;
+- `test_es20.m`, `test_es21.m`, `test_es25.m`, `test_es26.m`,
+  `test_es30.m`.
 
-Il repository raccoglie sia il materiale di stesura dell'elaborato sia il codice sperimentale usato per supportare gli esercizi numerici.
+Per eseguire uno script, aprire MATLAB nella cartella del progetto oppure
+aggiungere `codice-matlab/` al path. Ad esempio:
+
+```matlab
+cd codice-matlab
+test_es09
+```
+
+## Materiale di consegna
+
+La cartella `consegna-progetto-elaborato/` raccoglie i file preparati per la
+consegna:
+
+- `elaborato_Lorenzo_Yang.pdf`;
+- `codice-matlab_Lorenzo_Yang.zip`.
+
+Il PDF `elaborato.pdf` nella root e' la versione compilata del sorgente Typst
+presente nel repository.
