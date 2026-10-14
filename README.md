@@ -1,85 +1,59 @@
 # Elaborato di Calcolo Numerico
 
-Repository dell'elaborato universitario di **Calcolo Numerico** per l'anno
-accademico **2025-2026**.
+Il mio elaborato di **Calcolo Numerico**, anno accademico **2025–2026**:
+30 esercizi svolti, sorgenti **Typst** e codice **MATLAB** per implementazioni,
+test numerici, tabelle e grafici.
 
-Il progetto contiene il documento sorgente in **Typst**, le soluzioni dei 30
-esercizi, il codice **MATLAB** sviluppato per gli esercizi e gli script usati
-per produrre test numerici, tabelle e figure. Il codice MATLAB non e' quindi
-solo materiale di verifica: molte funzioni sono parte integrante della
-consegna degli esercizi.
+**[Scarica il PDF finale e il codice MATLAB dalle Releases](https://github.com/lorenzoyang/elaborato-calcolo-numerico/releases).**
+Puoi anche [sfogliare il PDF nel repository](elaborato.pdf).
 
-La versione pronta per la consegna e' disponibile nella sezione **Releases**,
-dove si possono scaricare direttamente il PDF finale e lo ZIP del codice
-MATLAB.
+## Vuoi usare questo stile per il tuo elaborato?
 
-## Struttura del progetto
+Il professore non aveva imposto uno stile per il PDF, quindi ho scelto di
+realizzare l'impaginazione con Typst: copertina, indice, riquadri delle domande,
+formule, tabelle e blocchi di codice.
+
+Le tracce cambiano ogni anno: questo elaborato resta un esempio del lavoro
+svolto nel 2025–2026. Puoi però **riutilizzare lo stile per scrivere il tuo**,
+con gli esercizi e le dispense del tuo anno.
+
+- **[Inizia dalla guida passo passo](docs/guida-typst.md)**: installa VS Code
+  e Tinymist Typst, personalizza il modello ed esporta il PDF.
+- **[Leggi i consigli pratici](docs/consigli.md)**: trascrivi le tracce,
+  organizza le dispense e usa un AI Agent con i file locali pertinenti.
+
+La guida parte da zero ed è pensata soprattutto per Windows. Per questo
+progetto bastano **VS Code e l'estensione Tinymist Typst**.
+
+## Cosa trovi nel progetto
 
 | Percorso | Contenuto |
 | --- | --- |
-| `elaborato.typ` | File principale dell'elaborato; include tutti gli esercizi. |
-| `conf.typ` | Template Typst, stile del documento e componenti riutilizzabili. |
-| `esercizi/` | Sorgenti Typst dei singoli esercizi, da `es01.typ` a `es30.typ`. |
-| `codice-matlab/` | Funzioni MATLAB richieste dagli esercizi, funzioni di supporto e script di test. |
-| `img/` | Logo e immagini/figure inserite nel documento. |
-| `dispense/` | Materiale di riferimento del corso. |
-| `elaborato.pdf` | Versione PDF compilata dell'elaborato. |
-| `consegna-progetto-elaborato/` | Copia del PDF finale e archivio ZIP del codice MATLAB per la consegna. |
+| `elaborato.typ` | Documento principale del mio elaborato completo. |
+| `conf.typ` | Stile condiviso e componenti riutilizzabili. |
+| `modello.typ` | Punto di partenza con dati da personalizzare e un solo esercizio. |
+| `esercizi/` | I 30 esercizi originali e il file iniziale `esempio.typ`. |
+| `codice-matlab/` | Funzioni richieste dagli esercizi e script di verifica. |
+| `img/` | Logo e figure del documento. |
+| `dispense/` | Dispense di riferimento del corso 2025–2026. |
+| `docs/` | Guida all'uso dello stile e consigli pratici. |
+| `consegna-progetto-elaborato/` | PDF finale e ZIP MATLAB preparati per la consegna. |
 
-## Documento Typst
+Per visualizzare o esportare il documento completo in VS Code, apri
+`elaborato.typ` e segui il [passaggio dedicato della guida](docs/guida-typst.md#7-vedi-lanteprima-ed-esporta-il-pdf).
 
-Il file `elaborato.typ` imposta i dati del documento e include in sequenza i 30
-file presenti in `esercizi/`. La configurazione grafica, la copertina,
-l'indice, lo stile dei blocchi di codice, delle tabelle e dei rimandi sono
-definiti in `conf.typ`.
-
-Per rigenerare il PDF, con Typst installato:
-
-```powershell
-typst compile elaborato.typ elaborato.pdf
-```
-
-## Codice MATLAB
+## Eseguire il codice MATLAB
 
 La cartella `codice-matlab/` contiene sia le implementazioni richieste dalle
-tracce sia gli script usati per validare i risultati o generare dati e grafici
-riportati nell'elaborato.
+tracce sia gli script per verificarle e produrre i risultati dell'elaborato.
 
-Le funzioni principali coprono:
-
-- costanti di macchina: `calcola_costanti_macchina.m`;
-- ricerca di zeri: `metodoBisezione.m`, `metodoNewton.m`, `metodoIbrido.m`;
-- sistemi lineari: `triup.m`, `LUSolve.m`, `LDLSolve.m`, `tridia.m`;
-- sistemi di test forniti dal corso: `linsis.m`;
-- minimi quadrati pesati: `WeightedLSSolve.m`;
-- sistemi non lineari: `metodoNewtonSistemi.m`;
-- interpolazione polinomiale e nodi: `lagrange.m`, `newton.m`, `hermite.m`,
-  `chebyshev.m`;
-- spline cubiche: `spline3.m`;
-- formule di quadratura: `ncotes.m`, `ncotescomp.m`, `simpsonad.m`.
-
-Sono presenti anche script di verifica e produzione risultati, tra cui:
-
-- `test_lusolve.m`, `test_ldlsolve.m`, `test_metodi_zeri.m`;
-- `test_es09.m`, `test_es11.m`, `test_es13.m`, `test_es15.m`;
-- `test_es20.m`, `test_es21.m`, `test_es25.m`, `test_es26.m`,
-  `test_es30.m`.
-
-Per eseguire uno script, aprire MATLAB nella cartella del progetto oppure
-aggiungere `codice-matlab/` al path. Ad esempio:
+Apri MATLAB e seleziona la cartella principale del progetto come **Cartella
+corrente / Current Folder**. Nella finestra dei comandi, per esempio:
 
 ```matlab
 cd codice-matlab
 test_es09
 ```
 
-## Materiale di consegna
-
-La cartella `consegna-progetto-elaborato/` raccoglie i file preparati per la
-consegna:
-
-- `elaborato_Lorenzo_Yang.pdf`;
-- `codice-matlab_Lorenzo_Yang.zip`.
-
-Il PDF `elaborato.pdf` nella root e' la versione compilata del sorgente Typst
-presente nel repository.
+Puoi eseguire gli altri script `test_*.m` nello stesso modo. Se sei già dentro
+`codice-matlab/`, scrivi direttamente il nome dello script senza `.m`.
